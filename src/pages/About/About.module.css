@@ -1,0 +1,18 @@
+.content p {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  flex-wrap: wrap;
+  text-align: left;
+  margin-bottom: 2em;
+}
+div.content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.content a {
+  display: block;
+  margin-top: 15px;
+  padding: 15px 10px;
+}
