@@ -36,7 +36,7 @@ const Post = () => {
     // </div>
     <>
       <div className=" py-4">
-        {loading && <p>Loading...!</p>}
+        {/* {loading && <p>Loading...!</p>} */}
         {posts && posts.length > 0 ? (
           <>
             <Pagination
