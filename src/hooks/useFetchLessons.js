@@ -73,7 +73,7 @@ export const useFetchLessons = (
     }
 
     loadData();
-  }, [docCollection, documents, search, uid, cancelled, section]);
+  }, [docCollection, search, uid, cancelled, section]);
 
   // console.log('que vem do fetch', documents);
 

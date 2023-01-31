@@ -186,6 +186,18 @@ const Navbar = () => {
   } else {
     const idModuleP = location.pathname.split('/')[3];
     const idSectionP = location.pathname.split('/')[4];
+    console.log(
+      '0:',
+      location.pathname.split('/')[0],
+      '1:',
+      location.pathname.split('/')[1],
+      '2:',
+      location.pathname.split('/')[2],
+      '3:',
+      location.pathname.split('/')[3],
+      '4:',
+      location.pathname.split('/')[4],
+    );
     return (
       <LessonsSidebar moduleNumber={idModuleP} sectionNumber={idSectionP} />
     );

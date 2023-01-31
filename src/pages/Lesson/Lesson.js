@@ -2,7 +2,6 @@
 import styles from './Post.module.css';
 
 // hooks
-import { useFetchDocument } from '../../hooks/useFetchDocument';
 
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
@@ -10,7 +9,6 @@ import MDEditor from '@uiw/react-md-editor';
 import { useFetchLessons } from '../../hooks/useFetchLessons';
 import Pagination from '../../components/Pagination';
 import PostDetail from '../../components/PostDetail';
-import { useFetchDocuments } from '../../hooks/useFetchDocuments';
 
 const Post = () => {
   let { id, moduleId, sectionId, order } = useParams();
@@ -36,7 +34,7 @@ const Post = () => {
     // </div>
     <>
       <div className=" py-4">
-        {/* {loading && <p>Loading...!</p>} */}
+        {loading && <p>Loading...!</p>}
         {posts && posts.length > 0 ? (
           <>
             <Pagination
@@ -52,7 +50,7 @@ const Post = () => {
         ) : (
           <div className="text-center">
             <div className="spinner-border text-light" role="status">
-              <span className="visually-hidden">Loading...</span>
+              <span className="visually-hidden">No lessons</span>
             </div>
           </div>
         )}
