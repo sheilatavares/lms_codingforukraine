@@ -43,7 +43,7 @@ const Navbar = () => {
                     type="text/css"
                     dangerouslySetInnerHTML={{
                       __html:
-                        '\n   \n    .fil1 {fill:#0076BF}\n    .fil2 {fill:#FFD726}\n    .fil0 {fill:#0076BF;fill-rule:nonzero}\n   \n  ',
+                        '\n   \n    .fil1 {fill:#0076BF}\n    .fillYellow1 {fill:#FFD726}\n    .fil0 {fill:#0076BF;fill-rule:nonzero}\n   \n  ',
                     }}
                   />
                 </defs>
@@ -62,7 +62,7 @@ const Navbar = () => {
                     points="11.2005,3.23295 11.2005,0.299336 5.82172,0.299262 5.82164,4.6354e-005 11.2005,0 11.4592,0 11.4998,1.85416e-005 11.4998,3.23291 "
                   />
                   <polygon
-                    className="fil2"
+                    className="fillYellow1"
                     points="0.299299,2.65845 0.299345,5.5921 5.67814,5.59214 5.67821,5.89139 0.299345,5.89143 0.040671,5.89143 0,5.89141 7.41665e-005,2.65852 "
                   />
                 </g>
