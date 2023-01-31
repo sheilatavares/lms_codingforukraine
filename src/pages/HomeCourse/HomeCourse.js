@@ -15,7 +15,7 @@ import { useState } from 'react';
 import PostDetail from '../../components/PostDetail';
 
 const HomeCourse = () => {
-  const { documents: lessons } = useFetchDocuments('posts');
+  const { documents: lessons, loading } = useFetchDocuments('posts');
   const { documents: modules } = useFetchDocuments('modules');
   const { documents: sections } = useFetchDocuments('sections');
 
@@ -31,7 +31,7 @@ const HomeCourse = () => {
     }
   };
 
-  // console.log(loading);
+  console.log(loading);
 
   return (
     <div className="container-full" id="home-course">
@@ -44,11 +44,11 @@ const HomeCourse = () => {
         <button className="btn btn-dark">Search</button>
       </form> */}
         <div className="post-list">
-          {/* {loading && (
+          {loading && (
             <div className="container d-flex align-items-center">
               <p>Loading...</p>
             </div>
-          )} */}
+          )}
           <div className="row g-0">
             <div className="col-lg-3">
               <img src={photoFriends} className="w-100"></img>
