@@ -44,7 +44,7 @@ const HomeCourse = () => {
         <button className="btn btn-dark">Search</button>
       </form> */}
         <div className="post-list">
-          {loading && (
+          {!loading && (
             <div className="container d-flex align-items-center">
               <p>Loading...</p>
             </div>
