@@ -16,7 +16,7 @@ export const useFetchLessons = (
 ) => {
   const [documents, setDocuments] = useState(null);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   // deal with memory leak
   const [cancelled, setCancelled] = useState(false);
@@ -34,22 +34,6 @@ export const useFetchLessons = (
       try {
         let q;
 
-        // if (search) {
-        //   q = await query(
-        //     collectionRef,
-        //     where('tags', 'array-contains', search),
-        //     orderBy('createdAt', 'desc'),
-        //   );
-        // } else if (uid) {
-        //   q = await query(
-        //     collectionRef,
-        //     where('uid', '==', uid),
-        //     orderBy('createdAt', 'desc'),
-        //   );
-        // } else {
-        //   q = await query(collectionRef, orderBy('ordination', 'asc'));
-        // }
-
         q = await query(
           collectionRef,
           where('sectionId', '==', section),
@@ -63,13 +47,13 @@ export const useFetchLessons = (
               ...doc.data(),
             })),
           );
+          setLoading(false);
         });
       } catch (error) {
         console.log(error);
         setError(error.message);
+        setLoading(false);
       }
-
-      setLoading(false);
     }
 
     loadData();
@@ -83,3 +67,43 @@ export const useFetchLessons = (
 
   return { documents, loading, error };
 };
+
+// import { useState, useEffect } from 'react';
+// import { db } from '../firebase/config';
+// import { collection, where, orderBy, onSnapshot } from 'firebase/firestore';
+
+// export const useFetchLessons = (docCollection, section) => {
+//   const [documents, setDocuments] = useState(null);
+//   const [error, setError] = useState(null);
+//   const [loading, setLoading] = useState(true);
+
+//   useEffect(() => {
+//     let unsubscribe = null;
+//     const fetchData = async () => {
+//       try {
+//         const collectionRef = await collection(db, docCollection);
+//         const queryRef = await where('sectionId', '==', section);
+//         const orderedQueryRef = await orderBy(queryRef, 'ordination', 'asc');
+//         unsubscribe = await onSnapshot(orderedQueryRef, (snapshot) => {
+//           setDocuments(
+//             snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
+//           );
+//           setLoading(false);
+//         });
+//         console.log(unsubscribe);
+//       } catch (error) {
+//         setError(error.message);
+//         console.log(error);
+//         setLoading(false);
+//       }
+//     };
+//     fetchData();
+//     return () => {
+//       if (unsubscribe) {
+//         unsubscribe();
+//       }
+//     };
+//   }, [docCollection, section]);
+
+//   return { documents, loading, error };
+// };

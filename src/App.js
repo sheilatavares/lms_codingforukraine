@@ -1,6 +1,7 @@
 import './App.css';
 
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
 import { onAuthStateChanged } from 'firebase/auth';
 import { useLocation } from 'react-router-dom';
 
@@ -41,7 +42,13 @@ function App() {
   }, [auth]);
 
   if (loadingUser) {
-    return <p className="text-white text-center">Loading...</p>;
+    return (
+      <div className="d-flex justify-content-center pt-5">
+        <div className="spinner-border text-light" role="status">
+          <span className="visually-hidden"></span>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -74,6 +81,7 @@ function App() {
               />
 
               <Route
+                exact
                 path="/lesson/:id/:moduleId/:sectionId/:order"
                 element={!user ? <Navigate to="/" /> : <Lesson />}
               />
@@ -93,6 +101,10 @@ function App() {
               <Route
                 path="/myhome"
                 element={user ? <HomeCourse /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="*"
+                element={user ? <Navigate to="/myhome" /> : <Navigate to="/" />}
               />
             </Routes>
           </div>

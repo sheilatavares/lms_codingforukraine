@@ -68,7 +68,9 @@ const LessonsSidebar = ({ moduleNumber, sectionNumber }) => {
                     aria-controls={module.id}
                   >
                     <h6>
-                      Module {module.ordination} - {module.module}
+                      <strong>
+                        Module {module.ordination} - {module.module}
+                      </strong>
                     </h6>
                   </button>
                 </h2>
@@ -84,24 +86,29 @@ const LessonsSidebar = ({ moduleNumber, sectionNumber }) => {
                   // data-bs-parent="#accordionModules"
                 >
                   <div className="accordion-body p-0">
-                    <div className="container mt-2">
+                    <div className="container">
                       {sections &&
                         sections
                           .filter((emp) => emp.moduleId === module.id)
 
                           .map((ord) => (
                             <div key={ord.id} className="row">
-                              {sectionNumber === ord.id ? (
-                                <span className="section_list current ps-5 icon-lesson">
-                                  {ord.section}
-                                </span>
-                              ) : (
-                                <span className="section_list ps-5">
-                                  {ord.section}
-                                </span>
-                              )}
+                              <div className="px-0 pt-0 pb-2">
+                                {sectionNumber === ord.id ? (
+                                  <div className="section_list ps-5 current icon-lesson">
+                                    {ord.section}
+                                  </div>
+                                ) : (
+                                  <div
+                                    className="section_list ps-4 
+                                "
+                                  >
+                                    {ord.section}
+                                  </div>
+                                )}
+                              </div>
 
-                              <div className="ps-5 row my-2">
+                              <div className="d-flex flex-column px-0">
                                 {lessons &&
                                   lessons
                                     .filter((emp) => emp.sectionId === ord.id)
@@ -121,7 +128,7 @@ const LessonsSidebar = ({ moduleNumber, sectionNumber }) => {
                                         reloadDocument
                                         key={lesson.id}
                                         to={`/lesson/${lesson.id}/${lesson.moduleId}/${lesson.sectionId}/${lesson.ordination}`}
-                                        className="lesson_list col-12"
+                                        className="lesson_list ps-5 py-2 col-12"
                                       >
                                         Lesson {lesson.ordination} -{' '}
                                         {lesson.title}

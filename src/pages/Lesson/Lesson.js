@@ -33,9 +33,13 @@ const Post = () => {
     //   )}
     // </div>
     <>
-      <div className=" py-4">
-        {loading && <p>Loading...!</p>}
-        {posts && posts.length > 0 ? (
+      <div className="d-flex justify-content-center py-4">
+        {loading && (
+          <div className="spinner-border text-light" role="status">
+            <span className="visually-hidden"></span>
+          </div>
+        )}
+        {posts && (
           <>
             <Pagination
               data={posts}
@@ -47,12 +51,6 @@ const Post = () => {
               siblingCount={1}
             />
           </>
-        ) : (
-          <div className="text-center">
-            <div className="spinner-border text-light" role="status">
-              <span className="visually-hidden">No lessons</span>
-            </div>
-          </div>
         )}
       </div>
     </>

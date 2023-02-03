@@ -217,7 +217,7 @@ a.lesson_list {
 }
 
 a.lesson_list:hover {
-  color: var(--bs-primary);
+  background-color: #eee;
 }
 
 .accordion_lesson .accordion-button:not(.collapsed) {
@@ -243,7 +243,7 @@ a.lesson_list:hover {
 .accordion_lesson .accordion-item {
   background-color: #fff;
 }
-span.icon-lesson::before {
+div.icon-lesson::before {
   display: inline-block;
   content: '👉';
   width: 27px;
