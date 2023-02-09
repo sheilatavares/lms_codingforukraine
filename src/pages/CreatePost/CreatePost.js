@@ -13,6 +13,9 @@ import { useFetchDocuments } from '../../hooks/useFetchDocuments';
 const CreatePost = () => {
   const [course, setCourse] = useState('introducing_programming');
   const { documents: sections, loading } = useFetchDocuments('sections');
+  const { documents: modules } = useFetchDocuments('modules');
+  const [sectionSlug, setSectionSlug] = useState('');
+  const [moduleSlug, setModuleSlug] = useState('');
   const [sectionId, setSectionId] = useState('');
   const [moduleId, setModuleId] = useState('');
   const [ordination, setOrdination] = useState('');
@@ -23,6 +26,7 @@ const CreatePost = () => {
   const [value, setValue] = useState('');
   const [column, setColumn] = useState('');
   const [image, setImage] = useState('');
+  const [slug, setSlug] = useState('');
 
   //editor
   const editorRef = useRef(null);
@@ -38,10 +42,10 @@ const CreatePost = () => {
 
   const navigate = useNavigate();
 
-  const mergedSections = (r, { module, moduleId, course, ...rest }) => {
-    return r.reduce((r, { module, moduleId, course, ...rest }) => {
-      const key = `${module}-${moduleId}-${course}`;
-      r[key] = r[key] || { module, moduleId, course, section: [] };
+  const mergedSections = (r, { module, moduleId, slug, ...rest }) => {
+    return r.reduce((r, { module, moduleId, slug, ...rest }) => {
+      const key = `${module}-${moduleId}-${slug}`;
+      r[key] = r[key] || { module, moduleId, slug, section: [] };
       r[key]['section'].push(rest);
       return r;
     }, {});
@@ -51,34 +55,50 @@ const CreatePost = () => {
     let sectionsMerged = mergedSections(sections, {
       module,
       moduleId,
-      course,
+      slug,
     });
     const sectionsValues = Object.values(sectionsMerged);
 
+    // console.log(sectionsMerged);
+
     let result;
-    if (select === 'module') {
-      return sectionsValues.map((module, index) => (
-        <option key={module.moduleId} value={module.moduleId}>
-          Module: {module.module}
+    // if (select === 'module') {
+    //   return sectionsValues.map((module, index) => (
+    //     <option
+    //       key={module.id}
+    //       data-value={module.slug}
+    //       value={module.moduleId}
+    //     >
+    //       {module.module}
+    //     </option>
+    //   ));
+    // } else {
+    return sections
+      .filter((emp) => emp.moduleId === value)
+
+      .map((ord) => (
+        <option key={ord.id} value={ord.slug} data-id={ord.id}>
+          Section {ord.ordination} - {ord.section}
         </option>
       ));
-    } else {
-      // console.log('resultado:', result, ' valor:', value);
-
-      return sections
-        .filter((emp) => emp.moduleId === value)
-
-        .map((ord) => (
-          <option key={ord.id} value={ord.id}>
-            Section {ord.ordination} - {ord.section}
-          </option>
-        ));
-    }
+    // }
   };
 
   function onChangeModule(event) {
+    setModuleSlug(
+      event.target.options[event.target.selectedIndex].getAttribute(
+        'data-value',
+      ),
+    );
     setModuleId(event.target.value);
     setValue(event.target.value);
+  }
+
+  function onChangeSection(event) {
+    setSectionId(
+      event.target.options[event.target.selectedIndex].getAttribute('data-id'),
+    );
+    setSectionSlug(event.target.value);
   }
 
   const handleSubmit = async (e) => {
@@ -102,14 +122,17 @@ const CreatePost = () => {
     console.log({
       course,
 
+      moduleSlug,
       moduleId,
 
+      sectionSlug,
       sectionId,
       title,
       ordination,
       body,
       column,
       bodyColumn,
+      slug,
       uid: user.uid,
       createdBy: user.displayName,
     });
@@ -120,11 +143,15 @@ const CreatePost = () => {
       insertDocument({
         course,
         image,
+        moduleSlug,
         moduleId,
+
+        sectionSlug,
         sectionId,
         title,
         ordination,
         body,
+        slug,
         column,
         bodyColumn,
         uid: user.uid,
@@ -179,14 +206,23 @@ const CreatePost = () => {
                 Choose a Module ...
               </option>
               {loading && <option>Loading...</option>}
-              {sections && resultModules('module', '')}
+              {modules &&
+                modules.map((module) => (
+                  <option
+                    key={module.ordination}
+                    data-value={module.slug}
+                    value={module.id}
+                  >
+                    Module {module.ordination} - {module.module}
+                  </option>
+                ))}
             </select>
           </label>
           <label className="col-4">
             <span>Section:</span>
             <select
               className="form-select"
-              onChange={(e) => setSectionId(e.target.value)}
+              onChange={(e) => onChangeSection(e)}
               defaultValue={'DEFAULT'}
             >
               <option value="DEFAULT" disabled>
@@ -202,12 +238,24 @@ const CreatePost = () => {
             <span>Lesson number:</span>
             <input
               type="number"
-              className="m-1 p-2"
+              className="m-1"
               name="Lesson"
               required
               placeholder="Lesson"
               onChange={(e) => setOrdination(e.target.value)}
               value={ordination}
+            />
+          </label>
+          <label className="col-3">
+            <span>Slug:</span>
+            <input
+              type="text"
+              name="slug"
+              className="m-1 p-2 w-100"
+              required
+              placeholder="slug"
+              onChange={(e) => setSlug(e.target.value)}
+              value={slug}
             />
           </label>
           <label className="col-6">

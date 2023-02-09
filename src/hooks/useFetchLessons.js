@@ -8,15 +8,12 @@ import {
   where,
 } from 'firebase/firestore';
 
-export const useFetchLessons = (
-  docCollection,
-  section,
-  search = null,
-  uid = null,
-) => {
+export const useFetchLessons = (docCollection, moduleSlug, sectionSlug) => {
   const [documents, setDocuments] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  // console.log('modulo:', moduleSlug, 'secao', sectionSlug);
 
   // deal with memory leak
   const [cancelled, setCancelled] = useState(false);
@@ -36,11 +33,17 @@ export const useFetchLessons = (
 
         q = await query(
           collectionRef,
-          where('sectionId', '==', section),
+          where('moduleSlug', '==', moduleSlug),
+          where('sectionSlug', '==', sectionSlug),
           orderBy('ordination', 'asc'),
         );
 
         await onSnapshot(q, (querySnapshot) => {
+          if (querySnapshot.empty) {
+            console.error('No documents found');
+            setLoading(false);
+            return;
+          }
           setDocuments(
             querySnapshot.docs.map((doc) => ({
               id: doc.id,
@@ -57,14 +60,14 @@ export const useFetchLessons = (
     }
 
     loadData();
-  }, [docCollection, search, uid, cancelled, section]);
+  }, [docCollection, moduleSlug, sectionSlug, cancelled]);
 
   // console.log('que vem do fetch', documents);
 
   useEffect(() => {
     return () => setCancelled(true);
   }, []);
-
+  console.log(documents);
   return { documents, loading, error };
 };
 

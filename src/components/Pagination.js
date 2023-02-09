@@ -7,12 +7,19 @@ const Pagination = ({
   data,
   RenderComponent,
   ordLesson,
+  moduleSlug,
+  sectionSlug,
   buttonConst,
   contentPerPage,
   siblingCount,
 }) => {
   const [totalPageCount] = useState(Math.ceil(data.length / contentPerPage));
-  // console.log('data:', data);
+
+  let slugData = [];
+
+  data.forEach(function (item) {
+    slugData.push(item.slug);
+  });
 
   const [currentPage, setCurrentPage] = useState(Number(ordLesson));
   const navigate = useNavigate();
@@ -33,9 +40,19 @@ const Pagination = ({
   }, [currentPage]);
 
   function goToNextPage() {
+    navigate(
+      `/lesson/${moduleSlug}/${sectionSlug}/${slugData[currentPage]}/${
+        currentPage + 1
+      }`,
+    );
     setCurrentPage((page) => page + 1);
   }
   function gotToPreviousPage() {
+    navigate(
+      `/lesson/${moduleSlug}/${sectionSlug}/${slugData[currentPage]}/${
+        currentPage - 1
+      }`,
+    );
     setCurrentPage((page) => page - 1);
   }
   function changePage(event) {
@@ -98,10 +115,6 @@ const Pagination = ({
           </div>
         </div>
       </div>
-      {/* show the pagiantion
-                it consists of next and previous buttons
-                along with page numbers, in our case, 5 page
-                numbers at a time */}
     </div>
   );
 };
@@ -110,6 +123,9 @@ Pagination.propTypes = {
   data: PropTypes.array,
   RenderComponent: PropTypes.func,
   title: PropTypes.string,
+  slug: PropTypes.string,
+  moduleSlug: PropTypes.string,
+  sectionSlug: PropTypes.string,
   ordLesson: PropTypes.string,
   buttonConst: PropTypes.number,
   contentPerPage: PropTypes.number,

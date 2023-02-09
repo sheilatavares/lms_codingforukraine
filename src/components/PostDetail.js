@@ -6,12 +6,12 @@ import MDEditor from '@uiw/react-md-editor';
 // import styles from './PostDetail.module.css';
 // import { useFetchDocuments } from '../hooks/useFetchDocuments';
 
-const PostDetail = ({ data }) => {
+const PostDetail = ({ data, slug }) => {
   const {
     id,
     title,
-    sectionId,
-    moduleId,
+    sectionSlug,
+    moduleSlug,
     body,
     bodyColumn,
     ordination,
@@ -35,7 +35,7 @@ const PostDetail = ({ data }) => {
     <div className="container-full w-100 col-lg-11 col-12 pt-4 pb-4">
       <div className="row mt-3 mb-2">
         <h2>
-          Lesson {ordination}: {title}
+          Lesson {ordination}: {title} {slug}
         </h2>
       </div>
       <div className="row">
@@ -51,24 +51,6 @@ const PostDetail = ({ data }) => {
           </>
         )}
       </div>
-      {/* <div className="d-flex">
-        {modules &&
-          modules
-            .filter((emp) => emp.id === moduleId)
-            .map((md) => (
-              <small key={md.id} className="pr-5">
-                Module: {md.module}
-              </small>
-            ))}
-        {sections &&
-          sections
-            .filter((emp) => emp.id === sectionId)
-            .map((sec) => (
-              <small key={sec.id} className="pl-2">
-                Section: {sec.section}
-              </small>
-            ))}
-      </div> */}
     </div>
   );
 };
@@ -76,14 +58,16 @@ const PostDetail = ({ data }) => {
 PostDetail.propTypes = {
   data: P.shape({
     title: P.string,
+
     id: P.string,
-    sectionId: P.string,
-    moduleId: P.string,
+    sectionSlug: P.string,
+    moduleSlug: P.string,
     body: P.string,
     bodyColumn: P.string,
     ordination: P.string,
     column: P.string,
   }),
+  slug: P.string,
   idLesson: P.string,
 };
 

@@ -5,19 +5,27 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthValue } from '../../context/AuthContext';
 import { useInsertDocument } from '../../hooks/useInsertDocument';
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
+import { useDeleteDocument } from '../../hooks/useDeleteDocument';
 
 const CreateModule = () => {
   const { documents: sections, loading } = useFetchDocuments('sections');
   const [course, setCourse] = useState('introduction_programming');
   const [module, setModule] = useState('');
+  const [slug, setSlug] = useState('');
   const [ordination, setOrdination] = useState('');
   const [formError, setFormError] = useState('');
+  const { deleteDocument } = useDeleteDocument('modules');
 
   const { user } = useAuthValue();
 
   const { insertDocument, response } = useInsertDocument('modules');
 
   // if (sections) console.log(sections);
+
+  const deleteModule = (lessonTitle, lessonId) => {
+    let msg = confirm(`Are you sure that you want to delete ${lessonTitle}?`);
+    if (msg) deleteDocument(lessonId);
+  };
 
   const groupBySection = (xs, key) => {
     return xs.reduce(function (rv, x) {
@@ -33,9 +41,13 @@ const CreateModule = () => {
 
     return Object.keys(sectionsUp).map((module, ordination) => (
       <div className="mb-3" key={ordination}>
-        <h5 key={module.id}>
-          Module {ordination} - {module}
-        </h5>
+        <h5 key={module.id}>{module}</h5>{' '}
+        {/* <button
+          onClick={() => deleteModule(module, module.id)}
+          className="btn btn-danger btn-sm"
+        >
+          Delete
+        </button> */}
         {sectionsUp[module].map((ord) => (
           <h6 key={ord.id}>
             Section {ord.ordination} - {ord.section}
@@ -59,6 +71,7 @@ const CreateModule = () => {
         course,
         module,
         ordination,
+        slug,
       });
     }
 
@@ -67,9 +80,9 @@ const CreateModule = () => {
   };
 
   return (
-    <div>
-      <h1>Create Module</h1>
-      <p>Insert down the Module for the Course</p>
+    <div className="container-full bg-white">
+      <h1 className="pt-4">Create Module</h1>
+
       <form onSubmit={handleSubmit} className="w-100">
         <div className="row">
           <label className="col-3">
@@ -85,6 +98,7 @@ const CreateModule = () => {
               value={course}
             />
           </label>
+
           <label className="col-6">
             <span>Module:</span>
             <input
@@ -95,6 +109,18 @@ const CreateModule = () => {
               placeholder="Module"
               onChange={(e) => setModule(e.target.value)}
               value={module}
+            />
+          </label>
+          <label className="col-3">
+            <span>Slug:</span>
+            <input
+              type="text"
+              name="module"
+              className="m-1 p-2 w-100"
+              required
+              placeholder="Slug"
+              onChange={(e) => setSlug(e.target.value)}
+              value={slug}
             />
           </label>
           <label className="col-2">

@@ -127,7 +127,7 @@ const LessonsSidebar = ({ moduleNumber, sectionNumber }) => {
                                       <Link
                                         reloadDocument
                                         key={lesson.id}
-                                        to={`/lesson/${lesson.id}/${lesson.moduleId}/${lesson.sectionId}/${lesson.ordination}`}
+                                        to={`/lesson/${lesson.moduleSlug}/${lesson.sectionSlug}/${lesson.slug}/${lesson.ordination}`}
                                         className="lesson_list ps-5 py-2 col-12"
                                       >
                                         Lesson {lesson.ordination} -{' '}

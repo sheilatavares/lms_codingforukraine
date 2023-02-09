@@ -109,7 +109,7 @@ const HomeCourse = () => {
                                             )
                                             .map((lesson) => (
                                               <Link
-                                                to={`/lesson/${lesson.id}/${lesson.moduleId}/${lesson.sectionId}/${lesson.ordination}`}
+                                                to={`/lesson/${lesson.moduleSlug}/${lesson.sectionSlug}/${lesson.slug}/${lesson.ordination}`}
                                                 state={{
                                                   from: `${lesson.sectionId}`,
                                                   fora: `${lesson.ordination}`,

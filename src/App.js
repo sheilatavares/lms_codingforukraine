@@ -82,7 +82,7 @@ function App() {
 
               <Route
                 exact
-                path="/lesson/:id/:moduleId/:sectionId/:order"
+                path="/lesson/:moduleSlug/:sectionSlug/:slug/:order/"
                 element={!user ? <Navigate to="/" /> : <Lesson />}
               />
               <Route path="/search" element={<Search />} />
@@ -102,10 +102,10 @@ function App() {
                 path="/myhome"
                 element={user ? <HomeCourse /> : <Navigate to="/login" />}
               />
-              <Route
+              {/* <Route
                 path="*"
                 element={user ? <Navigate to="/myhome" /> : <Navigate to="/" />}
-              />
+              /> */}
             </Routes>
           </div>
           <Footer />

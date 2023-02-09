@@ -15,6 +15,7 @@ const CreateSection = () => {
   const [ordination, setOrdination] = useState('');
   const [formError, setFormError] = useState('');
   const [value, setValue] = useState('');
+  const [slug, setSlug] = useState('');
 
   const { user } = useAuthValue();
 
@@ -53,6 +54,7 @@ const CreateSection = () => {
         moduleOrd,
         section,
         ordination,
+        slug,
       });
     }
 
@@ -61,9 +63,8 @@ const CreateSection = () => {
   };
 
   return (
-    <div>
+    <div className="container-fluid bg-white">
       <h1>Create Section</h1>
-      <p>Insert down the Section for the Course</p>
       <form onSubmit={handleSubmit} className="w-100">
         <div className="row">
           <label className="col-3">
@@ -111,7 +112,7 @@ const CreateSection = () => {
           </label>
         </div>
         <div className="row">
-          <label className="col-7">
+          <label className="col-5">
             <span>Section:</span>
             <input
               type="text"
@@ -121,6 +122,18 @@ const CreateSection = () => {
               placeholder="section"
               onChange={(e) => setSection(e.target.value)}
               value={section}
+            />
+          </label>
+          <label className="col-2">
+            <span>Slug:</span>
+            <input
+              type="text"
+              name="slug"
+              className="m-1 p-2 w-100"
+              required
+              placeholder="slug"
+              onChange={(e) => setSlug(e.target.value)}
+              value={slug}
             />
           </label>
           <label className="col-3">
