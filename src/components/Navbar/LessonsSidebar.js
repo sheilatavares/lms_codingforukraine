@@ -12,7 +12,7 @@ import { useState } from 'react';
 // components
 import PostDetail from '../../components/PostDetail';
 
-const LessonsSidebar = ({ moduleNumber, sectionNumber }) => {
+const LessonsSidebar = ({ moduleSlug, sectionSlug }) => {
   const { documents: lessons, loading } = useFetchDocuments('posts');
   const { documents: modules } = useFetchDocuments('modules');
   const { documents: sections } = useFetchDocuments('sections');
@@ -57,7 +57,7 @@ const LessonsSidebar = ({ moduleNumber, sectionNumber }) => {
                 <h2 className="accordion-header">
                   <button
                     className={
-                      moduleNumber === module.id
+                      moduleSlug === module.slug
                         ? 'accordion-button button_lesson'
                         : 'accordion-button button_lesson collapsed'
                     }
@@ -78,7 +78,7 @@ const LessonsSidebar = ({ moduleNumber, sectionNumber }) => {
                   id={`id_${module.id}`}
                   // className="accordion-collapse collapse"
                   className={
-                    moduleNumber === module.id
+                    moduleSlug === module.slug
                       ? 'accordion-collapse collapse show'
                       : 'accordion-collapse collapse'
                   }
@@ -94,7 +94,7 @@ const LessonsSidebar = ({ moduleNumber, sectionNumber }) => {
                           .map((ord) => (
                             <div key={ord.id} className="row">
                               <div className="px-0 pt-0 pb-2">
-                                {sectionNumber === ord.id ? (
+                                {sectionSlug === ord.slug ? (
                                   <div className="section_list ps-5 current icon-lesson">
                                     {ord.section}
                                   </div>
@@ -148,8 +148,8 @@ const LessonsSidebar = ({ moduleNumber, sectionNumber }) => {
   );
 };
 LessonsSidebar.propTypes = {
-  moduleNumber: P.string,
-  sectionNumber: P.string,
+  moduleSlug: P.string,
+  sectionSlug: P.string,
 };
 
 export default LessonsSidebar;

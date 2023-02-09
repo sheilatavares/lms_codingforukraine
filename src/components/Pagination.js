@@ -77,11 +77,13 @@ const Pagination = ({
           <RenderComponent key={index} data={dataItem} />
         ))}
       </div>
-      <div className="container-full fixed-bottom pb-4">
+      <div className="container-full fixed-bottom position-fixed p-2 bg-blue-dark ">
         <div className="row">
-          <div className="col-lg-4 offset-lg-4 d-flex align-items-end justify-content-center">
-            <span className="">
-              {currentPage} / {totalPageCount}
+          <div className="col-lg-4 offset-lg-4 d-flex align-items-center justify-content-center">
+            <span className="text-white">
+              <strong>
+                {currentPage} / {totalPageCount}
+              </strong>
             </span>
           </div>
           <div className="col-lg-4">
@@ -91,7 +93,7 @@ const Pagination = ({
                   {/* previous button */}
                   <div className="pe-3">
                     <button
-                      className="btn btn-outline-primary me-1 px-0"
+                      className="btn btn-outline-light me-1 px-0"
                       onClick={gotToPreviousPage}
                       disabled={currentPage === 1 ? true : false}
                     >

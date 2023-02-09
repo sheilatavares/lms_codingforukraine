@@ -184,8 +184,8 @@ const Navbar = () => {
       </nav>
     );
   } else {
-    const idModuleP = location.pathname.split('/')[3];
-    const idSectionP = location.pathname.split('/')[4];
+    const idModuleP = location.pathname.split('/')[2];
+    const idSectionP = location.pathname.split('/')[3];
     console.log(
       '0:',
       location.pathname.split('/')[0],
@@ -198,9 +198,7 @@ const Navbar = () => {
       '4:',
       location.pathname.split('/')[4],
     );
-    return (
-      <LessonsSidebar moduleNumber={idModuleP} sectionNumber={idSectionP} />
-    );
+    return <LessonsSidebar moduleSlug={idModuleP} sectionSlug={idSectionP} />;
   }
 };
 
