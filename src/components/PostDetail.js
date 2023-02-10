@@ -23,16 +23,16 @@ const PostDetail = ({ data, slug }) => {
   let columnLeft;
   let columnRight;
   if (column === 'one_column') {
-    columnLeft = 'col-12';
+    columnLeft = 'col-sm-12';
   } else if (column === 'two_columns_left') {
-    columnLeft = 'col-7';
-    columnRight = 'col-5';
+    columnLeft = 'col-sm-7 col-12';
+    columnRight = 'col-sm-5';
   } else {
-    columnLeft = 'col-5';
-    columnRight = 'col-7';
+    columnLeft = 'col-sm-5';
+    columnRight = 'col-sm-7';
   }
   return (
-    <div className="container-full w-100 col-lg-11 col-12 pt-4 pb-4">
+    <div className="container-full w-100 col-lg-11 col-12 pt-0 pb-4">
       <div className="row mt-3 mb-2">
         <h2>
           Lesson {ordination}: {title} {slug}

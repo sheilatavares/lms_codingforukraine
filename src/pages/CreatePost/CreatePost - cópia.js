@@ -295,7 +295,7 @@ const CreatePost = () => {
                 <MarkdownEditor
                   value={body}
                   onChange={(value, viewUpdate) => setBody(value)}
-                  style={{ height: '400px', width: '400px' }}
+                  style={{ height: '400px' }}
                 />
                 <span>Content second column:</span>
                 <MarkdownEditor
