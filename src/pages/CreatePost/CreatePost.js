@@ -19,6 +19,7 @@ const CreatePost = () => {
   const [sectionId, setSectionId] = useState('');
   const [moduleId, setModuleId] = useState('');
   const [ordination, setOrdination] = useState('');
+  const [quiz, setQuiz] = useState('');
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [bodyColumn, setBodyColumn2] = useState('');
@@ -106,25 +107,12 @@ const CreatePost = () => {
 
     setFormError('');
 
-    // check values
-    // if (
-    //   !course ||
-    //   !moduleId ||
-    //   sectionId ||
-    //   title ||
-    //   ordination ||
-    //   column ||
-    //   body
-    // ) {
-    //   setFormError('All fields are mandatory.');
-    // }
-
     console.log({
       course,
 
       moduleSlug,
       moduleId,
-
+      quiz,
       sectionSlug,
       sectionId,
       title,
@@ -149,6 +137,7 @@ const CreatePost = () => {
         sectionSlug,
         sectionId,
         title,
+        quiz,
         ordination,
         body,
         slug,
@@ -245,6 +234,17 @@ const CreatePost = () => {
               onChange={(e) => setOrdination(e.target.value)}
               value={ordination}
             />
+          </label>
+          <label className="col-3">
+            <span>Is a quiz lesson?</span>
+            <select
+              className="form-select m-1 p-2 w-100"
+              onChange={(e) => setQuiz(e.target.value)}
+            >
+              <option selected>Choose...</option>
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
           </label>
           <label className="col-3">
             <span>Slug:</span>

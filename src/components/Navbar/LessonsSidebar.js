@@ -130,7 +130,6 @@ const LessonsSidebar = ({ moduleSlug, sectionSlug }) => {
                                         to={`/lesson/${lesson.moduleSlug}/${lesson.sectionSlug}/${lesson.slug}/${lesson.ordination}`}
                                         className="lesson_list ps-5 py-2 col-12"
                                       >
-                                        Lesson {lesson.ordination} -{' '}
                                         {lesson.title}
                                       </Link>
                                     ))}

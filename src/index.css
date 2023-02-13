@@ -411,7 +411,8 @@ body:has(.dataContainer) {
   fill: #fff;
 }
 
-.wmde-markdown {
+.wmde-markdown,
+.question-section {
   -webkit-text-size-adjust: 100%;
   font-family: 'Lato', sans-serif !important;
   /* font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'; */
@@ -420,4 +421,48 @@ body:has(.dataContainer) {
   word-wrap: break-word;
   color: var(--color-fg-default);
   background-color: var(--color-canvas-default);
+}
+
+.bg-quiz {
+  background: linear-gradient(
+    0deg,
+    rgba(18, 44, 74, 1) 0%,
+    rgba(34, 104, 156, 1) 100%
+  );
+}
+
+.answer-section a {
+  background-color: #0f3a5d;
+  /* opacity: 0.5; */
+  text-decoration: none;
+  font-weight: 500;
+  color: #fff;
+}
+.answer-section a:hover {
+  background-color: #fde747;
+}
+
+.answer-section a .text {
+  opacity: 1;
+}
+
+.answer-section a.disabled {
+  pointer-events: none;
+  cursor: pointer;
+}
+
+.answer-section a.disabled.border-green {
+  border: 3px solid green;
+}
+
+.answer-section a.disabled.border-red {
+  border: 1px solid red;
+}
+
+.answer-section a.disabled.border-green.filled {
+  background-color: rgb(17, 72, 17);
+}
+
+.answer-section a.disabled.border-red.filled {
+  background-color: rgb(107, 12, 12);
 }
