@@ -6,12 +6,12 @@
 
   color: #10162f;
   align-items: center;
-  width: 35px;
-  height: 35px;
-  border: 1px solid #000;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgb(28, 27, 27);
   border-radius: 50%;
 }
 .icon_container img {
-  width: 100%;
+  width: 80%;
   padding: 4px;
 }

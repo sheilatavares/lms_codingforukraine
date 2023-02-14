@@ -115,7 +115,7 @@ const HomeCourse = () => {
                                                   fora: `${lesson.ordination}`,
                                                 }}
                                                 key={lesson.id}
-                                                className="text-start d-inline-flex align-items-center link-lesson py-2 text-decoration-none"
+                                                className="text-start d-inline-flex align-items-center link-lesson py-1 text-decoration-none"
                                               >
                                                 {/* Lesson {lesson.ordination} -{' '} */}
                                                 <div
@@ -124,7 +124,7 @@ const HomeCourse = () => {
                                                   }
                                                 >
                                                   <img
-                                                    src="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/icon-lesson-w.svg?alt=media&token=f9a60a88-6023-4fba-89f4-d8c2298468aa"
+                                                    src={lesson.image}
                                                     width="40"
                                                   ></img>
                                                 </div>

@@ -121,6 +121,7 @@ const PostDetail = ({ data, slug }) => {
                     <div className="d-flex align-items-end flex-column mb-3">
                       <button
                         className="btn btn-primary mt-5 col-3"
+                        disabled={result != '' ? false : true}
                         onClick={() => handleNextQuestion()}
                       >
                         Next step
