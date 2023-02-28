@@ -20,6 +20,7 @@ const EditPost = () => {
   const [moduleId, setModuleId] = useState('');
   const [ordination, setOrdination] = useState('');
   const [title, setTitle] = useState('');
+  const [slug, setSlug] = useState('');
   const [image, setImage] = useState('');
   const [body, setBody] = useState('');
   const [bodyColumn, setBodyColumn2] = useState('');
@@ -80,6 +81,7 @@ const EditPost = () => {
       setSectionId(post.sectionId);
       setOrdination(post.ordination);
       setImage(post.image);
+      setSlug(post.slug);
       setColumn(post.column);
       setTitle(post.title);
       setBodyColumn2(post.bodyColumn);
@@ -122,10 +124,11 @@ const EditPost = () => {
 
     const data = {
       title,
+      slug,
       image,
       moduleId,
       sectionId,
-      ordination,
+      ordination: Number(ordination),
       column,
       body,
       bodyColumn,
@@ -200,15 +203,35 @@ const EditPost = () => {
                 />
               </label>
               <label className="col-6">
-                <span>Icon</span>
+                <span>
+                  Current Icon: <img src={post.image} width="20px"></img>
+                </span>
+                <select
+                  className="form-select m-1 p-2 w-100"
+                  onChange={(e) => setImage(e.target.value)}
+                >
+                  <option selected>Choose...</option>
+                  <option value="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/icon-lesson.svg?alt=media&token=34c1cd68-3300-471e-ab47-54b363767ea0">
+                    Lesson icon
+                  </option>
+                  <option value="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/exercise-icon.svg?alt=media&token=57f17baa-d35e-45ac-8610-ea557562be7a">
+                    Exercise icon
+                  </option>
+                  <option value="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/quiz-icon.svg?alt=media&token=574720e9-888f-456f-8cec-cc94c1c1fcd1">
+                    Quiz icon
+                  </option>
+                </select>
+              </label>
+              <label className="col-3">
+                <span>Slug:</span>
                 <input
                   type="text"
-                  name="title"
-                  className="ml-3 p-2 w-100"
+                  name="slug"
+                  className="m-1 p-2 w-100"
                   required
-                  placeholder="Lesson title"
-                  onChange={(e) => setImage(e.target.value)}
-                  value={image}
+                  placeholder="slug"
+                  onChange={(e) => setSlug(e.target.value)}
+                  value={slug}
                 />
               </label>
             </div>
@@ -243,20 +266,20 @@ const EditPost = () => {
               </label>
             </div>
             <div className="row mt-4">
-              <label className="col-12">
+              <label className="col-12 text-wrap">
                 {column != 'one_column' && (
                   <>
                     <span>Content first column:</span>
                     <MarkdownEditor
                       value={body}
                       onChange={(value, viewUpdate) => setBody(value)}
-                      style={{ height: '400px' }}
+                      style={{ height: '400px', whiteSpace: 'pre-wrap' }}
                     />
                     <span>Content second column:</span>
                     <MarkdownEditor
                       value={bodyColumn}
                       onChange={(value, viewUpdate) => setBodyColumn2(value)}
-                      style={{ height: '400px' }}
+                      style={{ height: '400px', whiteSpace: 'pre-wrap' }}
                     />
                   </>
                 )}

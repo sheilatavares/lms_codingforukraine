@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300&family=Open+Sans:ital,wght@0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300&family=Lato:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300&family=Open+Sans:ital,wght@0,700;1,400;1,700&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500&family=Open+Sans:ital,wght@0,700;1,400;1,700&display=swap');
 
@@ -417,6 +417,7 @@ body:has(.dataContainer) {
   font-family: 'Lato', sans-serif !important;
   /* font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'; */
   font-size: 17px !important;
+  font-weight: 400;
   line-height: 1.7 !important;
   word-wrap: break-word;
   color: var(--color-fg-default);
@@ -465,4 +466,21 @@ body:has(.dataContainer) {
 
 .answer-section a.disabled.border-red.filled {
   background-color: rgb(107, 12, 12);
+}
+[data-color-mode*='light'] .wmde-markdown,
+[data-color-mode*='light'] .wmde-markdown-var,
+.wmde-markdown-var[data-color-mode*='light'],
+.wmde-markdown[data-color-mode*='light'],
+body[data-color-mode*='light'] {
+  color-scheme: light;
+
+  --color-fg-default: #181919 !important;
+  --color-canvas-default: #fff !important;
+}
+[data-color-mode*='light'] .wmde-markdown span.code-line {
+  color: #c1c7cd !important;
+}
+
+.wmde-markdown a {
+  color: #0b3768;
 }

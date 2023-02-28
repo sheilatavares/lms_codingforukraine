@@ -99,6 +99,11 @@ function App() {
                 element={user ? <Dashboard /> : <Navigate to="/login" />}
               />
               <Route
+                exact
+                path="/dashboard/:moduleSlug/:sectionSlug/:slug"
+                element={!user ? <Navigate to="/" /> : <Dashboard />}
+              />
+              <Route
                 path="/myhome"
                 element={user ? <HomeCourse /> : <Navigate to="/login" />}
               />

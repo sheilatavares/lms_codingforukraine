@@ -18,7 +18,7 @@ const CreatePost = () => {
   const [moduleSlug, setModuleSlug] = useState('');
   const [sectionId, setSectionId] = useState('');
   const [moduleId, setModuleId] = useState('');
-  const [ordination, setOrdination] = useState('');
+  const [ordination, setOrdination] = useState(0);
   const [quiz, setQuiz] = useState('');
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
@@ -138,7 +138,7 @@ const CreatePost = () => {
         sectionId,
         title,
         quiz,
-        ordination,
+        ordination: Number(ordination),
         body,
         slug,
         column,
@@ -149,7 +149,7 @@ const CreatePost = () => {
     }
 
     //redirect
-    navigate('/');
+    navigate(`/dashboard/${moduleSlug}/${sectionSlug}/${slug}`);
   };
 
   return (
@@ -169,20 +169,27 @@ const CreatePost = () => {
       </div>
 
       <h1>Create Lesson</h1>
-      <p>Insert down the content in markdown format.</p>
+
       <form onSubmit={handleSubmit}>
         <div className="row">
           <span>Course: Introduction to programming with Javascript</span>
           <label className="col-4 d-flex justify-content-center align-middle">
             <span>Icon lesson:</span>
-            <input
-              type="text"
-              name="image"
-              required
-              placeholder="Insert icon"
+            <select
+              className="form-select m-1 p-2 w-100"
               onChange={(e) => setImage(e.target.value)}
-              value={image}
-            />
+            >
+              <option selected>Choose...</option>
+              <option value="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/icon-lesson.svg?alt=media&token=34c1cd68-3300-471e-ab47-54b363767ea0">
+                Lesson icon
+              </option>
+              <option value="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/exercise-icon.svg?alt=media&token=57f17baa-d35e-45ac-8610-ea557562be7a">
+                Exercise icon
+              </option>
+              <option value="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/quiz-icon.svg?alt=media&token=574720e9-888f-456f-8cec-cc94c1c1fcd1">
+                Quiz icon
+              </option>
+            </select>
           </label>
           <label className="col-4">
             <span>Module:</span>

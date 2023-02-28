@@ -57,3 +57,7 @@
   /* width: 100px; */
   font-size: 0.7em;
 }
+
+div.icon_lesson::before {
+  margin-left: -9px !important;
+}

@@ -21,7 +21,7 @@ const PostDetail = ({ data, slug }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
-  const [result, setResult] = useState();
+  const [result, setResult] = useState(false);
   const [background, setBackground] = useState();
 
   if (quiz) {
@@ -147,7 +147,7 @@ const PostDetail = ({ data, slug }) => {
       columnLeft = 'col-sm-7 col-12 pe-5';
       columnRight = 'col-sm-5';
     } else {
-      columnLeft = 'col-sm-5';
+      columnLeft = 'col-sm-5 col-12 pe-5';
       columnRight = 'col-sm-7';
     }
     return (
@@ -155,8 +155,8 @@ const PostDetail = ({ data, slug }) => {
         <div className="row mt-3 mb-2">
           <h2>{title}</h2>
         </div>
-        <div className="row">
-          <div className={columnLeft}>
+        <div className="row" data-color-mode="light">
+          <div className={`${columnLeft} wmde-markdown-var`}>
             <MDEditor.Markdown source={body} />
           </div>
           {column != 'one_column' && (
