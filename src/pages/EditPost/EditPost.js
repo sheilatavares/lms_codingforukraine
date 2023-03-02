@@ -138,8 +138,8 @@ const EditPost = () => {
 
     updateDocument(id, data);
 
-    // redirect to home page
-    navigate('/dashboard');
+    // redirect to Dashboard
+    navigate(`/dashboard/${post.moduleSlug}/${post.sectionSlug}/${post.slug}`);
   };
 
   return (
@@ -261,6 +261,9 @@ const EditPost = () => {
                   </option>
                   <option value="two_columns_right">
                     Two columns - Large right column
+                  </option>
+                  <option value="two_columns_same">
+                    Two columns - same width
                   </option>
                 </select>
               </label>

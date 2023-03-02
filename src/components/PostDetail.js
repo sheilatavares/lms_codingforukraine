@@ -146,9 +146,12 @@ const PostDetail = ({ data, slug }) => {
     } else if (column === 'two_columns_left') {
       columnLeft = 'col-sm-7 col-12 pe-5';
       columnRight = 'col-sm-5';
-    } else {
+    } else if (column === 'two_columns_right') {
       columnLeft = 'col-sm-5 col-12 pe-5';
       columnRight = 'col-sm-7';
+    } else {
+      columnLeft = 'col-sm-6 col-12 pe-5';
+      columnRight = 'col-sm-6';
     }
     return (
       <div className="container-full w-100 col-lg-11 col-12 pt-0 pb-4">

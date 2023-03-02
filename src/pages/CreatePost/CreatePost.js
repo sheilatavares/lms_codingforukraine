@@ -291,6 +291,7 @@ const CreatePost = () => {
               <option value="two_columns_right">
                 Two columns - Large right column
               </option>
+              <option value="two_columns_same">Two columns - same width</option>
             </select>
           </label>
         </div>
