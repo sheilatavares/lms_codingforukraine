@@ -138,7 +138,7 @@ const Navbar = () => {
                       My Home
                     </NavLink>
                   </li>
-                  <li className="nav-item px-3">
+                  {/* <li className="nav-item px-3">
                     <NavLink
                       to="/posts/create"
                       className={
@@ -148,8 +148,8 @@ const Navbar = () => {
                     >
                       Create Lesson
                     </NavLink>
-                  </li>
-                  <li className="nav-item px-3">
+                  </li> */}
+                  {/* <li className="nav-item px-3">
                     <NavLink
                       to="/dashboard"
                       className={
@@ -159,7 +159,7 @@ const Navbar = () => {
                     >
                       Dashboard
                     </NavLink>
-                  </li>
+                  </li> */}
                 </>
               )}
               <li className="nav-item px-3">
@@ -186,18 +186,18 @@ const Navbar = () => {
   } else {
     const idModuleP = location.pathname.split('/')[2];
     const idSectionP = location.pathname.split('/')[3];
-    console.log(
-      '0:',
-      location.pathname.split('/')[0],
-      '1:',
-      location.pathname.split('/')[1],
-      '2:',
-      location.pathname.split('/')[2],
-      '3:',
-      location.pathname.split('/')[3],
-      '4:',
-      location.pathname.split('/')[4],
-    );
+    // console.log(
+    //   '0:',
+    //   location.pathname.split('/')[0],
+    //   '1:',
+    //   location.pathname.split('/')[1],
+    //   '2:',
+    //   location.pathname.split('/')[2],
+    //   '3:',
+    //   location.pathname.split('/')[3],
+    //   '4:',
+    //   location.pathname.split('/')[4],
+    // );
     return <LessonsSidebar moduleSlug={idModuleP} sectionSlug={idSectionP} />;
   }
 };

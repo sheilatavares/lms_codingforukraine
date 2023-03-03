@@ -1,5 +1,7 @@
-const catsName = 'Nino';
+let nestedArray = [
+  [1, 2],
+  [3, 4],
+  [5, 6],
+];
 
-const checkCatsName = catsName !== 'Nino'; // is the value of the variable CatsName different from Nino?
-
-console.log(checkCatsName); // false
+console.log(nestedArray[1][0]); // Output: [3,4]

@@ -29,7 +29,7 @@ const LessonsSidebar = ({ moduleSlug, sectionSlug }) => {
           <NavLink to="/" className="navbar-brand">
             <LogoCfu></LogoCfu>
           </NavLink>
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center flex-row">
             <li className="nav-item">
               <a
                 className="btn btn-primary"
@@ -38,6 +38,11 @@ const LessonsSidebar = ({ moduleSlug, sectionSlug }) => {
               >
                 Course Menu
               </a>
+            </li>
+            <li className="nav-item ms-4">
+              <Link to={`/myhome`} className="lesson_list col-12">
+                My home
+              </Link>
             </li>
           </ul>
         </div>
@@ -52,8 +57,8 @@ const LessonsSidebar = ({ moduleSlug, sectionSlug }) => {
         aria-hidden="true"
       >
         <div className="modal-dialog modal-dialog-scrollable">
-          <div className="modal-content">
-            <div className="modal-header">
+          <div className="modal-content border-0">
+            <div className="modal-header border-0">
               <h5 className="modal-title" id="staticBackdropLabel">
                 Introduction to programming with Javascript
               </h5>

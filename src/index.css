@@ -197,8 +197,12 @@ nav.nav_lesson a:hover {
   display: inline-block;
   left: 0px;
   top: 0px;
-  margin-top: 0px;
+  margin-top: 0px !important;
+  height: 100vh !important;
+  width: 500px !important;
+  background-color: #fff;
 }
+
 #sidebar .toggle-btn {
   position: absolute;
   left: 220px;
