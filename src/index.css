@@ -498,3 +498,6 @@ body[data-color-mode*='light'] {
 .wmde-markdown a {
   color: #0b3768;
 }
+.wmde-markdown pre > code {
+  background-color: #181919 !important;
+}
