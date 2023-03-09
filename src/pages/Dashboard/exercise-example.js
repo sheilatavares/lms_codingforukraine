@@ -1,7 +1,36 @@
-let nestedArray = [
-  [1, 2],
-  [3, 4],
-  [5, 6],
-];
-
-console.log(nestedArray[1][0]); // Output: [3,4]
+0
+: 
+"introduction"
+1
+: 
+"understanding-basics-concepts"
+2
+: 
+"the-console-panel"
+3
+: 
+"variables"
+4
+: 
+"writing-variables"
+5
+: 
+"rules-for-naming-a-variable"
+6
+: 
+"changing-value-of-a-variable"
+7
+: 
+"the-let-keyword"
+8
+: 
+"the-const-keyword"
+9
+: 
+"exercises"
+10
+: 
+"conclusion"
+11
+: 
+"variables-quiz"

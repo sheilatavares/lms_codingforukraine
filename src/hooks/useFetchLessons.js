@@ -67,7 +67,7 @@ export const useFetchLessons = (docCollection, moduleSlug, sectionSlug) => {
   useEffect(() => {
     return () => setCancelled(true);
   }, []);
-  console.log(documents);
+  // console.log(documents);
   return { documents, loading, error };
 };
 

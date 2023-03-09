@@ -158,7 +158,7 @@ const PostDetail = ({ data, slug }) => {
         <div className="row mt-3 mb-2">
           <h2>{title}</h2>
         </div>
-        <div className="row" data-color-mode="light">
+        <div className="row pb-5" data-color-mode="light">
           <div className={`${columnLeft} wmde-markdown-var`}>
             <MDEditor.Markdown source={body} />
           </div>
