@@ -68,14 +68,20 @@ const HomeCourse = () => {
                     >
                       <h2 className="accordion-header">
                         <button
-                          className="accordion-button accordion-module py-4 ps-4 fs-5"
+                          className={`accordion-button accordion-module py-4 ps-4 fs-5 ${
+                            module.module === 'Exercise solutions'
+                              ? 'bg-primary text-white'
+                              : ''
+                          }`}
                           type="button"
                           data-bs-toggle="collapse"
                           data-bs-target={`#id_${module.id}`}
                           aria-expanded="true"
                           aria-controls={module.id}
                         >
-                          Module {module.ordination} - {module.module}
+                          {module.module === 'Exercise solutions'
+                            ? `${module.module}`
+                            : `Module ${module.ordination} - ${module.module}`}
                         </button>
                       </h2>
                       <div

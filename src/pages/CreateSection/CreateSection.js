@@ -53,7 +53,7 @@ const CreateSection = () => {
         moduleId,
         moduleOrd,
         section,
-        ordination,
+        ordination: Number(ordination),
         slug,
       });
     }

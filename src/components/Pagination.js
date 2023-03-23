@@ -21,8 +21,6 @@ const Pagination = ({
     slugData.push(item.slug);
   });
 
-  console.log('slugData', slugData);
-
   const [currentPage, setCurrentPage] = useState(Number(ordLesson));
   const navigate = useNavigate();
 
@@ -72,8 +70,6 @@ const Pagination = ({
     const endIndex = startIndex + contentPerPage;
     return data.slice(startIndex, endIndex);
   };
-
-  // console.log(currentPage, totalPageCount);
 
   return (
     <div className="container bg-white pb-3 position-relative">

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import P from 'prop-types';
 import MDEditor from '@uiw/react-md-editor';
 
-// import styles from './PostDetail.module.css';
+import styles from './PostDetail.module.css';
 // import { useFetchDocuments } from '../hooks/useFetchDocuments';
 
 const PostDetail = ({ data, slug }) => {
@@ -87,10 +87,15 @@ const PostDetail = ({ data, slug }) => {
                 </div>
               ) : (
                 <>
-                  <div className="question-section">
-                    <h5 className="question-text">
+                  <div className="question-section" data-color-mode="dark">
+                    <h5 className="question-text mb-4">
                       {questions[currentQuestion].questionText}
                     </h5>
+                    {questions[currentQuestion].codeImage ? (
+                      <img src={questions[currentQuestion].codeImage}></img>
+                    ) : (
+                      ''
+                    )}
                   </div>
                   <div className="answer-section answer-section d-flex flex-column pt-4">
                     {questions[currentQuestion].answerOptions.map(

@@ -70,7 +70,7 @@ const CreateModule = () => {
       insertDocument({
         course,
         module,
-        ordination,
+        ordination: Number(ordination),
         slug,
       });
     }

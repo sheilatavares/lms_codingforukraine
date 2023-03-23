@@ -1,36 +1,11 @@
-0
-: 
-"introduction"
-1
-: 
-"understanding-basics-concepts"
-2
-: 
-"the-console-panel"
-3
-: 
-"variables"
-4
-: 
-"writing-variables"
-5
-: 
-"rules-for-naming-a-variable"
-6
-: 
-"changing-value-of-a-variable"
-7
-: 
-"the-let-keyword"
-8
-: 
-"the-const-keyword"
-9
-: 
-"exercises"
-10
-: 
-"conclusion"
-11
-: 
-"variables-quiz"
+let shoe = 15;
+let slipper = 22;
+let socks = 33;
+
+let check1 = shoe >= 15;
+let check2 = slipper >= 12;
+let check3 = socks <= 18;
+
+console.log('Is the stock of shoes greater than or equal to 15?', check1); // true
+console.log('The stock of slippers is greater than or equal to 12?', check2); // true
+console.log('Is the stock of socks greater than or equal to 33?', check3); // false
