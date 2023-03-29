@@ -6,6 +6,7 @@ import {
   getAuth,
   verifyPasswordResetCode,
   confirmPasswordReset,
+  signInWithEmailAndPassword,
 } from 'firebase/auth';
 
 const PasswordReset = () => {
