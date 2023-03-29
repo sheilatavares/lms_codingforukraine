@@ -2,6 +2,7 @@ import { db } from '../../firebase/config';
 
 import { Link, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import styles from './Password.Reset.module.css';
 
 import {
   getAuth,
@@ -15,6 +16,22 @@ const PasswordReset = () => {
   const [verifyCode, setVerifyCode] = useState(null);
   const [updatedSuccessful, setUpdateSuccessful] = useState(null);
   const [newPassword, setNewPassword] = useState(null);
+  const [password, setPassword] = useState('password');
+  const [eye, setEye] = useState(true);
+  const [type, setType] = useState(false);
+  const [warnPassword, setWarnpassword] = useState(false);
+
+  const Eye = () => {
+    if (password == 'password') {
+      setPassword('text');
+      setEye(true);
+      setType(true);
+    } else {
+      setPassword('password');
+      setEye(false);
+      setType(false);
+    }
+  };
 
   const getParameterByName = (name) => {
     name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
@@ -72,11 +89,11 @@ const PasswordReset = () => {
   CheckResetPassword(auth, actionCode, continueUrl, lang);
 
   return (
-    <div className="container mt-5">
-      <div className="row d-flex justify-content-center">
+    <div className="container my-5">
+      <div className="row d-flex justify-content-center bg-white reset-password">
         <div className="col-lg-8">
-          <h1 className="text-white">Reset your Password</h1>
-          {verifyCode && (
+          <h1 className="mt-5">Reset your Password</h1>
+          {verifyCode && !updatedSuccessful && (
             <form
               onSubmit={handleSaveNewPassword}
               className="text-center mt-5 d-flex flex-column w-50"
@@ -85,29 +102,79 @@ const PasswordReset = () => {
                 htmlFor="exampleInputPassword1"
                 className="form-label text-black text-start"
               >
-                <small>Password</small>
+                <strong className="">Please insert your new password:</strong>
               </label>
-              <input
-                className="form-control"
-                type="password"
-                name="password"
-                required
-                placeholder="Insert password"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-              />
-              <button type="submit">Reset Password</button>
+              <div className="position-relative">
+                <input
+                  className=""
+                  type={password}
+                  placeholder="Enter your password"
+                  name="password"
+                  required
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                />
+
+                <i className="fa fa-lock position-absolute"></i>
+                <i
+                  onClick={Eye}
+                  className={`fa ${eye ? 'fa-eye-slash' : 'fa-eye'}`}
+                ></i>
+              </div>
+              <div className="col-6 align-self-end mt-3">
+                <button className="btn btn-primary w-100" type="submit">
+                  Reset Password
+                </button>
+              </div>
             </form>
           )}
-          {updatedSuccessful && (
-            <div>
-              <h2>Your password has been updated.</h2>
-              <Link to={'/login'} className="btn btn-primary">
+
+          {/* {!verifyCode && (
+            <form
+              onSubmit={handleSaveNewPassword}
+              className="text-center mt-5 d-flex flex-column w-50"
+            >
+              <label
+                htmlFor="exampleInputPassword1"
+                className="form-label text-black text-start"
+              >
+                <strong className="">Please insert your new password:</strong>
+              </label>
+              <div className="position-relative">
+                <input
+                  className=""
+                  type={password}
+                  placeholder="Enter your password"
+                  name="password"
+                  required
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                />
+
+                <i className="fa fa-lock position-absolute"></i>
+                <i
+                  onClick={Eye}
+                  className={`fa ${eye ? 'fa-eye-slash' : 'fa-eye'}`}
+                ></i>
+              </div>
+              <div className="col-6 align-self-end mt-3">
+                <button className="btn btn-primary w-100" type="submit">
+                  Reset Password
+                </button>
+              </div>
+            </form>
+          )} */}
+        </div>
+        {updatedSuccessful && (
+          <div className="col-lg-5 my-5 d-flex">
+            <h3>Your password has been updated.</h3>
+            <div className="col-lg-4 align-self-end mt-5">
+              <Link to={'/login'} className="btn btn-primary w-100 mt-5">
                 Go to login page
               </Link>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
