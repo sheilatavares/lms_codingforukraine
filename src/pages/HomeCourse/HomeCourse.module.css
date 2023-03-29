@@ -15,3 +15,11 @@
   width: 80%;
   padding: 4px;
 }
+
+a.link_account {
+  text-decoration: none;
+}
+
+a.link_account:hover {
+  color: #cea502;
+}

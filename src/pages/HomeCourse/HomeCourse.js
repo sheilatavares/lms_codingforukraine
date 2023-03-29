@@ -3,6 +3,7 @@ import styles from './HomeCourse.module.css';
 
 //img
 import photoFriends from './img/coding-friends-home.jpg';
+import avatar from './img/avatar.png';
 
 // hooks
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
@@ -31,21 +32,34 @@ const HomeCourse = () => {
     }
   };
 
-  console.log(loading);
+  // console.log(loading);
 
   return (
     <div className="container-full" id="home-course">
       <div className="container text-center pb-5">
-        <h2 className="mb-4 text-primary text-start py-5">
-          Course: Introducting Programming with Javascript
-        </h2>
+        <div className="row">
+          <div className="col-lg-9">
+            <h2 className="mb-4 text-primary text-start py-5">
+              Course: Introducting Programming with Javascript
+            </h2>
+          </div>
+          <div className="col-lg-3 d-flex align-items-center justify-content-end">
+            <img src={avatar} className="" width="50" height="50"></img>
+            <Link className={styles.link_account} to={`/account`}>
+              <small className="ms-2">
+                <strong>Profile & Account</strong>
+              </small>
+            </Link>
+          </div>
+        </div>
+
         {/* <form className={styles.search_form} onSubmit={handleSubmit}>
         <input type="text" onChange={(e) => setQuery(e.target.value)} />
         <button className="btn btn-dark">Search</button>
       </form> */}
         <div className="post-list">
           {loading && (
-            <div className="container d-flex align-items-center">
+            <div className="container d-flex align-items-center justify-content-end">
               <p>Loading...</p>
             </div>
           )}

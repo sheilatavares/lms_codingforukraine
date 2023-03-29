@@ -1,5 +1,8 @@
 import styles from './Login.module.css';
 
+import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
 import { useState, useEffect } from 'react';
 import { useAuthentication } from '../../hooks/useAuthentication';
 // import logo from '../Home/img/cfu_logo.png';
@@ -13,6 +16,9 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const location = useLocation();
+
+  // console.log(location.state.path);
 
   const { login, error: authError, loading } = useAuthentication();
 
@@ -52,13 +58,13 @@ const Login = () => {
                 </div>
               </div>
 
-              <form onSubmit={handleSubmit} className="row mt-4 pe-0">
+              <form onSubmit={handleSubmit} className="row mt-4 w-100">
                 <div className="ps-5">
                   <div className="row">
                     <div className="col-12 w-100">
                       <div className="mb-3 pt-1 text-start">
                         <label
-                          htmlFor="exampleInputEmail1"
+                          htmlFor="email"
                           className="form-label text-black"
                         >
                           <small>Email address</small>
@@ -72,7 +78,6 @@ const Login = () => {
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                         />
-                        <div id="emailHelp" className="form-text"></div>
                       </div>
                     </div>
                   </div>
@@ -99,8 +104,8 @@ const Login = () => {
                   </div>
                 </div>
 
-                <div className="row">
-                  <div className="col-lg-5 text-start ps-4 ms-3 mb-3">
+                <div className="row ps-5">
+                  <div className="col-lg-4 text-start mb-3">
                     {!loading && (
                       <button className="btn btn-primary">Login</button>
                     )}
@@ -111,7 +116,15 @@ const Login = () => {
                     )}
                     {error && <p className="error">{error}</p>}
                   </div>
-                  <div className="col-lg-6 text-start pt-2">
+
+                  <Link to={`/reset`} className="col-lg-6 text-center pt-2">
+                    <strong>
+                      <small>I forgot my password</small>
+                    </strong>
+                  </Link>
+                </div>
+                <div className="row ps-5">
+                  <div className="col-lg-12 text-start pt-2">
                     Not a member yet? <Link to={`/register`}>Sign up</Link>
                   </div>
                 </div>

@@ -6,7 +6,7 @@
 .pnp.js
 
 #navbar
-/src/Navbar/Navbar.js
+/src/components/Navbar/Navbar.js
 
 # testing
 /coverage

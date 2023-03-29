@@ -138,7 +138,7 @@ const Navbar = () => {
                       My Home
                     </NavLink>
                   </li>
-                  {/* <li className="nav-item px-3">
+                  <li className="nav-item px-3">
                     <NavLink
                       to="/posts/create"
                       className={
@@ -159,7 +159,7 @@ const Navbar = () => {
                     >
                       Dashboard
                     </NavLink>
-                  </li> */}
+                  </li>
                 </>
               )}
               <li className="nav-item px-3">

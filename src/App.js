@@ -29,6 +29,9 @@ import { AuthProvider } from './context/AuthContext';
 import CreateModule from './pages/CreateModule/CreateModule';
 import CreateSection from './pages/CreateSection/CreateSection';
 import HomeCourse from './pages/HomeCourse/HomeCourse';
+import Reset from './pages/reset/Reset';
+import Account from './pages/Account/Account';
+import PasswordReset from './pages/PasswordReset/PasswordReset';
 function App() {
   const [user, setUser] = useState(undefined);
   const { auth } = useAuthentication();
@@ -57,6 +60,8 @@ function App() {
         <BrowserRouter>
           <Navbar />
           <div className="container-full">
+            {/* {{ user }} */}
+
             <Routes>
               <Route
                 path="/"
@@ -93,6 +98,20 @@ function App() {
               <Route
                 path="/register"
                 element={!user ? <Register /> : <Navigate to="/myhome" />}
+              />
+              <Route
+                path="/reset"
+                element={!user ? <Reset /> : <Navigate to="/myhome" />}
+              />
+              <Route
+                path="/resetpassword"
+                element={!user ? <PasswordReset /> : <Navigate to="/myhome" />}
+              />
+              <Route
+                path="/account"
+                element={
+                  user ? <Account user={{ user }} /> : <Navigate to="/" />
+                }
               />
               <Route
                 path="/dashboard"
