@@ -22,6 +22,7 @@ import { useState, useEffect } from 'react';
 export const useAuthentication = () => {
   const [error, setError] = useState(null);
   const [systemMessageReturn, setSystemMessageReturn] = useState(null);
+  const [systemMessageError, setSystemMessageError] = useState(null);
   const [success, setSuccess] = useState(undefined);
   const [loading, setLoading] = useState(null);
 
@@ -191,12 +192,14 @@ export const useAuthentication = () => {
       .then(() => {
         setLoading(false);
         setSystemMessageReturn('Your display name was updated.');
+        setSystemMessageError(false);
       })
       .catch((error) => {
         let systemErrorMessage = 'An error ocurred. Please try again later.';
 
         setLoading(false);
-        setSystemMessageReturn(systemErrorMessage);
+        setSystemMessageError(systemErrorMessage);
+        setSystemMessageReturn(false);
       });
     console.log(success);
     console.log(error);
@@ -221,6 +224,7 @@ export const useAuthentication = () => {
           await updateEmail(user, email);
           setLoading(false);
           setSystemMessageReturn('Your email was updated.');
+          setSystemMessageError(false);
         } catch (error) {
           let systemErrorMessage = 'An error occurred. Please try again later.';
           let userErrorMessage =
@@ -231,7 +235,8 @@ export const useAuthentication = () => {
               : systemErrorMessage;
 
           setLoading(false);
-          setSystemMessageReturn(userErrorMessage);
+          setSystemMessageError(userErrorMessage);
+          setSystemMessageReturn(false);
         }
       })
       .catch((error) => {
@@ -239,12 +244,12 @@ export const useAuthentication = () => {
         let userErrorMessage = 'Incorrect current password. Please try again.';
 
         setLoading(false);
-        setSystemMessageReturn(
+        setSystemMessageError(
           error.code === 'auth/wrong-password'
             ? userErrorMessage
             : systemErrorMessage,
         );
-        // console.log('nao deu certo');
+        setSystemMessageReturn(false);
       });
   };
 
@@ -267,6 +272,7 @@ export const useAuthentication = () => {
           await updatePassword(user, newPassword);
           setLoading(false);
           setSystemMessageReturn('Your password was updated.');
+          setSystemMessageError(false);
         } catch (error) {
           let systemErrorMessage = 'An error occurred. Please try again later.';
           let userErrorMessage =
@@ -275,7 +281,8 @@ export const useAuthentication = () => {
               : systemErrorMessage;
 
           setLoading(false);
-          setSystemMessageReturn(userErrorMessage);
+          setSystemMessageError(userErrorMessage);
+          setSystemMessageReturn(false);
         }
       })
       .catch((error) => {
@@ -283,12 +290,12 @@ export const useAuthentication = () => {
         let userErrorMessage = 'Incorrect current password. Please try again.';
 
         setLoading(false);
-        setSystemMessageReturn(
+        setSystemMessageError(
           error.code === 'auth/wrong-password'
             ? userErrorMessage
             : systemErrorMessage,
         );
-        // console.log('nao deu certo');
+        setSystemMessageReturn(false);
       });
   };
 
@@ -304,10 +311,10 @@ export const useAuthentication = () => {
     logout,
     login,
     resetPassword,
-    success,
     updateDisplayName,
     changeEmail,
     systemMessageReturn,
+    systemMessageError,
     changePassword,
   };
 };

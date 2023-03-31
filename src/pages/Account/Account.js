@@ -26,6 +26,7 @@ const Account = () => {
     error: authError,
     loading,
     systemMessageReturn,
+    systemMessageError,
     changePassword,
   } = useAuthentication();
   const [successful, setSuccess] = useState(undefined);
@@ -279,6 +280,11 @@ const Account = () => {
                 {systemMessageReturn && (
                   <h4 className="text-primary">
                     <strong>{systemMessageReturn}</strong>
+                  </h4>
+                )}
+                {systemMessageError && (
+                  <h4 className="text-danger">
+                    <strong>{systemMessageError}</strong>
                   </h4>
                 )}
               </div>
