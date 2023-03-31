@@ -11,6 +11,36 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
 
+  const [passwordType, setPasswordType] = useState('password');
+  const [passwordTypeConfirm, setPasswordTypeConfirm] = useState('password');
+  const [eye, setEye] = useState(false);
+  const [type, setType] = useState(false);
+  const [eyeConfirm, setEyeConfirm] = useState(false);
+  const [typeConfirm, setTypeConfirm] = useState(false);
+
+  const Eye = () => {
+    if (passwordType == 'password') {
+      setPasswordType('text');
+      setEye(true);
+      setType(true);
+    } else {
+      setPasswordType('password');
+      setEye(false);
+      setType(false);
+    }
+  };
+  const eyeConfirmPassword = () => {
+    if (passwordTypeConfirm == 'password') {
+      setPasswordTypeConfirm('text');
+      setEyeConfirm(true);
+      setTypeConfirm(true);
+    } else {
+      setPasswordTypeConfirm('password');
+      setEyeConfirm(false);
+      setTypeConfirm(false);
+    }
+  };
+
   const { createUser, error: authError, loading } = useAuthentication();
 
   const handleSubmit = async (e) => {
@@ -83,12 +113,12 @@ const Register = () => {
               </div>
             </div>
             <div className="row g-0">
-              <div className="col-lg-6">
+              <div className="col-lg-6 position-relative">
                 {' '}
                 <label className="form-label text-black w-100 px-3 mt-3">
                   <small>Password:</small>
                   <input
-                    type="password"
+                    type={passwordType}
                     className="form-control"
                     name="password"
                     required
@@ -96,20 +126,31 @@ const Register = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
+
+                  <i
+                    onClick={Eye}
+                    className={`fa ${eye ? 'fa-eye-slash' : 'fa-eye'}`}
+                    style={{ top: 50, right: 30 }}
+                  ></i>
                 </label>
               </div>
-              <div className="col-lg-6">
+              <div className="col-lg-6 position-relative">
                 <label className="form-label text-black w-100 px-3 mt-3">
                   <small>Confirm Password:</small>
                   <input
-                    type="password"
+                    type={passwordTypeConfirm}
                     className="form-control"
-                    name="password"
+                    name="passwordConfirm"
                     required
                     placeholder="Confirm your password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                   />
+                  <i
+                    onClick={eyeConfirmPassword}
+                    className={`fa ${eyeConfirm ? 'fa-eye-slash' : 'fa-eye'}`}
+                    style={{ top: 50, right: 30 }}
+                  ></i>
                 </label>
               </div>
             </div>

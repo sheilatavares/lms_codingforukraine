@@ -15,8 +15,23 @@ const Home = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-
   const { login, error: authError, loading } = useAuthentication();
+
+  const [passwordType, setPasswordType] = useState('password');
+  const [eye, setEye] = useState(false);
+  const [type, setType] = useState(false);
+
+  const Eye = () => {
+    if (passwordType == 'password') {
+      setPasswordType('text');
+      setEye(true);
+      setType(true);
+    } else {
+      setPasswordType('password');
+      setEye(false);
+      setType(false);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -83,7 +98,7 @@ const Home = () => {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-8">
+                    <div className="col-8 position-relative">
                       <div className="mb-3">
                         <label
                           htmlFor="exampleInputPassword1"
@@ -92,14 +107,23 @@ const Home = () => {
                           <small>Password</small>
                         </label>
                         <input
-                          className="form-control"
-                          type="password"
+                          className="form-control ps-4"
+                          type={passwordType}
                           name="password"
                           required
                           placeholder="Insert password"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                         />
+                        <i
+                          className="fa fa-lock"
+                          style={{ top: 43, left: 20 }}
+                        ></i>
+                        <i
+                          onClick={Eye}
+                          className={`fa ${eye ? 'fa-eye-slash' : 'fa-eye'}`}
+                          style={{ top: 43, right: 20 }}
+                        ></i>
                       </div>
                     </div>
                     <div className="col-4 d-flex align-items-end mb-3">

@@ -15,10 +15,23 @@ import { useNavigate, Link } from 'react-router-dom';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const location = useLocation();
 
-  // console.log(location.state.path);
+  const [error, setError] = useState('');
+  const [passwordType, setPasswordType] = useState('password');
+  const [eye, setEye] = useState(false);
+  const [type, setType] = useState(false);
+
+  const Eye = () => {
+    if (passwordType == 'password') {
+      setPasswordType('text');
+      setEye(true);
+      setType(true);
+    } else {
+      setPasswordType('password');
+      setEye(false);
+      setType(false);
+    }
+  };
 
   const { login, error: authError, loading } = useAuthentication();
 
@@ -83,7 +96,7 @@ const Login = () => {
                   </div>
                   <div className="row">
                     <div className="col-12">
-                      <div className="mb-3 text-start">
+                      <div className="mb-3 text-start position-relative">
                         <label
                           htmlFor="exampleInputPassword1"
                           className="form-label text-black text-start"
@@ -91,14 +104,20 @@ const Login = () => {
                           <small>Password</small>
                         </label>
                         <input
-                          className="form-control"
-                          type="password"
+                          className="form-control ps-4"
+                          type={passwordType}
                           name="password"
                           required
                           placeholder="Insert password"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                         />
+                        <i className="fa fa-lock" style={{ top: 43 }}></i>
+                        <i
+                          onClick={Eye}
+                          className={`fa ${eye ? 'fa-eye-slash' : 'fa-eye'}`}
+                          style={{ top: 43 }}
+                        ></i>
                       </div>
                     </div>
                   </div>

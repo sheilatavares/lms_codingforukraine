@@ -13,12 +13,15 @@ import {
   updatePassword,
   verifyPasswordResetCode,
   confirmPasswordReset,
+  EmailAuthProvider,
+  reauthenticateWithCredential,
 } from 'firebase/auth';
 
 import { useState, useEffect } from 'react';
 
 export const useAuthentication = () => {
   const [error, setError] = useState(null);
+  const [systemMessageReturn, setSystemMessageReturn] = useState(null);
   const [success, setSuccess] = useState(undefined);
   const [loading, setLoading] = useState(null);
 
@@ -71,6 +74,62 @@ export const useAuthentication = () => {
     }
   };
 
+  //register
+  // const createUser = async (data) => {
+  //   checkIfIsCancelled();
+
+  //   setLoading(true);
+  //   setError(null);
+
+  //   try {
+  //     const { user } = await createUserWithEmailAndPassword(
+  //       auth,
+  //       data.email,
+  //       data.password,
+  //     );
+  //     await updateProfile(user, {
+  //       displayName: data.displayName,
+  //     });
+
+  //     // Send welcome email
+  //     const transporter = nodemailer.createTransport({
+  //       host: 'https://www.google.com/settings/security/lesssecureapps',
+  //       port: 465,
+  //       secure: true,
+  //       auth: {
+  //         user: 'tavaressheila',
+  //         pass: 'password',
+  //       },
+  //     });
+
+  //     await transporter.sendMail({
+  //       from: 'admin@example.com',
+  //       to: data.email,
+  //       subject: 'Welcome to our app!',
+  //       text: `Hello ${data.displayName}, welcome to our app!`,
+  //     });
+
+  //     setLoading(false);
+  //     return user;
+  //   } catch (error) {
+  //     console.log(error.message);
+  //     console.log(typeof error.message);
+
+  //     let systemErrorMessage;
+
+  //     if (error.message.includes('Password')) {
+  //       systemErrorMessage =
+  //         'Your password must contain at least 6 characters.';
+  //     } else if (error.message.includes('email-already')) {
+  //       systemErrorMessage = 'This e-mail is already registered.';
+  //     } else {
+  //       systemErrorMessage = 'An error ocurred. Please try again later.';
+  //     }
+  //     setLoading(false);
+  //     setError(systemErrorMessage);
+  //   }
+  // };
+
   const logout = () => {
     checkIfIsCancelled();
     signOut(auth);
@@ -120,41 +179,118 @@ export const useAuthentication = () => {
     }
   };
 
-  //reset password
-  function ResetPasswordPage(auth, actionCode, continueUrl, lang) {
-    // Localize the UI to the selected language as determined by the lang
-    // parameter.
+  //update Display name
+  const updateDisplayName = (name) => {
+    checkIfIsCancelled();
+    setLoading(true);
+    setError(false);
 
-    // Verify the password reset code is valid.
-    verifyPasswordResetCode(auth, actionCode)
-      .then((email) => {
-        const accountEmail = email;
-
-        // TODO: Show the reset screen with the user's email and ask the user for
-        // the new password.
-        const newPassword = '...';
-
-        // Save the new password.
-        confirmPasswordReset(auth, actionCode, newPassword)
-          .then((resp) => {
-            // Password reset has been confirmed and new password updated.
-            // TODO: Display a link back to the app, or sign-in the user directly
-            // if the page belongs to the same domain as the app:
-            // auth.signInWithEmailAndPassword(accountEmail, newPassword);
-            // TODO: If a continue URL is available, display a button which on
-            // click redirects the user back to the app via continueUrl with
-            // additional state determined from that URL's parameters.
-          })
-          .catch((error) => {
-            // Error occurred during confirmation. The code might have expired or the
-            // password is too weak.
-          });
+    updateProfile(auth.currentUser, {
+      displayName: name,
+    })
+      .then(() => {
+        setLoading(false);
+        setSystemMessageReturn('Your display name was updated.');
       })
       .catch((error) => {
-        // Invalid or expired action code. Ask user to try to reset the password
-        // again.
+        let systemErrorMessage = 'An error ocurred. Please try again later.';
+
+        setLoading(false);
+        setSystemMessageReturn(systemErrorMessage);
       });
-  }
+    console.log(success);
+    console.log(error);
+  };
+
+  //update Email
+  const changeEmail = async (email, currentPassword) => {
+    checkIfIsCancelled();
+    setLoading(true);
+    setError(false);
+
+    const user = auth.currentUser;
+
+    const credential = EmailAuthProvider.credential(
+      user.email,
+      currentPassword,
+    );
+
+    reauthenticateWithCredential(user, credential)
+      .then(async () => {
+        try {
+          await updateEmail(user, email);
+          setLoading(false);
+          setSystemMessageReturn('Your email was updated.');
+        } catch (error) {
+          let systemErrorMessage = 'An error occurred. Please try again later.';
+          let userErrorMessage =
+            error.code === 'auth/wrong-password'
+              ? 'Incorrect current password. Please try again.'
+              : error.code === 'auth/email-already-in-use'
+              ? 'This email address is already in use. Please choose another.'
+              : systemErrorMessage;
+
+          setLoading(false);
+          setSystemMessageReturn(userErrorMessage);
+        }
+      })
+      .catch((error) => {
+        let systemErrorMessage = 'An error occurred. Please try again later.';
+        let userErrorMessage = 'Incorrect current password. Please try again.';
+
+        setLoading(false);
+        setSystemMessageReturn(
+          error.code === 'auth/wrong-password'
+            ? userErrorMessage
+            : systemErrorMessage,
+        );
+        // console.log('nao deu certo');
+      });
+  };
+
+  //update Password
+  const changePassword = async (newPassword, currentPassword) => {
+    checkIfIsCancelled();
+    setLoading(true);
+    setError(false);
+
+    const user = auth.currentUser;
+
+    const credential = EmailAuthProvider.credential(
+      user.email,
+      currentPassword,
+    );
+
+    reauthenticateWithCredential(user, credential)
+      .then(async () => {
+        try {
+          await updatePassword(user, newPassword);
+          setLoading(false);
+          setSystemMessageReturn('Your password was updated.');
+        } catch (error) {
+          let systemErrorMessage = 'An error occurred. Please try again later.';
+          let userErrorMessage =
+            error.code === 'auth/wrong-password'
+              ? 'Incorrect current password. Please try again.'
+              : systemErrorMessage;
+
+          setLoading(false);
+          setSystemMessageReturn(userErrorMessage);
+        }
+      })
+      .catch((error) => {
+        let systemErrorMessage = 'An error occurred. Please try again later.';
+        let userErrorMessage = 'Incorrect current password. Please try again.';
+
+        setLoading(false);
+        setSystemMessageReturn(
+          error.code === 'auth/wrong-password'
+            ? userErrorMessage
+            : systemErrorMessage,
+        );
+        // console.log('nao deu certo');
+      });
+  };
 
   useEffect(() => {
     return () => setCancelled(true);
@@ -169,5 +305,9 @@ export const useAuthentication = () => {
     login,
     resetPassword,
     success,
+    updateDisplayName,
+    changeEmail,
+    systemMessageReturn,
+    changePassword,
   };
 };

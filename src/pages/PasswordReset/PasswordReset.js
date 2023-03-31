@@ -17,9 +17,8 @@ const PasswordReset = () => {
   const [updatedSuccessful, setUpdateSuccessful] = useState(null);
   const [newPassword, setNewPassword] = useState(null);
   const [password, setPassword] = useState('password');
-  const [eye, setEye] = useState(true);
+  const [eye, setEye] = useState(false);
   const [type, setType] = useState(false);
-  const [warnPassword, setWarnpassword] = useState(false);
 
   const Eye = () => {
     if (password == 'password') {
@@ -91,7 +90,7 @@ const PasswordReset = () => {
   return (
     <div className="container my-5">
       <div className="row d-flex justify-content-center bg-white reset-password">
-        <div className="col-lg-8">
+        <div className="col-lg-8 mb-5">
           <h1 className="mt-5">Reset your Password</h1>
           {verifyCode && !updatedSuccessful && (
             <form
