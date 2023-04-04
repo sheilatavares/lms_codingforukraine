@@ -8,6 +8,7 @@ const initialState = {
 };
 
 const insertReducer = (state, action) => {
+  console.log(state, action);
   switch (action.type) {
     case 'LOADING':
       return { loading: true, error: null };

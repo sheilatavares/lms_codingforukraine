@@ -29,12 +29,11 @@ const Account = () => {
     systemMessageError,
     changePassword,
   } = useAuthentication();
-  const [successful, setSuccess] = useState(undefined);
 
   const handleSubmitName = async (e) => {
     e.preventDefault();
     setError('');
-    setSuccess(false);
+
     const res = await updateDisplayName(displayName);
     if (res instanceof Error) {
       setError(res.message);
@@ -47,7 +46,6 @@ const Account = () => {
   const handleSubmitEmail = async (e) => {
     e.preventDefault();
     setError('');
-    setSuccess(false);
 
     const res = await changeEmail(email, password);
     if (res instanceof Error) {
@@ -61,7 +59,6 @@ const Account = () => {
   const handleSubmitPassword = async (e) => {
     e.preventDefault();
     setError('');
-    setSuccess(false);
 
     const res = await changePassword(newPassword, currentPassword);
     if (res instanceof Error) {
@@ -80,10 +77,7 @@ const Account = () => {
       // If a user is logged in, update the user state with their data
       setUser(auth.currentUser);
     }
-    if (systemMessageReturn) {
-      setSuccess(true);
-    }
-  }, [auth.currentUser, navigate, systemMessageReturn]);
+  }, [auth.currentUser, navigate]);
 
   const ShowFormName = () => {
     setFormName(true);
@@ -101,7 +95,7 @@ const Account = () => {
         <div className="row d-flex justify-content-center">
           <div className="col-lg-8 bg-white">
             <div className="row g-0 d-flex justify-content-center">
-              <div className="col-lg-6 align-self-center p-4">
+              <div className="col-lg-8 align-self-center p-4">
                 <h3 className="text-primary">Account</h3>
                 {user && (
                   <>
@@ -276,16 +270,16 @@ const Account = () => {
                   </>
                 )}
               </div>
-              <div className="col-lg-6 d-flex align-items-center justify-content-center text-center">
+              <div className="col-lg-4 d-flex align-items-center justify-content-center text-center">
                 {systemMessageReturn && (
-                  <h4 className="text-primary">
+                  <h5 className="text-primary">
                     <strong>{systemMessageReturn}</strong>
-                  </h4>
+                  </h5>
                 )}
                 {systemMessageError && (
-                  <h4 className="text-danger">
+                  <h5 className="text-danger">
                     <strong>{systemMessageError}</strong>
-                  </h4>
+                  </h5>
                 )}
               </div>
             </div>

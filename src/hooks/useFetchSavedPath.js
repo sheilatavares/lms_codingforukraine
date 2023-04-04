@@ -8,7 +8,11 @@ import {
   where,
 } from 'firebase/firestore';
 
-export const useFetchDocuments = (docCollection, search = null, uid = null) => {
+export const useFetchSavedPath = (
+  docCollection,
+  userId = null,
+  lessonId = null,
+) => {
   const [documents, setDocuments] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
@@ -29,16 +33,23 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
       try {
         let q;
 
-        if (search) {
+        if (userId && lessonId) {
           q = await query(
             collectionRef,
-            where('tags', 'array-contains', search),
+            where('userId', '==', userId),
+            where('lessonId', '==', lessonId),
             orderBy('createdAt', 'desc'),
           );
-        } else if (uid) {
+        } else if (userId) {
           q = await query(
             collectionRef,
-            where('uid', '==', uid),
+            where('userId', '==', userId),
+            orderBy('createdAt', 'desc'),
+          );
+        } else if (lessonId) {
+          q = await query(
+            collectionRef,
+            where('lessonId', '==', lessonId),
             orderBy('createdAt', 'desc'),
           );
         } else {
@@ -62,9 +73,9 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
     }
 
     loadData();
-  }, [docCollection, search, uid, cancelled]);
+  }, [docCollection, userId, lessonId, cancelled]);
 
-  // console.log('que vem do fetch', docCollection, documents);
+  // console.log('que vem do fetch usersPath', docCollection, documents);
 
   useEffect(() => {
     return () => setCancelled(true);

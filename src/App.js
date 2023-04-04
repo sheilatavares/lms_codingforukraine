@@ -60,8 +60,6 @@ function App() {
         <BrowserRouter>
           <Navbar />
           <div className="container-full">
-            {/* {{ user }} */}
-
             <Routes>
               <Route
                 path="/"

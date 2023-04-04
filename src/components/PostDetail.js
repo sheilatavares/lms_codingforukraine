@@ -1,56 +1,169 @@
 import { Link } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import P from 'prop-types';
 import MDEditor from '@uiw/react-md-editor';
 
 import styles from './PostDetail.module.css';
-// import { useFetchDocuments } from '../hooks/useFetchDocuments';
 
-const PostDetail = ({ data, slug }) => {
+import { useAuthValue } from '../context/AuthContext';
+import { useInsertDocument } from '../hooks/useInsertDocument';
+import { useFetchSavedPath } from '../hooks/useFetchSavedPath';
+import { useDeleteDocument } from '../hooks/useDeleteDocument';
+
+const PostDetail = ({ data }) => {
   const {
     id,
     title,
     quiz,
     sectionSlug,
     moduleSlug,
+    sectionId,
+    moduleId,
     body,
     bodyColumn,
     ordination,
     column,
+    slug,
   } = data;
+
+  //Quiz variables
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const [result, setResult] = useState(false);
   const [background, setBackground] = useState();
 
-  if (quiz) {
-    // const questionsP = body.replace(/\\t/g, '');
-    const questions = JSON.parse(body);
-    console.log('aqui', questions);
-    const handleAnswerOptionClick = (isCorrect, explanation, index) => {
+  const [quizQuestions, setQuizQuestions] = useState([]);
+  const [quizAnswers, setQuizAnswers] = useState([]);
+
+  const [isQuiz, setIsQuiz] = useState(false);
+  const { user } = useAuthValue();
+  const [savedPath, setSavedPath] = useState(false);
+  const [savedError, setSavedError] = useState(false);
+  const { insertDocument, response } = useInsertDocument('usersPath');
+  const { insertDocument: insertQuiz, response: responseQuiz } =
+    useInsertDocument('quizResult');
+
+  const { deleteDocument } = useDeleteDocument('usersPath');
+
+  const handleDeletePath = (pathId) => {
+    return deleteDocument(pathId);
+  };
+
+  let userId = user.uid;
+  let lessonId = id;
+
+  const { documents: usersPath, loading } = useFetchSavedPath(
+    'usersPath',
+    userId,
+    lessonId,
+  );
+
+  const handleCoursePath = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await insertDocument({
+        userId: user.uid,
+        moduleId,
+        sectionId,
+        lessonId: id,
+        sectionSlug,
+        moduleSlug,
+        slug,
+        isQuiz,
+      });
+      setSavedPath(true);
+      setSavedError(false);
+    } catch (error) {
+      console.error(error);
+      setSavedError('An error occurred. Please try again later.');
+      setSavedPath(false);
+    }
+  };
+
+  const resetQuiz = useCallback(() => {
+    setCurrentQuestion(0);
+    setShowScore(false);
+    setScore(0);
+    setResult(false);
+    setBackground(null);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      resetQuiz();
+    };
+  }, [resetQuiz]);
+
+  const handleAnswerOptionClick = useCallback(
+    (currentQuestion, answerOption, isCorrect, explanation, index) => {
       setBackground(index);
+      const questions = [...quizQuestions];
+      const answers = [...quizAnswers];
+      questions[currentQuestion] = isCorrect;
+      answers[currentQuestion] = answerOption;
+      setQuizQuestions(questions);
+      setQuizAnswers(answers);
       if (isCorrect) {
         setResult(`👏 Good Job! ` + explanation);
         setScore(score + 1);
       } else {
         setResult(`❗ Incorrect. ` + explanation);
       }
-    };
+    },
+    [quizAnswers, quizQuestions, score],
+  );
+  if (quiz) {
+    const parsedQuestions = JSON.parse(body);
+    let percentage = Math.round((score / parsedQuestions.length) * 100);
+    let incorrects = parsedQuestions.length - score;
 
-    const handleNextQuestion = () => {
+    const handleNextQuestion = async () => {
       setResult(false);
+      setIsQuiz(true);
       const nextQuestion = currentQuestion + 1;
-      if (nextQuestion < questions.length) {
+      if (nextQuestion < parsedQuestions.length) {
         setCurrentQuestion(nextQuestion);
       } else {
+        console.log('entrou no final do quiz');
         setShowScore(true);
+
+        console.log(isQuiz);
+        try {
+          const response = await insertDocument({
+            userId: user.uid,
+            moduleId,
+            sectionId,
+            lessonId: id,
+            sectionSlug,
+            moduleSlug,
+            slug,
+            isQuiz,
+          });
+          // console.log('entrou no try do quiz usersPath');
+        } catch (error) {
+          console.error(error);
+          // console.log('entrou no catch do quiz');
+        }
+        try {
+          const responseQuiz = await insertQuiz({
+            userId: user.uid,
+            sectionId,
+            sectionSlug,
+            moduleId,
+            moduleSlug,
+
+            quizQuestions,
+            quizAnswers,
+            percentage,
+          });
+          console.log(responseQuiz);
+        } catch (error) {
+          console.error(error);
+        }
       }
     };
-
-    let percentage = (score / questions.length) * 100;
-    let incorrects = questions.length - score;
-
     return (
       <div className="container-full w-100 col-lg-11 col-12 pt-0 pb-4 text-center">
         <div className="row mt-3 mb-2">
@@ -69,13 +182,7 @@ const PostDetail = ({ data, slug }) => {
                   <h4 className="border-bottom border-white pb-5">
                     {incorrects} incorrects
                   </h4>
-                  {/* {percentage < 70 ? (
-                    <p className="text-center">
-                      Practice the concepts and try again!
-                    </p>
-                  ) : (
-                    ''
-                  )} */}
+
                   <div className="d-flex flex-column justify-content-center align-items-center">
                     <a className=" text-decoration-none" href="">
                       <strong>Retake quiz</strong>
@@ -89,19 +196,21 @@ const PostDetail = ({ data, slug }) => {
                 <>
                   <div className="question-section" data-color-mode="dark">
                     <h5 className="question-text mb-4">
-                      {questions[currentQuestion].questionText}
+                      {parsedQuestions[currentQuestion].questionText}
                     </h5>
-                    {questions[currentQuestion].codeImage ? (
-                      <img src={questions[currentQuestion].codeImage}></img>
+                    {parsedQuestions[currentQuestion].codeImage ? (
+                      <img
+                        src={parsedQuestions[currentQuestion].codeImage}
+                      ></img>
                     ) : (
                       ''
                     )}
                   </div>
                   <div className="answer-section answer-section d-flex flex-column pt-4">
-                    {questions[currentQuestion].answerOptions.map(
+                    {parsedQuestions[currentQuestion].answerOptions.map(
                       (answerOption, index) => (
                         <a
-                          key="index"
+                          key={index}
                           className={`py-2 my-1
                           d-flex justify-content-start text-start px-2 ${
                             result ? 'disabled' : ''
@@ -112,6 +221,8 @@ const PostDetail = ({ data, slug }) => {
                           } ${background === index ? 'filled' : ''}`}
                           onClick={() =>
                             handleAnswerOptionClick(
+                              currentQuestion,
+                              answerOption.answerText,
                               answerOption.isCorrect,
                               answerOption.explanation,
                               index,
@@ -134,7 +245,7 @@ const PostDetail = ({ data, slug }) => {
                     </div>
                   </div>
                   <div className="question-count text-white">
-                    Question {currentQuestion + 1}/{questions.length}
+                    Question {currentQuestion + 1}/{parsedQuestions.length}
                   </div>
                 </>
               )}
@@ -175,6 +286,31 @@ const PostDetail = ({ data, slug }) => {
             </>
           )}
         </div>
+
+        {slug === 'conclusion' && (
+          <div className="row">
+            <div className="col-lg-5 col-12 d-grid gap-2">
+              {usersPath?.length === 0 ? (
+                <button
+                  className="btn btn-secondary w-50"
+                  onClick={handleCoursePath}
+                >
+                  〇 Mark this section as done
+                </button>
+              ) : (
+                usersPath?.map((path) => (
+                  <button
+                    className="btn btn-success w-50"
+                    key={path.id}
+                    onClick={() => handleDeletePath(path.id)}
+                  >
+                    ✓ Done
+                  </button>
+                ))
+              )}
+            </div>
+          </div>
+        )}
       </div>
     );
   }
@@ -183,16 +319,19 @@ const PostDetail = ({ data, slug }) => {
 PostDetail.propTypes = {
   data: P.shape({
     title: P.string,
-    quiz: P.string,
+    quiz: P.boolean,
     id: P.string,
     sectionSlug: P.string,
     moduleSlug: P.string,
+    sectionId: P.string,
+    moduleId: P.string,
     body: P.string,
     bodyColumn: P.string,
     ordination: P.string,
     column: P.string,
+    slug: P.string,
   }),
-  slug: P.string,
+
   idLesson: P.string,
 };
 

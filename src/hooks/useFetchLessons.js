@@ -62,8 +62,6 @@ export const useFetchLessons = (docCollection, moduleSlug, sectionSlug) => {
     loadData();
   }, [docCollection, moduleSlug, sectionSlug, cancelled]);
 
-  // console.log('que vem do fetch', documents);
-
   useEffect(() => {
     return () => setCancelled(true);
   }, []);

@@ -241,7 +241,7 @@ export const useAuthentication = () => {
       })
       .catch((error) => {
         let systemErrorMessage = 'An error occurred. Please try again later.';
-        let userErrorMessage = 'Incorrect current password. Please try again.';
+        let userErrorMessage = 'Incorrect current password.Please try again.';
 
         setLoading(false);
         setSystemMessageError(

@@ -8,6 +8,8 @@ import avatar from './img/avatar.png';
 // hooks
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
 import { useNavigate, Link } from 'react-router-dom';
+import { useAuthValue } from '../../context/AuthContext';
+import { useFetchSavedPath } from '../../hooks/useFetchSavedPath';
 
 // react
 import { useState } from 'react';
@@ -19,6 +21,19 @@ const HomeCourse = () => {
   const { documents: lessons, loading } = useFetchDocuments('posts');
   const { documents: modules } = useFetchDocuments('modules');
   const { documents: sections } = useFetchDocuments('sections');
+  const { user } = useAuthValue();
+  let userId = user.uid;
+  const { documents: usersPath } = useFetchSavedPath('usersPath', userId);
+  const { documents: quizResults } = useFetchSavedPath('quizResult', userId);
+
+  const lessonIds = usersPath?.map((obj) => obj?.lessonId);
+  const sectionIds = usersPath
+    ?.filter((obj) => obj && !obj.isQuiz)
+    ?.map((obj) => obj.sectionId);
+
+  const quizIds = quizResults?.map((obj) => obj?.sectionId);
+
+  console.log('quiz Ids', quizIds);
 
   const navigate = useNavigate();
 
@@ -112,7 +127,18 @@ const HomeCourse = () => {
 
                                 .map((ord) => (
                                   <div className="ps-5 pt-3" key={ord.id}>
-                                    <h6 className="">
+                                    <h6 className="d-flex flex-row-reverse justify-content-end align-items-start">
+                                      {sectionIds?.includes(ord.id) ? (
+                                        <img
+                                          style={{
+                                            width: '20px',
+                                            marginLeft: '-8px',
+                                          }}
+                                          className=""
+                                          src="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/check-mark.svg?alt=media&token=10987695-b4ba-4e2c-9330-af76d1df6237"
+                                          width="40"
+                                        />
+                                      ) : null}
                                       <p className="">
                                         <strong>
                                           Section {ord.ordination} -{' '}
@@ -137,17 +163,48 @@ const HomeCourse = () => {
                                                 key={lesson.id}
                                                 className="text-start d-inline-flex align-items-center link-lesson py-1 text-decoration-none"
                                               >
-                                                {/* Lesson {lesson.ordination} -{' '} */}
-                                                <div
-                                                  className={
-                                                    styles.icon_container
-                                                  }
-                                                >
-                                                  <img
-                                                    src={lesson.image}
-                                                    width="40"
-                                                  ></img>
-                                                </div>
+                                                {(sectionIds?.includes(
+                                                  ord.id,
+                                                ) &&
+                                                  lesson.quiz !== 'yes') ||
+                                                (lesson.quiz === 'yes' &&
+                                                  quizIds?.includes(ord.id)) ? (
+                                                  <div
+                                                    className={
+                                                      styles.icon_container
+                                                    }
+                                                    style={{
+                                                      borderColor: '#0076BF',
+                                                      borderWidth: '2px',
+                                                    }}
+                                                  >
+                                                    <img
+                                                      src={lesson.image}
+                                                      width="40"
+                                                    />
+                                                    <img
+                                                      style={{
+                                                        position: 'absolute',
+                                                        right: '-12px',
+                                                        top: '-2px',
+                                                      }}
+                                                      src="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/check-mark.svg?alt=media&token=10987695-b4ba-4e2c-9330-af76d1df6237"
+                                                      width="40"
+                                                    />
+                                                  </div>
+                                                ) : (
+                                                  <div
+                                                    className={
+                                                      styles.icon_container
+                                                    }
+                                                  >
+                                                    <img
+                                                      src={lesson.image}
+                                                      width="40"
+                                                    />
+                                                  </div>
+                                                )}
+
                                                 <span className="ps-2">
                                                   {lesson.title}
                                                 </span>
