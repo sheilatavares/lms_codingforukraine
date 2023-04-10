@@ -84,7 +84,7 @@ const Navbar = () => {
             className="collapse navbar-collapse flex-grow-1 text-right"
             id="navbarSupportedContent"
           >
-            <ul className="navbar-nav mb-2 mb-lg-0 ms-auto flex-nowrap">
+            <ul className="navbar-nav mb-2 mb-lg-0 ms-auto flex-nowrap d-flex align-items-center">
               {!user && (
                 <li className="nav-item px-3">
                   <NavLink
@@ -171,6 +171,20 @@ const Navbar = () => {
                   }
                 >
                   About
+                </NavLink>
+              </li>
+              <li className="nav-item px-3">
+                <NavLink
+                  to="/donate"
+                  className={
+                    ('nav-link',
+                    ({ isActive }) =>
+                      isActive
+                        ? `${styles.active} btn rounded-pill donate_button`
+                        : 'btn rounded-pill donate_button')
+                  }
+                >
+                  Donate
                 </NavLink>
               </li>
               {user && (

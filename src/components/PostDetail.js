@@ -82,38 +82,41 @@ const PostDetail = ({ data }) => {
     }
   };
 
-  const resetQuiz = useCallback(() => {
-    setCurrentQuestion(0);
-    setShowScore(false);
-    setScore(0);
-    setResult(false);
-    setBackground(null);
-  }, []);
-
   useEffect(() => {
+    const resetQuiz = () => {
+      setCurrentQuestion(0);
+      setShowScore(false);
+      setScore(0);
+      setResult(false);
+      setBackground(null);
+    };
+
     return () => {
       resetQuiz();
     };
-  }, [resetQuiz]);
+  }, []);
 
-  const handleAnswerOptionClick = useCallback(
-    (currentQuestion, answerOption, isCorrect, explanation, index) => {
-      setBackground(index);
-      const questions = [...quizQuestions];
-      const answers = [...quizAnswers];
-      questions[currentQuestion] = isCorrect;
-      answers[currentQuestion] = answerOption;
-      setQuizQuestions(questions);
-      setQuizAnswers(answers);
-      if (isCorrect) {
-        setResult(`👏 Good Job! ` + explanation);
-        setScore(score + 1);
-      } else {
-        setResult(`❗ Incorrect. ` + explanation);
-      }
-    },
-    [quizAnswers, quizQuestions, score],
-  );
+  function handleAnswerOptionClick(
+    currentQuestion,
+    answerOption,
+    isCorrect,
+    explanation,
+    index,
+  ) {
+    setBackground(index);
+    const questions = [...quizQuestions];
+    const answers = [...quizAnswers];
+    questions[currentQuestion] = isCorrect;
+    answers[currentQuestion] = answerOption;
+    setQuizQuestions(questions);
+    setQuizAnswers(answers);
+    if (isCorrect) {
+      setResult(`👏 Good Job! ` + explanation);
+      setScore(score + 1);
+    } else {
+      setResult(`❗ Incorrect. ` + explanation);
+    }
+  }
   if (quiz) {
     const parsedQuestions = JSON.parse(body);
     let percentage = Math.round((score / parsedQuestions.length) * 100);

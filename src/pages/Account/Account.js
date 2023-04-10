@@ -4,12 +4,15 @@ import P from 'prop-types';
 
 import { useState, useEffect } from 'react';
 import { useAuthentication } from '../../hooks/useAuthentication';
+import { useFetchDocuments } from '../../hooks/useFetchDocuments';
 
 import { useNavigate, Link } from 'react-router-dom';
+import { useFetchSavedPath } from '../../hooks/useFetchSavedPath';
 
 const Account = () => {
   const { auth } = useAuthentication();
   const [user, setUser] = useState(null);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
@@ -20,6 +23,7 @@ const Account = () => {
   const [newPassword, setNewPassword] = useState('');
   const navigate = useNavigate();
   const [displayName, setDisplayName] = useState('');
+
   const {
     updateDisplayName,
     changeEmail,
@@ -30,6 +34,24 @@ const Account = () => {
     changePassword,
   } = useAuthentication();
 
+  //progress information
+  let userId = auth?.currentUser?.uid;
+  const { documents: sections } = useFetchDocuments('sections');
+  const { documents: lessons } = useFetchDocuments('posts');
+  const { documents: usersPath } = useFetchSavedPath('usersPath', userId);
+
+  const sectionIds = usersPath
+    ?.filter((obj) => obj && !obj.isQuiz)
+    ?.map((obj) => obj.sectionId);
+
+  const totalSections = sections?.length;
+
+  const totalConcluded = sectionIds?.length;
+  let progressUser = Math.round((totalConcluded / totalSections) * 100);
+
+  console.log(totalSections, totalConcluded);
+
+  //submits forms
   const handleSubmitName = async (e) => {
     e.preventDefault();
     setError('');
@@ -39,8 +61,6 @@ const Account = () => {
       setError(res.message);
     }
     setFormName(false);
-
-    // console.log(res);
   };
 
   const handleSubmitEmail = async (e) => {
@@ -93,10 +113,20 @@ const Account = () => {
     <>
       <div className="container py-5  h-100">
         <div className="row d-flex justify-content-center">
-          <div className="col-lg-8 bg-white">
+          <div className="col-lg-10 bg-white">
             <div className="row g-0 d-flex justify-content-center">
-              <div className="col-lg-8 align-self-center p-4">
+              <div className="col-lg-6 align-self-center p-4">
                 <h3 className="text-primary">Account</h3>
+                {systemMessageReturn && (
+                  <h5 className="text-success">
+                    <strong>{systemMessageReturn}</strong>
+                  </h5>
+                )}
+                {systemMessageError && (
+                  <h5 className="text-danger">
+                    <strong>{systemMessageError}</strong>
+                  </h5>
+                )}
                 {user && (
                   <>
                     <div className="row mt-4">
@@ -270,17 +300,8 @@ const Account = () => {
                   </>
                 )}
               </div>
-              <div className="col-lg-4 d-flex align-items-center justify-content-center text-center">
-                {systemMessageReturn && (
-                  <h5 className="text-primary">
-                    <strong>{systemMessageReturn}</strong>
-                  </h5>
-                )}
-                {systemMessageError && (
-                  <h5 className="text-danger">
-                    <strong>{systemMessageError}</strong>
-                  </h5>
-                )}
+              <div className="col-lg-6 d-flex align-items-start mt-4 justify-content-center text-center">
+                <h3 className="text-primary">Your progress</h3>
               </div>
             </div>
           </div>

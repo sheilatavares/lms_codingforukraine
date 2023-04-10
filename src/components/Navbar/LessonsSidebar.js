@@ -48,7 +48,7 @@ const LessonsSidebar = ({ moduleSlug, sectionSlug }) => {
         </div>
       </nav>
       <div
-        className="modal fade"
+        className="modal fade lesson-sidebar"
         id="staticBackdrop"
         data-bs-backdrop="static"
         data-bs-keyboard="false"

@@ -191,11 +191,11 @@ nav.nav_lesson a:hover {
   box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
   z-index: 9999999;
 }
-.modal.fade .modal-dialog {
+.lesson-sidebar .modal-dialog {
   transition: transform 0.3s ease-out;
   transform: translate(0, -50px);
 }
-.modal-dialog {
+.lesson-sidebar .modal-dialog {
   display: inline-block;
   left: 0px;
   top: 0px;
@@ -534,15 +534,12 @@ h5.question-text {
   right: 10px;
 }
 
-/* .fa-lock-login {
-  position: absolute;
-  top: 13px;
-  left: 10px;
+.donate_button {
+  background-color: #ffd726 !important;
+  color: #0076bf !important;
 }
 
-.fa-eye-login,
-.fa-eye-slash-login {
-  position: absolute;
-  top: 13px;
-  right: 10px;
-} */
+.donate_button:hover {
+  background-color: #0076bf !important;
+  color: #ffd726 !important;
+}

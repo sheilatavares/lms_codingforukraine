@@ -32,6 +32,7 @@ import HomeCourse from './pages/HomeCourse/HomeCourse';
 import Reset from './pages/reset/Reset';
 import Account from './pages/Account/Account';
 import PasswordReset from './pages/PasswordReset/PasswordReset';
+import Donate from './pages/Donate/Donate';
 function App() {
   const [user, setUser] = useState(undefined);
   const { auth } = useAuthentication();
@@ -124,10 +125,7 @@ function App() {
                 path="/myhome"
                 element={user ? <HomeCourse /> : <Navigate to="/login" />}
               />
-              {/* <Route
-                path="*"
-                element={user ? <Navigate to="/myhome" /> : <Navigate to="/" />}
-              /> */}
+              <Route path="/donate" element={<Donate />} />
             </Routes>
           </div>
           <Footer />
