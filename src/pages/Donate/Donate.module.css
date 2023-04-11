@@ -1,9 +1,9 @@
 .donateBox {
   background: #ffffff
-    url(https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/kiev.jpg?alt=media&token=e0810b2a-57a1-45d4-b89e-2e5135ebb3ce)
+    url(https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/kyiv.jpg?alt=media&token=7478cbba-fbdf-44ca-8212-25e2f5eb7840)
     no-repeat right top;
-  background-size: 150%;
-  height: 500px;
+  background-size: cover;
+  height: 100%;
 }
 
 .bgYellowDonate {
@@ -11,21 +11,6 @@
   border-radius: 20px;
 }
 
-.donateBox2 {
-  background: #ffffff
-    url(https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/kyev-landscape.jpg?alt=media&token=b8204082-5074-4788-aa97-53d402f5782e)
-    no-repeat right top;
-  background-size: cover;
-  height: 500px;
-}
 .DarkBlue {
-  color: #0317f4;
-}
-
-.donateBox3 {
-  background: #ffffff
-    url(https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/kiev-topview.jpg?alt=media&token=67c2eb11-5f60-4ffd-ba62-0f3c733e3752)
-    no-repeat right top;
-  background-size: cover;
-  height: 500px;
+  color: #0e4bd6;
 }
