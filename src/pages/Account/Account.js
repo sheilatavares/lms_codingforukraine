@@ -8,11 +8,11 @@ import { useFetchDocuments } from '../../hooks/useFetchDocuments';
 
 import { useNavigate, Link } from 'react-router-dom';
 import { useFetchSavedPath } from '../../hooks/useFetchSavedPath';
+import ProgressBar from '../../components/ProgressBar/ProgressBar';
 
 const Account = () => {
   const { auth } = useAuthentication();
   const [user, setUser] = useState(null);
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
@@ -23,6 +23,7 @@ const Account = () => {
   const [newPassword, setNewPassword] = useState('');
   const navigate = useNavigate();
   const [displayName, setDisplayName] = useState('');
+  const [progress, setProgress] = useState(0);
 
   const {
     updateDisplayName,
@@ -40,16 +41,40 @@ const Account = () => {
   const { documents: lessons } = useFetchDocuments('posts');
   const { documents: usersPath } = useFetchSavedPath('usersPath', userId);
 
+  // LEsson total
+  const lessonsIdsTotal = lessons?.filter(
+    (obj) => obj && !obj.quiz && obj.sectionId !== 'F0bt7WvKdHrIGOpkpNtB',
+  );
+
+  // Users sections completed
   const sectionIds = usersPath
-    ?.filter((obj) => obj && !obj.isQuiz)
+    ?.filter(
+      (obj) => obj && !obj.isQuiz && obj.sectionId !== 'F0bt7WvKdHrIGOpkpNtB',
+    )
     ?.map((obj) => obj.sectionId);
 
-  const totalSections = sections?.length;
+  //lessons completed
+  const lessonsIdsCompleted = lessonsIdsTotal?.filter((item) =>
+    sectionIds.includes(item.sectionId),
+  );
 
-  const totalConcluded = sectionIds?.length;
-  let progressUser = Math.round((totalConcluded / totalSections) * 100);
+  // Quiz total
+  const quizIdsTotal = lessons?.filter((obj) => obj && obj.quiz);
 
-  console.log(totalSections, totalConcluded);
+  // Users quiz completed
+  const quizIdsCompleted = usersPath
+    ?.filter(
+      (obj) => obj && obj.isQuiz && obj.sectionId !== 'F0bt7WvKdHrIGOpkpNtB',
+    )
+    ?.map((obj) => obj.sectionId);
+
+  const totalLessonsCourse = lessonsIdsTotal?.length + quizIdsTotal?.length;
+  const totalLessonsCompleted =
+    lessonsIdsCompleted?.length + quizIdsCompleted?.length;
+
+  let progressUser = Math.round(
+    (totalLessonsCompleted / totalLessonsCourse) * 100,
+  );
 
   //submits forms
   const handleSubmitName = async (e) => {
@@ -98,6 +123,13 @@ const Account = () => {
       setUser(auth.currentUser);
     }
   }, [auth.currentUser, navigate]);
+
+  useEffect(() => {
+    let progressUser = Math.round(
+      (totalLessonsCompleted / totalLessonsCourse) * 100,
+    );
+    setProgress(progressUser.toString());
+  }, [totalLessonsCompleted, totalLessonsCourse]);
 
   const ShowFormName = () => {
     setFormName(true);
@@ -300,8 +332,11 @@ const Account = () => {
                   </>
                 )}
               </div>
-              <div className="col-lg-6 d-flex align-items-start mt-4 justify-content-center text-center">
+              <div className="col-lg-6 d-flex flex-column align-items-center mt-4 justify-content-center text-center">
                 <h3 className="text-primary">Your progress</h3>
+                <div className="d-flex justify-content-center align-items-center mt-2">
+                  {progress && <ProgressBar done={progress}></ProgressBar>}
+                </div>
               </div>
             </div>
           </div>

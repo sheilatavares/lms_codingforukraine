@@ -124,7 +124,7 @@ const Login = () => {
                 </div>
 
                 <div className="row ps-5">
-                  <div className="col-lg-4 text-start mb-3">
+                  <div className="col-lg-5 text-start mb-3">
                     {!loading && (
                       <button className="btn btn-primary">Login</button>
                     )}
@@ -133,7 +133,11 @@ const Login = () => {
                         Wait...
                       </button>
                     )}
-                    {error && <p className="error">{error}</p>}
+                    {error && (
+                      <small className="text-danger d-block pt-2">
+                        {error}
+                      </small>
+                    )}
                   </div>
 
                   <Link to={`/reset`} className="col-lg-6 text-center pt-2">

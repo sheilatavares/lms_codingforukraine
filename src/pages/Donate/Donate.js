@@ -9,14 +9,14 @@ import BuyMeACoffee from '../../components/BuyMeACoffee/BuyMeACoffee';
 
 function Donate() {
   return (
-    <div className="container bg-white">
+    <div className="container-full bg-white">
       <div
-        className={`row d-flex justify-content-center mt-4 pb-5 pt-3 ${styles.donateBox}`}
+        className={`row d-flex justify-content-center g-0 pb-5 pt-3 ${styles.donateBox}`}
       >
         <div className="col-lg-12 pb-4">
           <div className="row p-lg-3">
             <div className="col-lg-6">
-              <h1 className={`text-start pb-3 pt-2 ${styles.DarkBlue}`}>
+              <h1 className={`text-start pb-3 ms-3 pt-2 ${styles.DarkBlue}`}>
                 Partner With Us
               </h1>
               <div className="bg-white p-4 rounded">
@@ -39,13 +39,13 @@ function Donate() {
             </div>
             <div className="col-lg-5 mt-5 ms-4 d-flex align-items-center flex-column justify-content-end">
               <div className={`p-lg-4 shadow ${styles.bgYellowDonate}`}>
-                <h5 className="lh-base">
+                <span className="lh-base fs-5">
                   Support us and become strategic partners of our project. Your
                   generosity will help to motivate, instruct, and provide
                   Ukrainians with the necessary tools to be successful. We will
                   be extremely grateful for being able to continue with our
                   mission.
-                </h5>
+                </span>
                 <div className=" mt-3">
                   <small className="pb-2 d-block">
                     Buy me a Coffee is a donation platform that allows donations

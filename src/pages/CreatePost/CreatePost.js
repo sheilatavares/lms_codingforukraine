@@ -19,7 +19,7 @@ const CreatePost = () => {
   const [sectionId, setSectionId] = useState('');
   const [moduleId, setModuleId] = useState('');
   const [ordination, setOrdination] = useState(0);
-  const [quiz, setQuiz] = useState('');
+  const [quiz, setQuiz] = useState(false);
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [bodyColumn, setBodyColumn2] = useState('');
@@ -249,8 +249,8 @@ const CreatePost = () => {
               onChange={(e) => setQuiz(e.target.value)}
             >
               <option selected>Choose...</option>
-              <option value="no">No</option>
-              <option value="yes">Yes</option>
+              <option>No</option>
+              <option value="true">Yes</option>
             </select>
           </label>
           <label className="col-3">

@@ -1,10 +1,9 @@
 .donateBox {
   background: #ffffff
-    url(https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/kyiv.jpg?alt=media&token=7478cbba-fbdf-44ca-8212-25e2f5eb7840)
+    url(https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/ukrania-flag.png?alt=media&token=0a0640a0-399d-48fe-a70e-984a94adbd2a)
     no-repeat right top;
-  background-size: cover;
+
   height: 100%;
-  background-position-x: -170px;
 }
 
 .bgYellowDonate {
@@ -14,4 +13,5 @@
 
 .DarkBlue {
   color: #0e4bd6;
+  font-size: 50px;
 }

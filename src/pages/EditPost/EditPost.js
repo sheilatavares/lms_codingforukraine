@@ -21,6 +21,7 @@ const EditPost = () => {
   const [ordination, setOrdination] = useState('');
   const [title, setTitle] = useState('');
   const [slug, setSlug] = useState('');
+  const [quiz, setQuiz] = useState('');
   const [image, setImage] = useState('');
   const [body, setBody] = useState('');
   const [bodyColumn, setBodyColumn2] = useState('');
@@ -78,6 +79,7 @@ const EditPost = () => {
   useEffect(() => {
     if (post) {
       setModuleId(post.moduleId);
+      setQuiz(post.quiz);
       setSectionId(post.sectionId);
       setOrdination(post.ordination);
       setImage(post.image);
@@ -99,32 +101,10 @@ const EditPost = () => {
     e.preventDefault();
     setFormError('');
 
-    // check values
-    // if (
-    //   !course ||
-    //   !moduleId ||
-    //   !sectionId ||
-    //   !title ||
-    //   !ordination ||
-    //   !column ||
-    //   !body
-    // ) {
-    //   setFormError('All fields are mandatory.');
-    // }
-
-    console.log({
-      title,
-      moduleId,
-      sectionId,
-      ordination,
-      column,
-      body,
-      bodyColumn,
-    });
-
     const data = {
       title,
       slug,
+      quiz,
       image,
       moduleId,
       sectionId,
@@ -134,7 +114,7 @@ const EditPost = () => {
       bodyColumn,
     };
 
-    console.log(post);
+    // console.log(post);
 
     updateDocument(id, data);
 
@@ -190,7 +170,7 @@ const EditPost = () => {
               </label>
             </div>
             <div className="row g-0">
-              <label className="col-2 me-5" htmlFor="lesson">
+              <label className="col-2 me-3" htmlFor="lesson">
                 <span>Current number: {post.ordination}</span>
                 <input
                   type="number"
@@ -202,7 +182,7 @@ const EditPost = () => {
                   value={ordination}
                 />
               </label>
-              <label className="col-6">
+              <label className="col-4">
                 <span>
                   Current Icon: <img src={post.image} width="20px"></img>
                 </span>
@@ -220,6 +200,18 @@ const EditPost = () => {
                   <option value="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/quiz-icon.svg?alt=media&token=574720e9-888f-456f-8cec-cc94c1c1fcd1">
                     Quiz icon
                   </option>
+                </select>
+              </label>
+              <label className="col-3">
+                <span>Is a quiz lesson?</span>
+                Current: <span>{post.quiz ? 'yes' : 'no'}</span>
+                <select
+                  className="form-select m-1 p-2 w-100"
+                  onChange={(e) => setQuiz(JSON.parse(e.target.value))}
+                >
+                  <option selected>Choose...</option>
+                  <option value="false">No</option>
+                  <option value="true">Yes</option>
                 </select>
               </label>
               <label className="col-3">
