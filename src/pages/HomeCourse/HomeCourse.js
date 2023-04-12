@@ -26,14 +26,19 @@ const HomeCourse = () => {
   const { documents: usersPath } = useFetchSavedPath('usersPath', userId);
   const { documents: quizResults } = useFetchSavedPath('quizResult', userId);
 
-  const lessonIds = usersPath?.map((obj) => obj?.lessonId);
+  // Users sections completed
   const sectionIds = usersPath
-    ?.filter((obj) => obj && !obj.isQuiz)
+    ?.filter(
+      (obj) => obj && !obj.isQuiz && obj.sectionId !== 'F0bt7WvKdHrIGOpkpNtB',
+    )
     ?.map((obj) => obj.sectionId);
 
-  const quizIds = quizResults?.map((obj) => obj?.sectionId);
-
-  console.log('quiz Ids', quizIds);
+  // Users quiz completed
+  const quizIdsCompleted = usersPath
+    ?.filter(
+      (obj) => obj && obj.isQuiz && obj.sectionId !== 'F0bt7WvKdHrIGOpkpNtB',
+    )
+    ?.map((obj) => obj.sectionId);
 
   const navigate = useNavigate();
 
@@ -128,7 +133,8 @@ const HomeCourse = () => {
                                 .map((ord) => (
                                   <div className="ps-5 pt-3" key={ord.id}>
                                     <h6 className="d-flex flex-row-reverse justify-content-end align-items-start">
-                                      {sectionIds?.includes(ord.id) ? (
+                                      {sectionIds?.includes(ord.id) &&
+                                      quizIdsCompleted?.includes(ord.id) ? (
                                         <img
                                           style={{
                                             width: '20px',
@@ -166,9 +172,11 @@ const HomeCourse = () => {
                                                 {(sectionIds?.includes(
                                                   ord.id,
                                                 ) &&
-                                                  lesson.quiz !== 'yes') ||
-                                                (lesson.quiz === 'yes' &&
-                                                  quizIds?.includes(ord.id)) ? (
+                                                  !lesson.quiz) ||
+                                                (lesson.quiz &&
+                                                  quizIdsCompleted?.includes(
+                                                    ord.id,
+                                                  )) ? (
                                                   <div
                                                     className={
                                                       styles.icon_container
