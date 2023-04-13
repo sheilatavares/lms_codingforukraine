@@ -1,9 +1,10 @@
 .donateBox {
   background: #ffffff
-    url(https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/ukrania-flag.png?alt=media&token=0a0640a0-399d-48fe-a70e-984a94adbd2a)
+    url(https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/ukrain-snow.jpg?alt=media&token=bc61b10f-df10-443b-8690-0fc701d76a0b)
     no-repeat right top;
-
+  background-size: cover;
   height: 100%;
+  background-position-x: -170px;
 }
 
 .bgYellowDonate {

@@ -332,11 +332,15 @@ const Account = () => {
                   </>
                 )}
               </div>
-              <div className="col-lg-6 d-flex flex-column align-items-center mt-4 justify-content-center text-center">
-                <h3 className="text-primary">Your progress</h3>
+              <div className="col-lg-5 d-flex align-top flex-column mt-4 mx-auto align-items-center text-center">
+                <h3 className="text-primary">Your progress*</h3>
                 <div className="d-flex justify-content-center align-items-center mt-2">
                   {progress && <ProgressBar done={progress}></ProgressBar>}
                 </div>
+                <small>
+                  *Based on the sections you marked as completed at the end of
+                  each section.
+                </small>
               </div>
             </div>
           </div>
