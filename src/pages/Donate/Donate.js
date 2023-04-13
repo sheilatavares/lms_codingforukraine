@@ -19,7 +19,7 @@ function Donate() {
               <h1 className={`text-start pb-3 ms-3 pt-2 ${styles.DarkBlue}`}>
                 Partner With Us
               </h1>
-              <div className=" p-4 rounded">
+              <div className="p-4 pt-0 rounded">
                 <h6 className="lh-base">
                   {' '}
                   We are a completely independent, nonprofit and voluntary group
