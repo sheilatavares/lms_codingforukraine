@@ -153,7 +153,7 @@ const PasswordReset = () => {
     <div className="container my-5">
       <div className="row d-flex justify-content-center bg-white reset-password">
         <div className="col-lg-8 mb-5">
-          {!messageReturn ? (
+          {mode === 'verifyEmail' && !messageReturn ? (
             <>
               <h2 className="text-center">Verify your Email Address {mode}</h2>
               <p>A verification has been sent to:</p>
@@ -170,7 +170,7 @@ const PasswordReset = () => {
           ) : (
             <h2 className="text-center">{messageReturn}</h2>
           )}
-          {verifyCode && !updatedSuccessful && (
+          {mode === 'resetPassword' && verifyCode && !updatedSuccessful && (
             <>
               <h1 className="mt-5">Reset your Password {mode}</h1>
               <form
