@@ -155,7 +155,7 @@ const PasswordReset = () => {
         <div className="col-lg-8 mb-5">
           {!messageReturn ? (
             <>
-              <h2 className="text-center">Verify your Email Address</h2>
+              <h2 className="text-center">Verify your Email Address {mode}</h2>
               <p>A verification has been sent to:</p>
               <p>{auth?.currentUser?.email}</p>
               <p>Follow the instruction in the email to verify your account</p>
