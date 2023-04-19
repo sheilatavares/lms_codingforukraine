@@ -2,6 +2,8 @@ import { db } from '../firebase/config';
 import { useReducer } from 'react';
 import { Navigate } from 'react-router-dom';
 
+import { withRouter } from 'react-router-dom';
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -15,6 +17,7 @@ import {
   confirmPasswordReset,
   EmailAuthProvider,
   reauthenticateWithCredential,
+  sendEmailVerification,
 } from 'firebase/auth';
 
 import { useState, useEffect } from 'react';
@@ -25,6 +28,7 @@ export const useAuthentication = () => {
   const [systemMessageError, setSystemMessageError] = useState(null);
   const [success, setSuccess] = useState(undefined);
   const [loading, setLoading] = useState(null);
+  const [timeActive, setTimeActive] = useState(false);
 
   //cleanup
   //deal with memory leak
@@ -39,40 +43,66 @@ export const useAuthentication = () => {
   }
 
   //register
-  const createUser = async (data) => {
+  const createUser = (data) => {
     checkIfIsCancelled();
 
     setLoading(true);
     setError(null);
 
-    try {
-      const { user } = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password,
-      );
-      await updateProfile(user, {
-        displayName: data.displayName,
+    createUserWithEmailAndPassword(auth, data.email, data.password)
+      .then(({ user }) => {
+        sendEmailVerification(auth.currentUser)
+          .then(() => {
+            window.location.assign('/verify-email');
+            setTimeActive(true);
+          })
+          .catch((err) => {
+            setLoading(false);
+            setSystemMessageError(err.message);
+          });
+
+        updateProfile(user, {
+          displayName: data.displayName,
+        })
+          .then(() => {
+            setLoading(false);
+            return user;
+          })
+          .catch((error) => {
+            console.log(error.message);
+            console.log(typeof error.message);
+
+            let systemErrorMessage;
+
+            if (error.message.includes('Password')) {
+              systemErrorMessage =
+                'Your password must contain at least 6 characters.';
+            } else if (error.message.includes('email-already')) {
+              systemErrorMessage = 'This e-mail is already registered.';
+            } else {
+              systemErrorMessage = 'An error ocurred. Please try again later.';
+            }
+            setLoading(false);
+            setError(systemErrorMessage);
+          });
+      })
+      .catch((error) => {
+        console.log(error.message);
+        console.log(typeof error.message);
+
+        let systemErrorMessage;
+
+        if (error.message.includes('Password')) {
+          systemErrorMessage =
+            'Your password must contain at least 6 characters.';
+        } else if (error.message.includes('email-already')) {
+          systemErrorMessage = 'This e-mail is already registered.';
+        } else {
+          systemErrorMessage = 'An error ocurred. Please try again later.';
+        }
+        setLoading(false);
+        setError(systemErrorMessage);
       });
-      setLoading(false);
-      return user;
-    } catch (error) {
-      console.log(error.message);
-      console.log(typeof error.message);
-
-      let systemErrorMessage;
-
-      if (error.message.includes('Password')) {
-        systemErrorMessage =
-          'Your password must contain at least 6 characters.';
-      } else if (error.message.includes('email-already')) {
-        systemErrorMessage = 'This e-mail is already registered.';
-      } else {
-        systemErrorMessage = 'An error ocurred. Please try again later.';
-      }
-      setLoading(false);
-      setError(systemErrorMessage);
-    }
   };
 
   //register
@@ -298,6 +328,8 @@ export const useAuthentication = () => {
         setSystemMessageReturn(false);
       });
   };
+
+  //send authentication email link
 
   useEffect(() => {
     return () => setCancelled(true);

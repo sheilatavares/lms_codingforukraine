@@ -3,7 +3,7 @@ import styles from './HomeCourse.module.css';
 
 //img
 import photoFriends from './img/coding-friends-home.jpg';
-import avatar from './img/avatar.png';
+import avatar from './img/avatar-user.svg';
 
 // hooks
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
@@ -58,14 +58,19 @@ const HomeCourse = () => {
     <div className="container-full" id="home-course">
       <div className="container text-center pb-5">
         <div className="row">
-          <div className="col-lg-9">
-            <h2 className="mb-4 text-primary text-start py-5">
+          <div className="col-lg-8">
+            <h2 className="mb-5 text-primary text-start py-4">
               Course: Introducting Programming with Javascript
             </h2>
           </div>
-          <div className="col-lg-3 d-flex align-items-center justify-content-end">
-            <img src={avatar} className="" width="50" height="50"></img>
-            <Link className={styles.link_account} to={`/account`}>
+          <div className="col-lg-4 d-flex flex-column align-items-end justify-content-center">
+            <span className="fs-2 mt-2"> Hello, {user.displayName}</span>
+            <small>Have a good study day!</small>
+            <Link
+              className={`btn btn-outline-primary rounded-pill mt-2 ${styles.link_account}`}
+              to={`/account`}
+            >
+              <img></img>
               <small className="ms-2">
                 <strong>Profile & Account</strong>
               </small>

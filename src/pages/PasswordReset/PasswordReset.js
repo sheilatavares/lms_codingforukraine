@@ -9,6 +9,8 @@ import {
   verifyPasswordResetCode,
   confirmPasswordReset,
   signInWithEmailAndPassword,
+  sendEmailVerification,
+  applyActionCode,
 } from 'firebase/auth';
 
 const PasswordReset = () => {
@@ -19,6 +21,7 @@ const PasswordReset = () => {
   const [password, setPassword] = useState('password');
   const [eye, setEye] = useState(false);
   const [type, setType] = useState(false);
+  const [messageReturn, setMessageReturn] = useState(null);
 
   const Eye = () => {
     if (password == 'password') {
@@ -40,6 +43,9 @@ const PasswordReset = () => {
     if (results == null) return '';
     else return decodeURIComponent(results[1].replace(/\+/g, ' '));
   };
+
+  // Get the action to complete.
+  const mode = getParameterByName('mode');
 
   const actionCode = getParameterByName('oobCode');
   // (Optional) Get the continue URL from the query parameter if available.
@@ -85,13 +91,53 @@ const PasswordReset = () => {
       });
   };
 
-  CheckResetPassword(auth, actionCode, continueUrl, lang);
+  const CheckVerifyEmail = (auth, actionCode, continueUrl, lang) => {
+    // Localize the UI to the selected language as determined by the lang
+    // parameter.
+
+    // Try to apply the email verification code.
+    applyActionCode(auth, actionCode)
+      .then((resp) => {
+        setMessageReturn(
+          'Your email address has been verified. We are redirecting you to the course home page...',
+        );
+        setTimeout(function () {
+          window.location.assign('/my-home');
+        }, 5000);
+      })
+      .catch((error) => {
+        // Code is invalid or expired. Ask the user to verify their email address
+        // again.
+        setMessageReturn(
+          'Code is invalid or expired. Verify your email address again.',
+        );
+      });
+  };
+
+  // CheckResetPassword(auth, actionCode, continueUrl, lang);
+
+  const verifyMode = (mode) => {
+    // Handle the user management action.
+    switch (mode) {
+      case 'resetPassword':
+        // Display reset password handler and UI.
+        CheckResetPassword(auth, actionCode, continueUrl, lang);
+        break;
+
+      case 'verifyEmail':
+        // Display email verification handler and UI.
+        CheckVerifyEmail(auth, actionCode, continueUrl, lang);
+        break;
+      default:
+      // Error: invalid mode.
+    }
+  };
 
   return (
     <div className="container my-5">
       <div className="row d-flex justify-content-center bg-white reset-password">
         <div className="col-lg-8 mb-5">
-          <h1 className="mt-5">Reset your Password</h1>
+          <h1 className="mt-5">Reset your Password {mode}</h1>
           {verifyCode && !updatedSuccessful && (
             <form
               onSubmit={handleSaveNewPassword}

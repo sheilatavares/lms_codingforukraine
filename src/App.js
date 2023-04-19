@@ -33,11 +33,15 @@ import Reset from './pages/reset/Reset';
 import Account from './pages/Account/Account';
 import PasswordReset from './pages/PasswordReset/PasswordReset';
 import Donate from './pages/Donate/Donate';
+import VerifyEmail from './pages/VerifyPasswordEmail/VerifyPasswordEmail';
+import VerifyPasswordEmail from './pages/VerifyPasswordEmail/VerifyPasswordEmail';
 function App() {
   const [user, setUser] = useState(undefined);
   const { auth } = useAuthentication();
 
   const loadingUser = user === undefined;
+
+  let userId = auth?.currentUser?.uid;
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -55,6 +59,8 @@ function App() {
     );
   }
 
+  console.log('verificado?', user?.emailVerified);
+
   return (
     <div className="App">
       <AuthProvider value={{ user }}>
@@ -69,19 +75,43 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route
                 path="/posts/create-module"
-                element={user ? <CreateModule /> : <Navigate to="/login" />}
+                element={
+                  userId === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' ? (
+                    <CreateModule />
+                  ) : (
+                    <Navigate to="/login" />
+                  )
+                }
               />
               <Route
                 path="/posts/create-section"
-                element={user ? <CreateSection /> : <Navigate to="/login" />}
+                element={
+                  userId === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' ? (
+                    <CreateSection />
+                  ) : (
+                    <Navigate to="/login" />
+                  )
+                }
               />
               <Route
                 path="/posts/create"
-                element={user ? <CreatePost /> : <Navigate to="/login" />}
+                element={
+                  userId === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' ? (
+                    <CreatePost />
+                  ) : (
+                    <Navigate to="/login" />
+                  )
+                }
               />
               <Route
                 path="/posts/edit/:id"
-                element={user ? <EditPost /> : <Navigate to="/login" />}
+                element={
+                  userId === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' ? (
+                    <EditPost />
+                  ) : (
+                    <Navigate to="/login" />
+                  )
+                }
               />
 
               <Route
@@ -94,10 +124,8 @@ function App() {
                 path="/login"
                 element={!user ? <Login /> : <Navigate to="/myhome" />}
               />
-              <Route
-                path="/register"
-                element={!user ? <Register /> : <Navigate to="/myhome" />}
-              />
+              <Route path="/register" element={!user ? <Register /> : null} />
+
               <Route
                 path="/reset"
                 element={!user ? <Reset /> : <Navigate to="/myhome" />}
@@ -106,6 +134,7 @@ function App() {
                 path="/resetpassword"
                 element={!user ? <PasswordReset /> : <Navigate to="/myhome" />}
               />
+              <Route path="/verify-email" element={<VerifyPasswordEmail />} />
               <Route
                 path="/account"
                 element={
@@ -119,7 +148,13 @@ function App() {
               <Route
                 exact
                 path="/dashboard/:moduleSlug/:sectionSlug/:slug"
-                element={!user ? <Navigate to="/" /> : <Dashboard />}
+                element={
+                  !userId === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' ? (
+                    <Navigate to="/" />
+                  ) : (
+                    <Dashboard />
+                  )
+                }
               />
               <Route
                 path="/myhome"

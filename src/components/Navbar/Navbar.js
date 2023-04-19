@@ -138,28 +138,32 @@ const Navbar = () => {
                       My Home
                     </NavLink>
                   </li>
-                  <li className="nav-item px-3">
-                    <NavLink
-                      to="/posts/create"
-                      className={
-                        ('nav-link',
-                        ({ isActive }) => (isActive ? styles.active : ''))
-                      }
-                    >
-                      Create Lesson
-                    </NavLink>
-                  </li>
-                  <li className="nav-item px-3">
-                    <NavLink
-                      to="/dashboard"
-                      className={
-                        ('nav-link',
-                        ({ isActive }) => (isActive ? styles.active : ''))
-                      }
-                    >
-                      Dashboard
-                    </NavLink>
-                  </li>
+                  {user.uid === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' && (
+                    <li className="nav-item px-3">
+                      <NavLink
+                        to="/posts/create"
+                        className={
+                          ('nav-link',
+                          ({ isActive }) => (isActive ? styles.active : ''))
+                        }
+                      >
+                        Create Lesson
+                      </NavLink>
+                    </li>
+                  )}
+                  {user.uid === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' && (
+                    <li className="nav-item px-3">
+                      <NavLink
+                        to="/dashboard"
+                        className={
+                          ('nav-link',
+                          ({ isActive }) => (isActive ? styles.active : ''))
+                        }
+                      >
+                        Dashboard
+                      </NavLink>
+                    </li>
+                  )}
                 </>
               )}
               <li className="nav-item px-3">

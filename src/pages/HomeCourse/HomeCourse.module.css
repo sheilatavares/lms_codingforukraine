@@ -18,8 +18,19 @@
 
 a.link_account {
   text-decoration: none;
+  width: 190px;
 }
 
 a.link_account:hover {
-  color: #cea502;
+  color: #ffd726;
+}
+
+a.link_account img {
+  content: url(https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/avatar-blue1.svg?alt=media&token=cf994884-683a-4270-8986-ea1db6ae0540);
+  width: 40px;
+}
+
+a.link_account:hover img {
+  content: url(https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/avatar-yellow.svg?alt=media&token=7ae7fede-3020-437b-8b97-2e10fb1d4a7b);
+  width: 40px;
 }

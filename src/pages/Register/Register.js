@@ -1,5 +1,5 @@
 import styles from './Register.module.css';
-
+import { useAuthValue } from '../../context/AuthContext';
 import { useState, useEffect } from 'react';
 import { useAuthentication } from '../../hooks/useAuthentication';
 import photo from './img/coding-friends-register.jpg';

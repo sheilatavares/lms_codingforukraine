@@ -12,7 +12,7 @@ import { useNavigate, Link } from 'react-router-dom';
 const Reset = () => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
-  const [successful, setSuccess] = useState(undefined);
+  const [successful, setSuccess] = useState(false);
 
   const {
     resetPassword,
@@ -21,14 +21,21 @@ const Reset = () => {
     success,
   } = useAuthentication();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
-    setSuccess(false);
-    const res = await resetPassword(email);
-    if (res instanceof Error) {
-      setError(res.message);
-    }
+    resetPassword(email)
+      .then((res) => {
+        if (res instanceof Error) {
+          setError(res.message);
+        } else {
+          console.log(successful);
+        }
+        setSuccess(true);
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
   };
 
   useEffect(() => {
@@ -39,6 +46,8 @@ const Reset = () => {
       setSuccess(true);
     }
   }, [authError, success]);
+
+  console.log(success);
 
   return (
     <>
