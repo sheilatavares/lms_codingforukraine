@@ -22,6 +22,9 @@ const PasswordReset = () => {
   const [eye, setEye] = useState(false);
   const [type, setType] = useState(false);
   const [messageReturn, setMessageReturn] = useState(null);
+  const { timeActive, setTimeActive } = useState(null);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [time, setTime] = useState(60);
 
   const Eye = () => {
     if (password == 'password') {
@@ -116,6 +119,19 @@ const PasswordReset = () => {
 
   // CheckResetPassword(auth, actionCode, continueUrl, lang);
 
+  const resendEmailVerification = () => {
+    setButtonDisabled(true);
+    sendEmailVerification(auth.currentUser)
+      .then(() => {
+        setButtonDisabled(false);
+        setTimeActive(true);
+      })
+      .catch((err) => {
+        setMessageReturn(err.message);
+        setButtonDisabled(false);
+      });
+  };
+
   const verifyMode = (mode) => {
     // Handle the user management action.
     switch (mode) {
@@ -137,78 +153,61 @@ const PasswordReset = () => {
     <div className="container my-5">
       <div className="row d-flex justify-content-center bg-white reset-password">
         <div className="col-lg-8 mb-5">
-          <h1 className="mt-5">Reset your Password {mode}</h1>
-          {verifyCode && !updatedSuccessful && (
-            <form
-              onSubmit={handleSaveNewPassword}
-              className="text-center mt-5 d-flex flex-column w-50"
-            >
-              <label
-                htmlFor="exampleInputPassword1"
-                className="form-label text-black text-start"
+          {!messageReturn ? (
+            <>
+              <h2 className="text-center">Verify your Email Address</h2>
+              <p>A verification has been sent to:</p>
+              <p>{auth?.currentUser?.email}</p>
+              <p>Follow the instruction in the email to verify your account</p>
+              <button
+                className="btn btn-primary"
+                onClick={resendEmailVerification}
+                disabled={timeActive}
               >
-                <strong className="">Please insert your new password:</strong>
-              </label>
-              <div className="position-relative">
-                <input
-                  className=""
-                  type={password}
-                  placeholder="Enter your password"
-                  name="password"
-                  required
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                />
-
-                <i className="fa fa-lock position-absolute"></i>
-                <i
-                  onClick={Eye}
-                  className={`fa ${eye ? 'fa-eye-slash' : 'fa-eye'}`}
-                ></i>
-              </div>
-              <div className="col-6 align-self-end mt-3">
-                <button className="btn btn-primary w-100" type="submit">
-                  Reset Password
-                </button>
-              </div>
-            </form>
+                Resend Email {timeActive && time}
+              </button>
+            </>
+          ) : (
+            <h2 className="text-center">{messageReturn}</h2>
           )}
-
-          {/* {!verifyCode && (
-            <form
-              onSubmit={handleSaveNewPassword}
-              className="text-center mt-5 d-flex flex-column w-50"
-            >
-              <label
-                htmlFor="exampleInputPassword1"
-                className="form-label text-black text-start"
+          {verifyCode && !updatedSuccessful && (
+            <>
+              <h1 className="mt-5">Reset your Password {mode}</h1>
+              <form
+                onSubmit={handleSaveNewPassword}
+                className="text-center mt-5 d-flex flex-column w-50"
               >
-                <strong className="">Please insert your new password:</strong>
-              </label>
-              <div className="position-relative">
-                <input
-                  className=""
-                  type={password}
-                  placeholder="Enter your password"
-                  name="password"
-                  required
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                />
+                <label
+                  htmlFor="exampleInputPassword1"
+                  className="form-label text-black text-start"
+                >
+                  <strong className="">Please insert your new password:</strong>
+                </label>
+                <div className="position-relative">
+                  <input
+                    className=""
+                    type={password}
+                    placeholder="Enter your password"
+                    name="password"
+                    required
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                  />
 
-                <i className="fa fa-lock position-absolute"></i>
-                <i
-                  onClick={Eye}
-                  className={`fa ${eye ? 'fa-eye-slash' : 'fa-eye'}`}
-                ></i>
-              </div>
-              <div className="col-6 align-self-end mt-3">
-                <button className="btn btn-primary w-100" type="submit">
-                  Reset Password
-                </button>
-              </div>
-            </form>
-          )} */}
+                  <i className="fa fa-lock position-absolute"></i>
+                  <i
+                    onClick={Eye}
+                    className={`fa ${eye ? 'fa-eye-slash' : 'fa-eye'}`}
+                  ></i>
+                </div>
+                <div className="col-6 align-self-end mt-3">
+                  <button className="btn btn-primary w-100" type="submit">
+                    Reset Password
+                  </button>
+                </div>
+              </form>
+            </>
+          )}
         </div>
         {updatedSuccessful && (
           <div className="col-lg-5 my-5 d-flex">

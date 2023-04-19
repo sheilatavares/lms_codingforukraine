@@ -33,8 +33,7 @@ import Reset from './pages/reset/Reset';
 import Account from './pages/Account/Account';
 import PasswordReset from './pages/PasswordReset/PasswordReset';
 import Donate from './pages/Donate/Donate';
-import VerifyEmail from './pages/VerifyPasswordEmail/VerifyPasswordEmail';
-import VerifyPasswordEmail from './pages/VerifyPasswordEmail/VerifyPasswordEmail';
+
 function App() {
   const [user, setUser] = useState(undefined);
   const { auth } = useAuthentication();
@@ -59,7 +58,7 @@ function App() {
     );
   }
 
-  console.log('verificado?', user?.emailVerified);
+  // console.log('verificado?', user?.emailVerified);
 
   return (
     <div className="App">
@@ -134,7 +133,7 @@ function App() {
                 path="/resetpassword"
                 element={!user ? <PasswordReset /> : <Navigate to="/myhome" />}
               />
-              <Route path="/verify-email" element={<VerifyPasswordEmail />} />
+
               <Route
                 path="/account"
                 element={
