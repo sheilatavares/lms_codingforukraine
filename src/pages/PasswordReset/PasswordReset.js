@@ -22,6 +22,7 @@ const PasswordReset = () => {
   const [eye, setEye] = useState(false);
   const [type, setType] = useState(false);
   const [messageReturn, setMessageReturn] = useState(null);
+  const [messageError, setMessageError] = useState(null);
   const { timeActive, setTimeActive } = useState(null);
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [time, setTime] = useState(60);
@@ -114,6 +115,7 @@ const PasswordReset = () => {
         setMessageReturn(
           'Code is invalid or expired. Verify your email address again.',
         );
+        setMessageError(error);
       });
   };
 
@@ -141,13 +143,20 @@ const PasswordReset = () => {
   return (
     <div className="container my-5">
       <div className="row d-flex justify-content-center bg-white reset-password">
-        <div className="col-lg-8 mb-5">
+        <div className="col-lg-6 mb-5">
           {mode === 'verifyEmail' && messageReturn ? (
             <>
-              <h3 className="text-center text-primary">{messageReturn}</h3>
-              <Link className="btn btn-primary">
-                Start your Javascript learning
-              </Link>
+              <h4 className="text-center text-primary">{messageReturn}</h4>
+              {messageError && { messageError }}
+              {!messageError && (
+                <Link
+                  className="btn btn-primary"
+                  style={{ width: '170px' }}
+                  to={'/myhome'}
+                >
+                  Start your Javascript learning
+                </Link>
+              )}
             </>
           ) : (
             <h2 className="text-center">{messageReturn}</h2>
