@@ -22,7 +22,7 @@ const PasswordReset = () => {
   const [eye, setEye] = useState(false);
   const [type, setType] = useState(false);
   const [messageReturn, setMessageReturn] = useState(null);
-  const [messageError, setMessageError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
   const { timeActive, setTimeActive } = useState(null);
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [time, setTime] = useState(60);
@@ -115,7 +115,7 @@ const PasswordReset = () => {
         setMessageReturn(
           'Code is invalid or expired. Verify your email address again.',
         );
-        setMessageError(true);
+        setErrorMessage(true);
       });
   };
 
@@ -145,8 +145,7 @@ const PasswordReset = () => {
           {mode === 'verifyEmail' && messageReturn ? (
             <>
               <h4 className="text-center text-primary">{messageReturn}</h4>
-              {messageError && { messageError }}
-              {!messageError && (
+              {!errorMessage && (
                 <Link
                   className="btn btn-primary"
                   style={{ width: '170px' }}
