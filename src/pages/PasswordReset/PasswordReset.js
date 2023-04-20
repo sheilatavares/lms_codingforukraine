@@ -115,7 +115,7 @@ const PasswordReset = () => {
         setMessageReturn(
           'Code is invalid or expired. Verify your email address again.',
         );
-        setMessageError(error);
+        setMessageError(error.message);
       });
   };
 

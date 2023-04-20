@@ -71,7 +71,7 @@ const Register = () => {
       setSuccess(true);
       setTimeActive(true);
     } catch (error) {
-      console.error(error);
+      console.error(error.message);
     }
   };
 
