@@ -123,7 +123,10 @@ function App() {
                 path="/login"
                 element={!user ? <Login /> : <Navigate to="/myhome" />}
               />
-              <Route path="/register" element={!user ? <Register /> : null} />
+              <Route
+                path="/register"
+                element={!user?.emailVerified ? <Register /> : null}
+              />
 
               <Route
                 path="/reset"

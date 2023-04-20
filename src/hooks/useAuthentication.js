@@ -28,7 +28,8 @@ export const useAuthentication = () => {
   const [systemMessageError, setSystemMessageError] = useState(null);
   const [success, setSuccess] = useState(undefined);
   const [loading, setLoading] = useState(null);
-  const [timeActive, setTimeActive] = useState(false);
+
+  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   //cleanup
   //deal with memory leak
@@ -53,8 +54,9 @@ export const useAuthentication = () => {
       .then(({ user }) => {
         sendEmailVerification(auth.currentUser)
           .then(() => {
-            window.location.assign('/verify-email');
-            setTimeActive(true);
+            setSystemMessageReturn(
+              `A verification has been sent to your ${data.email} Follow the instruction in the email to verify your account `,
+            );
           })
           .catch((err) => {
             setLoading(false);
@@ -105,61 +107,16 @@ export const useAuthentication = () => {
       });
   };
 
-  //register
-  // const createUser = async (data) => {
-  //   checkIfIsCancelled();
-
-  //   setLoading(true);
-  //   setError(null);
-
-  //   try {
-  //     const { user } = await createUserWithEmailAndPassword(
-  //       auth,
-  //       data.email,
-  //       data.password,
-  //     );
-  //     await updateProfile(user, {
-  //       displayName: data.displayName,
-  //     });
-
-  //     // Send welcome email
-  //     const transporter = nodemailer.createTransport({
-  //       host: 'https://www.google.com/settings/security/lesssecureapps',
-  //       port: 465,
-  //       secure: true,
-  //       auth: {
-  //         user: 'tavaressheila',
-  //         pass: 'password',
-  //       },
-  //     });
-
-  //     await transporter.sendMail({
-  //       from: 'admin@example.com',
-  //       to: data.email,
-  //       subject: 'Welcome to our app!',
-  //       text: `Hello ${data.displayName}, welcome to our app!`,
-  //     });
-
-  //     setLoading(false);
-  //     return user;
-  //   } catch (error) {
-  //     console.log(error.message);
-  //     console.log(typeof error.message);
-
-  //     let systemErrorMessage;
-
-  //     if (error.message.includes('Password')) {
-  //       systemErrorMessage =
-  //         'Your password must contain at least 6 characters.';
-  //     } else if (error.message.includes('email-already')) {
-  //       systemErrorMessage = 'This e-mail is already registered.';
-  //     } else {
-  //       systemErrorMessage = 'An error ocurred. Please try again later.';
-  //     }
-  //     setLoading(false);
-  //     setError(systemErrorMessage);
-  //   }
-  // };
+  const resendEmailVerification = () => {
+    setButtonDisabled(true);
+    sendEmailVerification(auth.currentUser)
+      .then(() => {
+        setButtonDisabled(false);
+      })
+      .catch((err) => {
+        setButtonDisabled(false);
+      });
+  };
 
   const logout = () => {
     checkIfIsCancelled();
@@ -348,5 +305,6 @@ export const useAuthentication = () => {
     systemMessageReturn,
     systemMessageError,
     changePassword,
+    resendEmailVerification,
   };
 };

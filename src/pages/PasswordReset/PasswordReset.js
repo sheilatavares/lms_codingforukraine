@@ -119,53 +119,35 @@ const PasswordReset = () => {
 
   // CheckResetPassword(auth, actionCode, continueUrl, lang);
 
-  const resendEmailVerification = () => {
-    setButtonDisabled(true);
-    sendEmailVerification(auth.currentUser)
-      .then(() => {
-        setButtonDisabled(false);
-        setTimeActive(true);
-      })
-      .catch((err) => {
-        setMessageReturn(err.message);
-        setButtonDisabled(false);
-      });
-  };
-
-  const verifyMode = (mode) => {
+  (() => {
     // Handle the user management action.
     switch (mode) {
       case 'resetPassword':
         // Display reset password handler and UI.
         CheckResetPassword(auth, actionCode, continueUrl, lang);
+        console.log('entrou no pass');
         break;
 
       case 'verifyEmail':
         // Display email verification handler and UI.
         CheckVerifyEmail(auth, actionCode, continueUrl, lang);
+        console.log('entrou no email');
         break;
       default:
       // Error: invalid mode.
     }
-  };
+  })();
 
   return (
     <div className="container my-5">
       <div className="row d-flex justify-content-center bg-white reset-password">
         <div className="col-lg-8 mb-5">
-          {mode === 'verifyEmail' && !messageReturn ? (
+          {mode === 'verifyEmail' && messageReturn ? (
             <>
-              <h2 className="text-center">Verify your Email Address {mode}</h2>
-              <p>A verification has been sent to:</p>
-              <p>{auth?.currentUser?.email}</p>
-              <p>Follow the instruction in the email to verify your account</p>
-              <button
-                className="btn btn-primary"
-                onClick={resendEmailVerification}
-                disabled={timeActive}
-              >
-                Resend Email {timeActive && time}
-              </button>
+              <h3 className="text-center text-primary">{messageReturn}</h3>
+              <Link className="btn btn-primary">
+                Start your Javascript learning
+              </Link>
             </>
           ) : (
             <h2 className="text-center">{messageReturn}</h2>
