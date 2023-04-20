@@ -179,7 +179,7 @@ const PasswordReset = () => {
       clearInterval(interval);
     }
     return () => clearInterval(interval);
-  }, [timeActive, time]);
+  }, [timeActive, time, setTimeActive]);
 
   return (
     <div className="container my-5">
