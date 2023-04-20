@@ -102,9 +102,7 @@ const PasswordReset = () => {
     // Try to apply the email verification code.
     applyActionCode(auth, actionCode)
       .then((resp) => {
-        setMessageReturn(
-          'Your email address has been verified. We are redirecting you to the course home page...',
-        );
+        setMessageReturn(true);
         setTimeout(function () {
           window.location.assign('/my-home');
         }, 5000);
@@ -112,9 +110,6 @@ const PasswordReset = () => {
       .catch((error) => {
         // Code is invalid or expired. Ask the user to verify their email address
         // again.
-        setMessageReturn(
-          'Code is invalid or expired. Verify your email address again.',
-        );
         setErrorMessage(true);
       });
   };
@@ -142,21 +137,33 @@ const PasswordReset = () => {
     <div className="container my-5">
       <div className="row d-flex justify-content-center bg-white reset-password">
         <div className="col-lg-6 mb-5">
-          {mode === 'verifyEmail' && messageReturn ? (
+          {mode === 'verifyEmail' && (
             <>
-              <h4 className="text-center text-primary">{messageReturn}</h4>
-              {!errorMessage && (
+              {messageReturn && (
+                <p className="text-center text-primary fs-2">
+                  Your email address has been verified.
+                </p>
+              )}
+              {!errorMessage && messageReturn && (
                 <Link
                   className="btn btn-primary"
                   style={{ width: '170px' }}
                   to={'/myhome'}
                 >
-                  Start your Javascript learning
+                  Start your JavaScript learning
                 </Link>
               )}
+              {errorMessage && (
+                <>
+                  <p className="text-center text-primary fs-2">
+                    Code is invalid or expired.
+                  </p>
+                  <p className="text-center text-primary fs-2">
+                    Verify your email again.
+                  </p>
+                </>
+              )}
             </>
-          ) : (
-            <h2 className="text-center">{messageReturn}</h2>
           )}
           {mode === 'resetPassword' && verifyCode && !updatedSuccessful && (
             <>
