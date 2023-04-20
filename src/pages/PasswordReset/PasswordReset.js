@@ -22,7 +22,7 @@ const PasswordReset = () => {
   const [eye, setEye] = useState(false);
   const [type, setType] = useState(false);
   const [messageReturn, setMessageReturn] = useState(null);
-  const [messageError, setMessageError] = useState(null);
+  const [messageError, setMessageError] = useState(false);
   const { timeActive, setTimeActive } = useState(null);
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [time, setTime] = useState(60);
@@ -115,7 +115,7 @@ const PasswordReset = () => {
         setMessageReturn(
           'Code is invalid or expired. Verify your email address again.',
         );
-        setMessageError(error.message);
+        setMessageError(true);
       });
   };
 
@@ -127,13 +127,11 @@ const PasswordReset = () => {
       case 'resetPassword':
         // Display reset password handler and UI.
         CheckResetPassword(auth, actionCode, continueUrl, lang);
-        console.log('entrou no pass');
         break;
 
       case 'verifyEmail':
         // Display email verification handler and UI.
         CheckVerifyEmail(auth, actionCode, continueUrl, lang);
-        console.log('entrou no email');
         break;
       default:
       // Error: invalid mode.
