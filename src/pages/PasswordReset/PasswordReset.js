@@ -12,6 +12,7 @@ import {
   sendEmailVerification,
   applyActionCode,
 } from 'firebase/auth';
+import { useAuthentication } from '../../hooks/useAuthentication';
 
 const PasswordReset = () => {
   const auth = getAuth();
@@ -26,6 +27,12 @@ const PasswordReset = () => {
   const { timeActive, setTimeActive } = useState(null);
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [time, setTime] = useState(60);
+
+  const {
+    error: authError,
+    loading,
+    resendEmailVerification,
+  } = useAuthentication();
 
   const Eye = () => {
     if (password == 'password') {
@@ -103,9 +110,9 @@ const PasswordReset = () => {
     applyActionCode(auth, actionCode)
       .then((resp) => {
         setMessageReturn(true);
-        setTimeout(function () {
-          window.location.assign('/my-home');
-        }, 5000);
+        // setTimeout(function () {
+        //   window.location.assign('/my-home');
+        // }, 5000);
       })
       .catch((error) => {
         // Code is invalid or expired. Ask the user to verify their email address
@@ -114,7 +121,17 @@ const PasswordReset = () => {
       });
   };
 
-  // CheckResetPassword(auth, actionCode, continueUrl, lang);
+  const handleResendEmailVerification = async (e) => {
+    try {
+      e.preventDefault();
+
+      const res = await resendEmailVerification();
+
+      setTimeActive(true);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
   (() => {
     // Handle the user management action.
@@ -133,6 +150,37 @@ const PasswordReset = () => {
     }
   })();
 
+  // console.log(auth.currentUser?.emailVerified);
+  console.log(messageReturn);
+  console.log(errorMessage);
+
+  useEffect(() => {
+    if (auth.currentUser?.emailVerified) {
+      setMessageReturn(true);
+      setErrorMessage(false);
+      setTimeout(function () {
+        window.location.assign('/myhome');
+      }, 5000);
+    } else {
+      setMessageReturn(false);
+      setErrorMessage(true);
+    }
+  }, [auth.currentUser?.emailVerified]);
+
+  useEffect(() => {
+    let interval = null;
+    if (timeActive && time !== 0) {
+      interval = setInterval(() => {
+        setTime((time) => time - 1);
+      }, 1000);
+    } else if (time === 0) {
+      setTimeActive(false);
+      setTime(60);
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [timeActive, time]);
+
   return (
     <div className="container my-5">
       <div className="row d-flex justify-content-center bg-white reset-password">
@@ -140,20 +188,16 @@ const PasswordReset = () => {
           {mode === 'verifyEmail' && (
             <>
               {messageReturn && (
-                <p className="text-center text-primary fs-2">
-                  Your email address has been verified.
-                </p>
+                <>
+                  <p className="text-center text-primary fs-2">
+                    Your email address has been verified.
+                  </p>
+                  <p className="text-center text-primary fs-2">
+                    Redirecting to course homepage...
+                  </p>
+                </>
               )}
-              {!errorMessage && messageReturn && (
-                <Link
-                  className="btn btn-primary"
-                  style={{ width: '170px' }}
-                  to={'/myhome'}
-                >
-                  Start your JavaScript learning
-                </Link>
-              )}
-              {errorMessage && (
+              {errorMessage && !messageReturn && (
                 <>
                   <p className="text-center text-primary fs-2">
                     Code is invalid or expired.
@@ -161,6 +205,13 @@ const PasswordReset = () => {
                   <p className="text-center text-primary fs-2">
                     Verify your email again.
                   </p>
+                  <button
+                    className="btn btn-primary"
+                    onClick={handleResendEmailVerification}
+                    disabled={timeActive}
+                  >
+                    Resend Email {timeActive && time}
+                  </button>
                 </>
               )}
             </>
@@ -205,14 +256,14 @@ const PasswordReset = () => {
           )}
         </div>
         {updatedSuccessful && (
-          <div className="col-lg-5 my-5 d-flex">
+          <>
             <h3>Your password has been updated.</h3>
             <div className="col-lg-4 align-self-end mt-5">
               <Link to={'/login'} className="btn btn-primary w-100 mt-5">
                 Go to login page
               </Link>
             </div>
-          </div>
+          </>
         )}
       </div>
     </div>

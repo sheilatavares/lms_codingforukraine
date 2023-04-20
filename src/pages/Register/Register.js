@@ -75,6 +75,19 @@ const Register = () => {
     }
   };
 
+  const handleResendEmailVerification = async (e) => {
+    try {
+      e.preventDefault();
+      setError('');
+
+      const res = await resendEmailVerification();
+      setSuccess(true);
+      setTimeActive(true);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   useEffect(() => {
     if (authError) {
       setError(authError);
@@ -211,7 +224,7 @@ const Register = () => {
                 </p>
                 <button
                   className="btn btn-primary"
-                  onClick={resendEmailVerification}
+                  onClick={handleResendEmailVerification}
                   disabled={timeActive}
                 >
                   Resend Email {timeActive && time}
