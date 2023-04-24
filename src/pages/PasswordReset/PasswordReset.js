@@ -28,12 +28,6 @@ const PasswordReset = () => {
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [time, setTime] = useState(60);
 
-  const {
-    error: authError,
-    loading,
-    resendEmailVerification,
-  } = useAuthentication();
-
   const Eye = () => {
     if (password == 'password') {
       setPassword('text');
@@ -105,19 +99,38 @@ const PasswordReset = () => {
   const CheckVerifyEmail = (auth, actionCode, continueUrl, lang) => {
     // Localize the UI to the selected language as determined by the lang
     // parameter.
+    console.log('entrou');
 
     // Try to apply the email verification code.
     applyActionCode(auth, actionCode)
       .then((resp) => {
-        setMessageReturn(true);
-        // setTimeout(function () {
-        //   window.location.assign('/my-home');
-        // }, 5000);
+        setMessageReturn(
+          'Your email address has been verified. Redirecting...',
+        );
+        setTimeout(function () {
+          window.location.assign('/my-home');
+        }, 5000);
+        console.log('deu certo enviar');
       })
       .catch((error) => {
         // Code is invalid or expired. Ask the user to verify their email address
         // again.
-        setErrorMessage(true);
+        console.log('aqui o errir', error.message);
+        setErrorMessage('Code is invalid or expired. Verify your email again.');
+        console.log('nao deu certo enviar');
+      });
+  };
+
+  const resendEmailVerification = (auth, actionCode) => {
+    setButtonDisabled(true);
+    sendEmailVerification(auth, actionCode)
+      .then(() => {
+        setButtonDisabled(false);
+        console.log('deu certo enviar');
+      })
+      .catch((err) => {
+        setButtonDisabled(false);
+        console.log('não deu certo enviar!', err.message);
       });
   };
 
@@ -191,20 +204,14 @@ const PasswordReset = () => {
               {messageReturn && (
                 <>
                   <p className="text-center text-primary fs-2">
-                    Your email address has been verified.
-                  </p>
-                  <p className="text-center text-primary fs-2">
-                    Redirecting to course homepage...
+                    {messageReturn}
                   </p>
                 </>
               )}
               {errorMessage && !messageReturn && (
                 <>
                   <p className="text-center text-primary fs-2">
-                    Code is invalid or expired.
-                  </p>
-                  <p className="text-center text-primary fs-2">
-                    Verify your email again.
+                    {errorMessage}
                   </p>
                   <button
                     className="btn btn-primary mx-auto"

@@ -58,7 +58,7 @@ function App() {
     );
   }
 
-  // console.log('verificado?', user?.emailVerified);
+  console.log('verificado?', user?.emailVerified);
 
   return (
     <div className="App">
