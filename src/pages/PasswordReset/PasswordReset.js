@@ -24,7 +24,7 @@ const PasswordReset = () => {
   const [type, setType] = useState(false);
   const [messageReturn, setMessageReturn] = useState(null);
   const [errorMessage, setErrorMessage] = useState(false);
-  const { timeActive, setTimeActive } = useState(null);
+  const [timeActive, setTimeActive] = useState(null);
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [time, setTime] = useState(60);
 
@@ -127,7 +127,8 @@ const PasswordReset = () => {
 
       const res = await resendEmailVerification();
 
-      setTimeActive(true);
+      // setTimeActive(true);
+      console.error('deu certo', res);
     } catch (error) {
       console.error(error.message);
     }
@@ -184,7 +185,7 @@ const PasswordReset = () => {
   return (
     <div className="container my-5">
       <div className="row d-flex justify-content-center bg-white reset-password">
-        <div className="col-lg-6 mb-5">
+        <div className="col-lg-6 mb-5 d-flex flex-column justify-content-center">
           {mode === 'verifyEmail' && (
             <>
               {messageReturn && (
@@ -206,7 +207,7 @@ const PasswordReset = () => {
                     Verify your email again.
                   </p>
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-primary mx-auto"
                     onClick={handleResendEmailVerification}
                     disabled={timeActive}
                   >

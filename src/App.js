@@ -142,7 +142,7 @@ function App() {
               />
               <Route
                 path="/resetpassword"
-                element={user?.emailVerified && <PasswordReset />}
+                element={!user?.emailVerified && <PasswordReset />}
               />
 
               <Route

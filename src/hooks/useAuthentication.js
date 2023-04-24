@@ -107,14 +107,17 @@ export const useAuthentication = () => {
       });
   };
 
+  //erro que esta dando é que nao consegue achar o usuario auth.currentUser para enviar o email de verificação
   const resendEmailVerification = () => {
     setButtonDisabled(true);
     sendEmailVerification(auth.currentUser)
       .then(() => {
         setButtonDisabled(false);
+        console.log('deu certo enviar');
       })
       .catch((err) => {
         setButtonDisabled(false);
+        console.log('não deu certo enviar', err.message);
       });
   };
 
