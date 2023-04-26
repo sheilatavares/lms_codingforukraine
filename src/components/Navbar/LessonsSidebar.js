@@ -25,12 +25,16 @@ const LessonsSidebar = ({ moduleSlug, sectionSlug }) => {
   return (
     <div>
       <nav className="navbar navbar-light bg-blue-dark nav_lesson">
-        <div className="container px-5">
-          <NavLink to="/" className="navbar-brand">
-            <LogoCfu></LogoCfu>
-          </NavLink>
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center flex-row">
-            <li className="nav-item">
+        <div className="container">
+          <div className="row g-0 w-100 align-items-center">
+            <div className="col-4 col-lg-2 d-flex justify-content-center">
+              <NavLink to="/" className="navbar-brand">
+                <LogoCfu></LogoCfu>
+              </NavLink>
+            </div>
+            {/* <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center flex-row">
+              <li className="nav-item col-4"> */}
+            <div className="col-4 col-lg-2 d-flex justify-content-center">
               <a
                 className="btn btn-primary"
                 data-bs-toggle="modal"
@@ -38,13 +42,18 @@ const LessonsSidebar = ({ moduleSlug, sectionSlug }) => {
               >
                 Course Menu
               </a>
-            </li>
-            <li className="nav-item ms-4">
-              <Link to={`/myhome`} className="lesson_list col-12">
+            </div>
+            <div className="col-4 col-lg-2 d-flex justify-content-center">
+              <Link to={`/myhome`} className="lesson_list">
                 My home
               </Link>
-            </li>
-          </ul>
+            </div>
+            {/* </li>
+              <li className="nav-item ms-4 col-4"> */}
+
+            {/* </li>
+            </ul> */}
+          </div>
         </div>
       </nav>
       <div

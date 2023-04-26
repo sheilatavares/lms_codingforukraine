@@ -59,11 +59,11 @@ const Login = () => {
       <div className="container-full py-5  h-100">
         <div className="row g-0 justify-content-center">
           <div className="col-lg-5 bg-yellow-light mt-5 pb-3">
-            <div className={styles.logo}>
+            <div className={`${styles.logo} d-none d-lg-block`}>
               <LogoComplete />
             </div>
             <div className={styles.login}>
-              <div className="row">
+              <div className="row g-0">
                 <div className="col-lg-6 ps-5 offset-lg-4 text-start">
                   <h5 className="px-3 mt-n3 pt-5 ps-4">
                     Log in to access our content
@@ -73,7 +73,7 @@ const Login = () => {
 
               <form onSubmit={handleSubmit} className="row mt-4 w-100">
                 <div className="ps-5">
-                  <div className="row">
+                  <div className="row g-0">
                     <div className="col-12 w-100">
                       <div className="mb-3 pt-1 text-start">
                         <label
@@ -94,7 +94,7 @@ const Login = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="row">
+                  <div className="row g-0">
                     <div className="col-12">
                       <div className="mb-3 text-start position-relative">
                         <label
@@ -123,7 +123,7 @@ const Login = () => {
                   </div>
                 </div>
 
-                <div className="row ps-5">
+                <div className="row g-0 ps-5">
                   <div className="col-lg-5 text-start mb-3">
                     {!loading && (
                       <button className="btn btn-primary">Login</button>
@@ -146,7 +146,7 @@ const Login = () => {
                     </strong>
                   </Link>
                 </div>
-                <div className="row ps-5">
+                <div className="row g-0 ps-5">
                   <div className="col-lg-12 text-start pt-2">
                     Not a member yet? <Link to={`/register`}>Sign up</Link>
                   </div>

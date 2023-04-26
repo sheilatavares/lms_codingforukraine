@@ -57,9 +57,9 @@ const HomeCourse = () => {
   return (
     <div className="container-full" id="home-course">
       <div className="container text-center pb-5">
-        <div className="row">
+        <div className="row d-flex flex-column flex-lg-row flex-column-reverse">
           <div className="col-lg-8">
-            <h2 className="mb-5 text-primary text-start py-4">
+            <h2 className="mb-lg-5 mb-2 text-primary text-start py-4">
               Course: Introducting Programming with Javascript
             </h2>
           </div>
@@ -70,7 +70,6 @@ const HomeCourse = () => {
               className={`btn btn-outline-primary rounded-pill mt-2 ${styles.link_account}`}
               to={`/account`}
             >
-              <img></img>
               <small className="ms-2">
                 <strong>Profile & Account</strong>
               </small>
@@ -90,14 +89,21 @@ const HomeCourse = () => {
           )}
           <div className="row g-0">
             <div className="col-lg-3">
-              <img src={photoFriends} className="w-100"></img>
-              <p className="fs-5 pt-4">
-                We have carefully prepared a trail that will guide you step by
-                step through this programming journey. Try to follow the
-                sequence and do all the exercises because practice is essential!
-              </p>
+              <div className="row g-0">
+                <div className="col-5 col-lg-12">
+                  <img src={photoFriends} className="w-100"></img>
+                </div>
+                <div className="col-7 col-lg-12">
+                  <p className="fs-lg-5 fs-lg-6 pt-lg-4 pt-0 ps-3">
+                    We have carefully prepared a trail that will guide you step
+                    by step through this programming journey. Try to follow the
+                    sequence and do all the exercises because practice is
+                    essential!
+                  </p>
+                </div>
+              </div>
             </div>
-            <div className="col-lg-9 ps-4">
+            <div className="col-lg-9 ps-lg-4 ps-0">
               <div className="accordion" id="accordionModules">
                 {modules &&
                   modules.map((module) => (

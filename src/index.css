@@ -582,4 +582,10 @@ h5.question-text {
     top: -101px;
     height: 200px;
   }
+  .modal.lesson-sidebar .modal-content {
+    width: 80%;
+  }
+  .p-lg-4 {
+    padding: 20px;
+  }
 }

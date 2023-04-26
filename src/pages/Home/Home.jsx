@@ -56,14 +56,14 @@ const Home = () => {
   return (
     <div>
       <div className="container-full bg-home">
-        <div className="row mt-5 pt-5 g-0">
+        <div className="row g-0 mt-5 pt-5 g-0">
           <div className="col-lg-5 bg-yellow-light login-wrap mt-lg-5 pb-3">
             <div className={`${styles.logo} d-none d-lg-block`}>
               <LogoComplete />
             </div>
             <img src={homeMobile} className="w-100 d-lg-none d-block"></img>
             <div className={styles.login}>
-              <div className="row">
+              <div className="row g-0">
                 <div className="col-lg-8 offset-lg-4">
                   <h3 className="px-3 mt-n3 pt-3 ps-5">
                     Relying on technology and skilling for the human development
@@ -73,11 +73,11 @@ const Home = () => {
               </div>
 
               <form onSubmit={handleSubmit}>
-                <div className="row">
+                <div className="row g-0">
                   {/* <p className=" pt-2 mb-1">
                     <strong>Log in for access our content:</strong>
                   </p> */}
-                  <div className="row">
+                  <div className="row g-0">
                     <div className="col-8">
                       <div className="mb-3 pt-1">
                         <label
@@ -99,7 +99,7 @@ const Home = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="row">
+                  <div className="row g-0">
                     <div className="col-8 position-relative">
                       <div className="mb-3">
                         <label
@@ -144,7 +144,7 @@ const Home = () => {
                   </div>
                 </div>
               </form>
-              <div className="row">
+              <div className="row g-0">
                 <div className="col ms-1 ps-5">
                   Not a member yet? <Link to={`/register`}>Sign up</Link>
                 </div>
@@ -155,7 +155,7 @@ const Home = () => {
         </div>
       </div>
       <div className="container-full bg-white">
-        <div className="row g-0 position-relative mb-5">
+        <div className="row g-0 g-0 position-relative mb-5">
           <div className="col-lg-4 offset-lg-1 py-2">
             <div className="py-4 px-3 px-lg-0">
               <h2>Give a try to start you programming career! </h2>{' '}
@@ -169,7 +169,7 @@ const Home = () => {
             </div>
           </div>
           <div className="col-lg-5 box-highlight p-0 mb-0 bg-body ">
-            <div className="row g-0 shadow-lg ">
+            <div className="row g-0 g-0 shadow-lg ">
               <div className="col-lg-6 bg-yellow-light px-4 py-4">
                 <p className=" lh-base">
                   {' '}
