@@ -58,8 +58,6 @@ function App() {
     );
   }
 
-  console.log('verificado?', user?.emailVerified);
-
   return (
     <div className="App">
       <AuthProvider value={{ user }}>
@@ -69,9 +67,7 @@ function App() {
             <Routes>
               <Route
                 path="/"
-                element={
-                  user?.emailVerified ? <Navigate to="/myhome" /> : <Home />
-                }
+                element={user ? <Navigate to="/myhome" /> : <Home />}
               />
               <Route path="/about" element={<About />} />
               <Route
@@ -118,16 +114,12 @@ function App() {
               <Route
                 exact
                 path="/lesson/:moduleSlug/:sectionSlug/:slug/:order/"
-                element={
-                  !user?.emailVerified ? <Navigate to="/" /> : <Lesson />
-                }
+                element={!user ? <Navigate to="/" /> : <Lesson />}
               />
               <Route path="/search" element={<Search />} />
               <Route
                 path="/login"
-                element={
-                  !user?.emailVerified ? <Login /> : <Navigate to="/myhome" />
-                }
+                element={!user ? <Login /> : <Navigate to="/myhome" />}
               />
               <Route
                 path="/register"
@@ -136,23 +128,17 @@ function App() {
 
               <Route
                 path="/reset"
-                element={
-                  !user?.emailVerified ? <Reset /> : <Navigate to="/myhome" />
-                }
+                element={!user ? <Reset /> : <Navigate to="/myhome" />}
               />
               <Route
-                path="/resetpassword"
+                path="/verify"
                 element={!user?.emailVerified && <PasswordReset />}
               />
 
               <Route
                 path="/account"
                 element={
-                  user?.emailVerified ? (
-                    <Account user={{ user }} />
-                  ) : (
-                    <Navigate to="/" />
-                  )
+                  user ? <Account user={{ user }} /> : <Navigate to="/" />
                 }
               />
               <Route
@@ -178,13 +164,7 @@ function App() {
               />
               <Route
                 path="/myhome"
-                element={
-                  user?.emailVerified ? (
-                    <HomeCourse />
-                  ) : (
-                    <Navigate to="/login" />
-                  )
-                }
+                element={user ? <HomeCourse /> : <Navigate to="/login" />}
               />
               <Route path="/donate" element={<Donate />} />
             </Routes>

@@ -48,6 +48,8 @@ const Register = () => {
     error: authError,
     loading,
     resendEmailVerification,
+    systemMessageReturn,
+    systemMessageError,
   } = useAuthentication();
 
   const handleSubmit = async (e) => {
@@ -68,7 +70,9 @@ const Register = () => {
       }
 
       const res = await createUser(user);
+
       setSuccess(true);
+
       setTimeActive(true);
     } catch (error) {
       console.error(error.message);
@@ -216,19 +220,23 @@ const Register = () => {
             <div className="row g-0 d-flex justify-content-center align-items-center">
               <div className="border col-lg-7 rounded bg-white p-4">
                 <h3 className="text-center mb-4">Verify your Email Address</h3>
-                <p>A verification has been sent to:</p>
+                {/* <p>A verification has been sent to:</p>
                 <p className="text-primary">{email}</p>
                 <p>
                   Follow the instructions sent to your email to verify your
                   account.
-                </p>
-                <button
-                  className="btn btn-primary"
-                  onClick={handleResendEmailVerification}
-                  disabled={timeActive}
-                >
-                  Resend Email {timeActive && time}
-                </button>
+                </p> */}
+                {systemMessageReturn}
+                {systemMessageError}
+                {systemMessageReturn && (
+                  <button
+                    className="btn btn-primary mt-2"
+                    onClick={handleResendEmailVerification}
+                    disabled={timeActive}
+                  >
+                    Resend Email {timeActive && time}
+                  </button>
+                )}
               </div>
             </div>
           )}

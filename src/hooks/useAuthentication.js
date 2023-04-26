@@ -28,7 +28,6 @@ export const useAuthentication = () => {
   const [systemMessageError, setSystemMessageError] = useState(null);
   const [success, setSuccess] = useState(undefined);
   const [loading, setLoading] = useState(null);
-
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
   //cleanup
@@ -46,7 +45,6 @@ export const useAuthentication = () => {
   //register
   const createUser = (data) => {
     checkIfIsCancelled();
-
     setLoading(true);
     setError(null);
 
@@ -55,7 +53,7 @@ export const useAuthentication = () => {
         sendEmailVerification(auth.currentUser)
           .then(() => {
             setSystemMessageReturn(
-              `A verification has been sent to your ${data.email} Follow the instruction in the email to verify your account `,
+              `A verification has been sent to ${data.email} Follow the instruction in the email to verify your account `,
             );
           })
           .catch((err) => {
@@ -85,7 +83,7 @@ export const useAuthentication = () => {
               systemErrorMessage = 'An error ocurred. Please try again later.';
             }
             setLoading(false);
-            setError(systemErrorMessage);
+            setSystemMessageError(systemErrorMessage);
           });
       })
       .catch((error) => {
@@ -98,26 +96,27 @@ export const useAuthentication = () => {
           systemErrorMessage =
             'Your password must contain at least 6 characters.';
         } else if (error.message.includes('email-already')) {
-          systemErrorMessage = 'This e-mail is already registered.';
+          systemErrorMessage =
+            'This e-mail is already registered. Please enter another email address or go to the login page to retrieve your password.';
         } else {
           systemErrorMessage = 'An error ocurred. Please try again later.';
         }
         setLoading(false);
         setError(systemErrorMessage);
+        setSystemMessageError(systemErrorMessage);
       });
   };
 
-  //erro que esta dando é que nao consegue achar o usuario auth.currentUser para enviar o email de verificação
+  //resend email verification
   const resendEmailVerification = () => {
     setButtonDisabled(true);
-    sendEmailVerification(auth.currentUser)
+    sendEmailVerification(auth?.currentUser)
       .then(() => {
         setButtonDisabled(false);
-        console.log('deu certo enviar');
       })
       .catch((err) => {
         setButtonDisabled(false);
-        console.log('não deu certo enviar', err.message);
+        console.log(err.message);
       });
   };
 
@@ -134,6 +133,11 @@ export const useAuthentication = () => {
     setError(false);
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
+      if (!auth.currentUser?.emailVerified) {
+        setTimeout(function () {
+          window.location.assign('/account');
+        }, 1000);
+      }
       setLoading(false);
     } catch (error) {
       let systemErrorMessage;

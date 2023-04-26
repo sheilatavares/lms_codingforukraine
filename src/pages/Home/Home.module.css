@@ -43,3 +43,14 @@
   top: 36px;
   left: 17px;
 }
+
+@media only screen and (max-width: 600px) {
+  .logo {
+    background-color: white;
+    position: static;
+    width: 250px;
+    height: 210px;
+    top: -85px;
+    left: -50px;
+  }
+}

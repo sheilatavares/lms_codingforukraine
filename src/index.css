@@ -566,3 +566,20 @@ h5.question-text {
   opacity: 0;
   transition: 1s ease 0.3s;
 }
+
+@media only screen and (max-width: 600px) {
+  .login-wrap {
+    position: static;
+    left: 0%;
+    width: 100%;
+  }
+  .container-full:has(.bg-home) {
+    background: none;
+  }
+  .box-highlight {
+    position: static;
+    right: 72px;
+    top: -101px;
+    height: 200px;
+  }
+}

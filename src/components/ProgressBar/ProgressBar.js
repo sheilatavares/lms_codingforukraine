@@ -9,7 +9,7 @@ const ProgressBar = ({ done }) => {
     setTimeout(() => {
       const newStyle = {
         opacity: 1,
-        width: `${done}%`,
+        width: `${done < 10 ? 10 : done}%`,
       };
 
       setStyle(newStyle);

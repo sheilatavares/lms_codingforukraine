@@ -1,6 +1,7 @@
 // CSS
 import styles from './Home.module.css';
 import logo from './img/cfu_logo.png';
+import homeMobile from './img/home-mobile.jpg';
 
 // hooks
 
@@ -56,10 +57,11 @@ const Home = () => {
     <div>
       <div className="container-full bg-home">
         <div className="row mt-5 pt-5 g-0">
-          <div className="col-lg-5 bg-yellow-light login-wrap  mt-5 pb-3">
-            <div className={styles.logo}>
+          <div className="col-lg-5 bg-yellow-light login-wrap mt-lg-5 pb-3">
+            <div className={`${styles.logo} d-none d-lg-block`}>
               <LogoComplete />
             </div>
+            <img src={homeMobile} className="w-100 d-lg-none d-block"></img>
             <div className={styles.login}>
               <div className="row">
                 <div className="col-lg-8 offset-lg-4">
@@ -155,7 +157,7 @@ const Home = () => {
       <div className="container-full bg-white">
         <div className="row g-0 position-relative mb-5">
           <div className="col-lg-4 offset-lg-1 py-2">
-            <div className="py-4">
+            <div className="py-4 px-3 px-lg-0">
               <h2>Give a try to start you programming career! </h2>{' '}
               <p className="pt-3 fs-5">
                 {' '}

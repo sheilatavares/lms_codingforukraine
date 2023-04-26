@@ -24,6 +24,9 @@ const Account = () => {
   const navigate = useNavigate();
   const [displayName, setDisplayName] = useState('');
   const [progress, setProgress] = useState(0);
+  const [timeActive, setTimeActive] = useState(null);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [time, setTime] = useState(60);
 
   const {
     updateDisplayName,
@@ -33,6 +36,7 @@ const Account = () => {
     systemMessageReturn,
     systemMessageError,
     changePassword,
+    resendEmailVerification,
   } = useAuthentication();
 
   //progress information
@@ -114,6 +118,19 @@ const Account = () => {
     // console.log(res);
   };
 
+  const handleResendEmailVerification = async (e) => {
+    try {
+      e.preventDefault();
+      setError('');
+
+      const res = await resendEmailVerification();
+
+      setTimeActive(true);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   useEffect(() => {
     if (!auth.currentUser) {
       // If no user is logged in, redirect to the login page
@@ -140,6 +157,20 @@ const Account = () => {
   const ShowFormPassword = () => {
     setFormPassword(true);
   };
+
+  useEffect(() => {
+    let interval = null;
+    if (timeActive && time !== 0) {
+      interval = setInterval(() => {
+        setTime((time) => time - 1);
+      }, 1000);
+    } else if (time === 0) {
+      setTimeActive(false);
+      setTime(60);
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [timeActive, time]);
 
   return (
     <>
@@ -333,11 +364,30 @@ const Account = () => {
                 )}
               </div>
               <div className="col-lg-5 d-flex align-top flex-column mt-4 mx-auto align-items-center text-center">
+                {!auth.currentUser?.emailVerified && (
+                  <div className="border border-secondary rounded p-3 mb-4">
+                    <h4 className="text-danger">
+                      <u>Your email has not yet been verified.</u>
+                    </h4>
+                    <p>
+                      Click the button below to send an email with the
+                      verification link:
+                    </p>
+                    <button
+                      className="btn btn-primary"
+                      style={{ width: '200px' }}
+                      onClick={handleResendEmailVerification}
+                      disabled={timeActive}
+                    >
+                      Send verification email {timeActive && time}
+                    </button>
+                  </div>
+                )}
                 <h3 className="text-primary">Your progress*</h3>
                 <div className="d-flex justify-content-center align-items-center mt-2">
                   {progress && <ProgressBar done={progress}></ProgressBar>}
                 </div>
-                <small>
+                <small className="mb-3">
                   *Based on the sections you marked as completed at the end of
                   each section.
                 </small>

@@ -70,7 +70,7 @@ const Navbar = () => {
             </div>
           </NavLink>
           <button
-            className="navbar-toggler"
+            className="navbar-toggler border-secondary"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -84,9 +84,9 @@ const Navbar = () => {
             className="collapse navbar-collapse flex-grow-1 text-right"
             id="navbarSupportedContent"
           >
-            <ul className="navbar-nav mb-2 mb-lg-0 ms-auto flex-nowrap d-flex align-items-center">
+            <ul className="navbar-nav mb-2 mb-lg-0 ms-auto flex-nowrap d-flex align-items-lg-center my-4 my-lg-2">
               {!user && (
-                <li className="nav-item px-3">
+                <li className="nav-item px-3 py-2">
                   <NavLink
                     to="/"
                     className={
@@ -101,7 +101,7 @@ const Navbar = () => {
 
               {!user && (
                 <>
-                  <li className="nav-item px-3">
+                  <li className="nav-item px-3 py-2">
                     <NavLink
                       to="/login"
                       className={
@@ -112,7 +112,7 @@ const Navbar = () => {
                       Login
                     </NavLink>
                   </li>
-                  <li className="nav-item px-3">
+                  <li className="nav-item px-3 py-2">
                     <NavLink
                       to="/register"
                       className={
@@ -127,7 +127,7 @@ const Navbar = () => {
               )}
               {user && (
                 <>
-                  <li className="nav-item px-3">
+                  <li className="nav-item px-3 py-2">
                     <NavLink
                       to="/myhome"
                       className={
@@ -139,7 +139,7 @@ const Navbar = () => {
                     </NavLink>
                   </li>
                   {user.uid === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' && (
-                    <li className="nav-item px-3">
+                    <li className="nav-item px-3 py-2">
                       <NavLink
                         to="/posts/create"
                         className={
@@ -152,7 +152,7 @@ const Navbar = () => {
                     </li>
                   )}
                   {user.uid === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' && (
-                    <li className="nav-item px-3">
+                    <li className="nav-item px-3 py-2">
                       <NavLink
                         to="/dashboard"
                         className={
@@ -166,7 +166,7 @@ const Navbar = () => {
                   )}
                 </>
               )}
-              <li className="nav-item px-3">
+              <li className="nav-item px-3 py-2">
                 <NavLink
                   to="/about"
                   className={
@@ -177,7 +177,7 @@ const Navbar = () => {
                   About
                 </NavLink>
               </li>
-              <li className="nav-item px-3">
+              <li className="nav-item px-3 py-2">
                 <NavLink
                   to="/donate"
                   className={
@@ -192,7 +192,7 @@ const Navbar = () => {
                 </NavLink>
               </li>
               {user && (
-                <li className="nav-item px-3">
+                <li className="nav-item px-3 py-2">
                   <button onClick={logout}>Logout</button>
                 </li>
               )}
