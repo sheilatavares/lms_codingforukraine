@@ -15,7 +15,7 @@
   background: linear-gradient(to left, #efc314, #1c5dcd);
   box-shadow: 0 3px 3px -5px #efc314, 0 2px 5px #1c5dcd;
   border-radius: 20px;
-  color: rgb(255, 255, 255);
+  color: #1c5dcd;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -24,4 +24,34 @@
   width: 0;
   opacity: 0;
   transition: 1s ease 0.3s;
+}
+
+.CircularProgressbarPath {
+  transition: 1s ease 0.3s;
+}
+
+.CircularProgressbarText {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+.fadeInUpAnimation {
+  animation: 2.5s fadeInUp;
+  font-weight: bold;
 }

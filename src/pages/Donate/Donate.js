@@ -9,13 +9,13 @@ import BuyMeACoffee from '../../components/BuyMeACoffee/BuyMeACoffee';
 
 function Donate() {
   return (
-    <div className="container-full bg-white">
+    <div className="container-full">
       <div
         className={`row d-flex justify-content-center g-0 pb-5 pt-3 ${styles.donateBox}`}
       >
         <div className="col-lg-12 pb-4">
           <div className="row p-lg-3">
-            <div className="col-lg-6">
+            <div className="col-lg-6 donate-text">
               <h1 className={`text-start pb-3 ms-3 pt-2 ${styles.DarkBlue}`}>
                 Partner With Us
               </h1>
@@ -37,7 +37,7 @@ function Donate() {
                 </h6>
               </div>
             </div>
-            <div className="col-lg-5 mt-5 ms-4 d-flex align-items-center flex-column justify-content-end">
+            <div className="col-lg-5 mt-5 ms-lg-4 d-flex align-items-center flex-column justify-content-end">
               <div className={`p-lg-4 shadow ${styles.bgYellowDonate}`}>
                 <span className="lh-base fs-5">
                   Support us and become strategic partners of our project. Your

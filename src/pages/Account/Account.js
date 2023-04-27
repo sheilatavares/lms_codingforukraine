@@ -23,7 +23,7 @@ const Account = () => {
   const [newPassword, setNewPassword] = useState('');
   const navigate = useNavigate();
   const [displayName, setDisplayName] = useState('');
-  const [progress, setProgress] = useState(0);
+  // const [progress, setProgress] = useState(0);
   const [timeActive, setTimeActive] = useState(null);
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [time, setTime] = useState(60);
@@ -39,46 +39,46 @@ const Account = () => {
     resendEmailVerification,
   } = useAuthentication();
 
-  //progress information
-  let userId = auth?.currentUser?.uid;
-  const { documents: sections } = useFetchDocuments('sections');
-  const { documents: lessons } = useFetchDocuments('posts');
-  const { documents: usersPath } = useFetchSavedPath('usersPath', userId);
+  // //progress information
+  // let userId = auth?.currentUser?.uid;
+  // const { documents: sections } = useFetchDocuments('sections');
+  // const { documents: lessons } = useFetchDocuments('posts');
+  // const { documents: usersPath } = useFetchSavedPath('usersPath', userId);
 
-  // LEsson total
-  const lessonsIdsTotal = lessons?.filter(
-    (obj) => obj && !obj.quiz && obj.sectionId !== 'F0bt7WvKdHrIGOpkpNtB',
-  );
+  // // LEsson total
+  // const lessonsIdsTotal = lessons?.filter(
+  //   (obj) => obj && !obj.quiz && obj.sectionId !== 'F0bt7WvKdHrIGOpkpNtB',
+  // );
 
-  // Users sections completed
-  const sectionIds = usersPath
-    ?.filter(
-      (obj) => obj && !obj.isQuiz && obj.sectionId !== 'F0bt7WvKdHrIGOpkpNtB',
-    )
-    ?.map((obj) => obj.sectionId);
+  // // Users sections completed
+  // const sectionIds = usersPath
+  //   ?.filter(
+  //     (obj) => obj && !obj.isQuiz && obj.sectionId !== 'F0bt7WvKdHrIGOpkpNtB',
+  //   )
+  //   ?.map((obj) => obj.sectionId);
 
-  //lessons completed
-  const lessonsIdsCompleted = lessonsIdsTotal?.filter((item) =>
-    sectionIds.includes(item.sectionId),
-  );
+  // //lessons completed
+  // const lessonsIdsCompleted = lessonsIdsTotal?.filter((item) =>
+  //   sectionIds.includes(item.sectionId),
+  // );
 
-  // Quiz total
-  const quizIdsTotal = lessons?.filter((obj) => obj && obj.quiz);
+  // // Quiz total
+  // const quizIdsTotal = lessons?.filter((obj) => obj && obj.quiz);
 
-  // Users quiz completed
-  const quizIdsCompleted = usersPath
-    ?.filter(
-      (obj) => obj && obj.isQuiz && obj.sectionId !== 'F0bt7WvKdHrIGOpkpNtB',
-    )
-    ?.map((obj) => obj.sectionId);
+  // // Users quiz completed
+  // const quizIdsCompleted = usersPath
+  //   ?.filter(
+  //     (obj) => obj && obj.isQuiz && obj.sectionId !== 'F0bt7WvKdHrIGOpkpNtB',
+  //   )
+  //   ?.map((obj) => obj.sectionId);
 
-  const totalLessonsCourse = lessonsIdsTotal?.length + quizIdsTotal?.length;
-  const totalLessonsCompleted =
-    lessonsIdsCompleted?.length + quizIdsCompleted?.length;
+  // const totalLessonsCourse = lessonsIdsTotal?.length + quizIdsTotal?.length;
+  // const totalLessonsCompleted =
+  //   lessonsIdsCompleted?.length + quizIdsCompleted?.length;
 
-  let progressUser = Math.round(
-    (totalLessonsCompleted / totalLessonsCourse) * 100,
-  );
+  // let progressUser = Math.round(
+  //   (totalLessonsCompleted / totalLessonsCourse) * 100,
+  // );
 
   //submits forms
   const handleSubmitName = async (e) => {
@@ -141,12 +141,12 @@ const Account = () => {
     }
   }, [auth.currentUser, navigate]);
 
-  useEffect(() => {
-    let progressUser = Math.round(
-      (totalLessonsCompleted / totalLessonsCourse) * 100,
-    );
-    setProgress(progressUser.toString());
-  }, [totalLessonsCompleted, totalLessonsCourse]);
+  // useEffect(() => {
+  //   let progressUser = Math.round(
+  //     (totalLessonsCompleted / totalLessonsCourse) * 100,
+  //   );
+  //   setProgress(progressUser.toString());
+  // }, [totalLessonsCompleted, totalLessonsCourse]);
 
   const ShowFormName = () => {
     setFormName(true);
@@ -385,7 +385,8 @@ const Account = () => {
                 )}
                 <h3 className="text-primary">Your progress*</h3>
                 <div className="d-flex justify-content-center align-items-center mt-2">
-                  {progress && <ProgressBar done={progress}></ProgressBar>}
+                  {/* {progress && <ProgressBar done={progress}></ProgressBar>} */}
+                  <ProgressBar></ProgressBar>
                 </div>
                 <small className="mb-3">
                   *Based on the sections you marked as completed at the end of

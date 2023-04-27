@@ -104,7 +104,7 @@ const Login = () => {
                           <small>Password</small>
                         </label>
                         <input
-                          className="form-control ps-4"
+                          className="form-control ps-lg-4 ps-5"
                           type={passwordType}
                           name="password"
                           required

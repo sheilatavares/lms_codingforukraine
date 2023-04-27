@@ -83,14 +83,14 @@ const Pagination = ({
       </div>
       <div className="container-full fixed-bottom position-fixed p-2 bg-blue-dark ">
         <div className="row">
-          <div className="col-lg-4 offset-lg-4 d-flex align-items-center justify-content-center">
+          <div className="col-lg-4 col-6 offset-lg-4 d-flex align-items-center justify-content-center">
             <span className="text-white">
               <strong>
                 {currentPage} / {totalPageCount}
               </strong>
             </span>
           </div>
-          <div className="col-lg-4">
+          <div className="col-lg-4 col-6">
             <div className="container-full">
               <div className="row">
                 <div className="pagination justify-content-end">

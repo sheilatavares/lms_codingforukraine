@@ -61,7 +61,7 @@ const Post = () => {
   return (
     <>
       <div className="d-flex flex-column justify-content-center py-4">
-        <div className=" justify-content-end d-flex pe-5">
+        <div className=" justify-content-end d-flex pe-lg-5 pe-2">
           <button
             type="button"
             className="btn btn-outline-primary btn-sm"

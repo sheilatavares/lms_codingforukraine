@@ -16,6 +16,7 @@ import { useState } from 'react';
 
 // components
 import PostDetail from '../../components/PostDetail';
+import ProgressBarCircle from '../../components/ProgressBar/ProgressBarCircle';
 
 const HomeCourse = () => {
   const { documents: lessons, loading } = useFetchDocuments('posts');
@@ -57,23 +58,39 @@ const HomeCourse = () => {
   return (
     <div className="container-full" id="home-course">
       <div className="container text-center pb-5">
-        <div className="row d-flex flex-column flex-lg-row flex-column-reverse">
-          <div className="col-lg-8">
+        <div className="row d-flex flex-column flex-lg-row flex-column-reverse pt-lg-2">
+          <div className="col-lg-7">
             <h2 className="mb-lg-5 mb-2 text-primary text-start py-4">
               Course: Introducting Programming with Javascript
             </h2>
           </div>
-          <div className="col-lg-4 d-flex flex-column align-items-end justify-content-center">
-            <span className="fs-2 mt-2"> Hello, {user.displayName}</span>
-            <small>Have a good study day!</small>
-            <Link
-              className={`btn btn-outline-primary rounded-pill mt-2 ${styles.link_account}`}
-              to={`/account`}
-            >
-              <small className="ms-2">
-                <strong>Profile & Account</strong>
-              </small>
-            </Link>
+          <div className="col-lg-5 pt-4 pt-sm-2 d-flex flex-column align-items-md-end align-items-center justify-content-center">
+            <div className="row g-0">
+              <div className="col-lg-6 col-5 pe-lg-5 d-flex justify-content-center align-items-center flex-column me-3 me-lg-0">
+                <ProgressBarCircle strokeWidth="6"></ProgressBarCircle>
+                <span className="text-primary">
+                  <strong>Course progress</strong>
+                </span>
+              </div>
+              <div className="col-lg-6 col-5 d-grid">
+                <span className="fs-2 fs-2 mb-0 pb-0 pe-0 me-0">
+                  {' '}
+                  Hello, {user.displayName}
+                </span>
+
+                <span>Have a good study day!</span>
+
+                <Link
+                  className={`btn btn-outline-primary rounded-pill mt-2 ${styles.link_account}`}
+                  to={`/account`}
+                >
+                  <img></img>
+                  <small className="ms-2">
+                    <strong>Profile & Account</strong>
+                  </small>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
 

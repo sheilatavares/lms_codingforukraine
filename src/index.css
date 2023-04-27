@@ -588,4 +588,7 @@ h5.question-text {
   .p-lg-4 {
     padding: 20px;
   }
+  .donate-text {
+    background-color: #fff;
+  }
 }

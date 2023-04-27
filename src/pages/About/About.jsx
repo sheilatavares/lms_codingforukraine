@@ -38,7 +38,7 @@ const About = () => {
             </div>
           </div>
         </div>
-        <div className="col-lg-4 ms-5 p-5 bg-white box-about position-absolute">
+        <div className="col-lg-4 ms-lg-5 p-5 bg-white box-about position-lg-absolute">
           {' '}
           <div className="text-center">
             <svg
