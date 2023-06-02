@@ -78,12 +78,9 @@ const Home = () => {
                     <strong>Log in for access our content:</strong>
                   </p> */}
                   <div className="row g-0">
-                    <div className="col-8">
+                    <div className="col-7">
                       <div className="mb-3 pt-1">
-                        <label
-                          htmlFor="exampleInputEmail1"
-                          className="form-label text-black"
-                        >
+                        <label className="form-label text-black">
                           <small>Email address</small>
                         </label>
                         <input
@@ -100,12 +97,9 @@ const Home = () => {
                     </div>
                   </div>
                   <div className="row g-0">
-                    <div className="col-8 position-relative">
+                    <div className="col-7 position-relative">
                       <div className="mb-3">
-                        <label
-                          htmlFor="exampleInputPassword1"
-                          className="form-label text-black"
-                        >
+                        <label className="form-label text-black">
                           <small>Password</small>
                         </label>
                         <input
@@ -119,16 +113,16 @@ const Home = () => {
                         />
                         <i
                           className="fa fa-lock"
-                          style={{ top: 43, left: 20 }}
+                          style={{ top: 43, left: 10 }}
                         ></i>
                         <i
                           onClick={Eye}
                           className={`fa ${eye ? 'fa-eye-slash' : 'fa-eye'}`}
-                          style={{ top: 43, right: 20 }}
+                          style={{ top: 43, right: 10 }}
                         ></i>
                       </div>
                     </div>
-                    <div className="col-4 d-flex align-items-end mb-3">
+                    <div className="col-4 d-flex align-items-end mb-3 ms-2">
                       {!loading && (
                         <button className="btn btn-primary float-end">
                           Login

@@ -288,6 +288,7 @@ const CreatePost = () => {
               <option value="two_columns_left">
                 Two columns - Large left column
               </option>
+              <option value="column_exercise">Live code exercise</option>
               <option value="two_columns_right">
                 Two columns - Large right column
               </option>

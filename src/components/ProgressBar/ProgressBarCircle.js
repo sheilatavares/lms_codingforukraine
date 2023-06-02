@@ -20,7 +20,7 @@ function ProgressBarCircle({ strokeWidth }) {
       a ${radius},${radius} 0 1 1 0,-${2 * radius}
     `);
   const [progressStyle, setProgressStyle] = useState({
-    stroke: '#0c63e4',
+    stroke: '#005BBB',
     strokeLinecap: 'round',
     strokeDasharray: `${diameter}px ${diameter}px`,
   });
@@ -46,7 +46,7 @@ function ProgressBarCircle({ strokeWidth }) {
 
   //lessons completed
   const lessonsIdsCompleted = lessonsIdsTotal?.filter((item) =>
-    sectionIds.includes(item.sectionId),
+    sectionIds?.includes(item.sectionId),
   );
 
   // Quiz total
@@ -125,7 +125,7 @@ function ProgressBarCircle({ strokeWidth }) {
         x={50}
         y={50}
         style={{
-          fill: '#0c63e4',
+          fill: '#005BBB',
           fontSize: '24px',
           dominantBaseline: 'central',
           textAnchor: 'middle',

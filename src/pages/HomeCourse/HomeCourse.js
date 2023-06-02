@@ -4,6 +4,8 @@ import styles from './HomeCourse.module.css';
 //img
 import photoFriends from './img/coding-friends-home.jpg';
 import avatar from './img/avatar-user.svg';
+import webappcard from './img/web-app-build.png';
+import iconInformation from './img/icon-info.png';
 
 // hooks
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
@@ -59,29 +61,35 @@ const HomeCourse = () => {
     <div className="container-full" id="home-course">
       <div className="container text-center pb-5">
         <div className="row d-flex flex-column flex-lg-row flex-column-reverse pt-lg-2">
-          <div className="col-lg-7">
-            <h2 className="mb-lg-5 mb-2 text-primary text-start py-4">
+          <div className="col-lg-6">
+            <h2 className="mb-lg-5 mb-2 text-start py-4">
               Course: Introducting Programming with Javascript
             </h2>
           </div>
-          <div className="col-lg-5 pt-4 pt-sm-2 d-flex flex-column align-items-md-end align-items-center justify-content-center">
-            <div className="row g-0">
-              <div className="col-lg-6 col-5 pe-lg-5 d-flex justify-content-center align-items-center flex-column me-3 me-lg-0">
+          <div className="col-lg-6 pt-4 pt-sm-2 d-flex flex-column align-items-md-end align-items-center justify-content-center">
+            <div className="row g-0 justify-content-end">
+              <div className="col-lg-5 col-5 pe-lg-4 d-flex justify-content-center align-items-center flex-column me-3 me-lg-0">
                 <ProgressBarCircle strokeWidth="6"></ProgressBarCircle>
-                <span className="text-primary">
-                  <strong>Course progress</strong>
-                </span>
+                <div className="d-flex flex-column">
+                  <span style={{ color: '#005BBB' }}>
+                    <strong>Course progress*</strong>
+                  </span>
+                  <small className="fs-7 lh-1">
+                    *Based on the sections you marked as completed at the end of
+                    each section.
+                  </small>
+                </div>
               </div>
-              <div className="col-lg-6 col-5 d-grid">
-                <span className="fs-2 fs-2 mb-0 pb-0 pe-0 me-0">
+              <div className="col-lg-6 col-5 d-flex align-items-center flex-column justify-content-center">
+                <span className="fs-3 lh-1 mb-0 pb-0 pe-0 me-0">
                   {' '}
                   Hello, {user.displayName}
                 </span>
 
-                <span>Have a good study day!</span>
+                <span className="mt-2">Have a good study day!</span>
 
                 <Link
-                  className={`btn btn-outline-primary rounded-pill mt-2 ${styles.link_account}`}
+                  className={`btn rounded-pill d-flex align-items-center justify-content-center mt-2 py-1 ${styles.link_account}`}
                   to={`/account`}
                 >
                   <img></img>
@@ -104,10 +112,10 @@ const HomeCourse = () => {
               <p>Loading...</p>
             </div>
           )}
-          <div className="row g-0">
+          <div className="d-flex flex-column-reverse flex-lg-row g-0">
             <div className="col-lg-3">
               <div className="row g-0">
-                <div className="col-5 col-lg-12">
+                {/* <div className="col-5 col-lg-12">
                   <img src={photoFriends} className="w-100"></img>
                 </div>
                 <div className="col-7 col-lg-12">
@@ -117,7 +125,72 @@ const HomeCourse = () => {
                     sequence and do all the exercises because practice is
                     essential!
                   </p>
-                </div>
+                </div> */}
+                <h4 className="text-blue text-start">Coming soon:</h4>
+                <a
+                  className={`${styles.card_courses} p-3`}
+                  style={{ cursor: 'not-allowed' }}
+                >
+                  <div className="d-flex">
+                    <strong className="col-6">
+                      <p className="text-blue fs-5 lh-1">
+                        Intermediate JavaScript
+                      </p>
+                    </strong>
+                    <div className="col-6 p-0 m-0 d-flex align-items-start justify-content-end">
+                      <img src="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/icon-js-intermediateStroke.svg?alt=media&token=fd7f9fc5-efcc-432a-8308-4a9d6deb3c33"></img>
+                    </div>
+                  </div>
+
+                  <figcaption>
+                    <h4 className="text-uppercase">Coming soon</h4>
+                  </figcaption>
+                  <p className={`${styles.textGray} lh-sm mt-5 pb-2 ps-1`}>
+                    Take your JavaScript to the next level by learning more
+                    complex web apps using concepts such as classes, promises,
+                    async/await, and requests.
+                  </p>
+                  <div className="ps-2 mt-2 d-flex align-items-baseline">
+                    <img
+                      src="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/icon-js-level.svg?alt=media&token=f8aa03d9-6a26-402f-9e2b-c9017ecc30bb"
+                      className={styles.iconLevel}
+                    ></img>
+                    <small className="text-blue ms-2">Intermediate</small>
+                  </div>
+                </a>
+                <a
+                  className={`${styles.card_courses} p-3 mt-3`}
+                  style={{ cursor: 'not-allowed' }}
+                >
+                  <div className="d-flex">
+                    <strong className="col-7">
+                      <p className="text-blue fs-5 lh-1">
+                        Interactive Websites with JS, HTML and CSS
+                      </p>
+                    </strong>
+                    <div className="col-5 p-0 m-0 d-flex align-items-start justify-content-end">
+                      <img src="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/icon-js-interactve.svg?alt=media&token=55d9c493-f3e6-4c6a-ba34-ac494a701cfd"></img>
+                    </div>
+                  </div>
+
+                  <figcaption style={{ top: '110px' }}>
+                    <h4 className="text-uppercase">Coming soon</h4>
+                  </figcaption>
+                  <p
+                    className={`${styles.textGray} lh-sm mt-4 pt-3 pb-2 ps-2 mb-0`}
+                  >
+                    Join this course and embark on a journey where you will
+                    learn to develop blending HTML, CSS, and JavaScript to craft
+                    captivating and interactive websites.
+                  </p>
+                  <div className="ps-2 mt-2 d-flex align-items-baseline">
+                    <img
+                      src="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/icon-js-level.svg?alt=media&token=f8aa03d9-6a26-402f-9e2b-c9017ecc30bb"
+                      className={styles.iconLevel}
+                    ></img>
+                    <small className="text-blue ms-2">Intermediate</small>
+                  </div>
+                </a>
               </div>
             </div>
             <div className="col-lg-9 ps-lg-4 ps-0">
@@ -132,7 +205,7 @@ const HomeCourse = () => {
                         <button
                           className={`accordion-button accordion-module py-4 ps-4 fs-5 ${
                             module.module === 'Exercise solutions'
-                              ? 'bg-primary text-white'
+                              ? `${styles.bgBlue} text-white`
                               : ''
                           }`}
                           type="button"

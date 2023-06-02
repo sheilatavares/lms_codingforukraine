@@ -96,7 +96,7 @@ textarea {
 }
 
 h2 {
-  color: #2869ff;
+  color: #005bbb;
 }
 
 .btn.btn-dark {
@@ -115,6 +115,9 @@ h2,
 h3,
 h5 {
   font-weight: bold !important;
+}
+h1 {
+  color: #0076bf;
 }
 .btn:hover {
   background-color: #2869ff;
@@ -330,7 +333,7 @@ footer {
 
 .text-hgl {
   font-weight: 500;
-  color: var(--bs-primary);
+  color: #0076bf;
   font-size: 23px;
   line-height: 0px;
 }
@@ -493,6 +496,7 @@ body[data-color-mode*='light'] {
   --color-fg-default: #181919 !important;
   --color-canvas-default: #fff !important;
   --color-neutral-muted: rgba(110, 118, 129, 0.1) !important;
+  --color-prettylights-syntax-string: #4d82d3 !important;
 }
 [data-color-mode*='light'] .wmde-markdown span.code-line {
   color: #c1c7cd !important;
@@ -591,4 +595,17 @@ h5.question-text {
   .donate-text {
     background-color: #fff;
   }
+  .questionStatement {
+    overflow-y: unset;
+    height: 100% !important;
+  }
+}
+
+.text-blue {
+  color: #005bbb !important;
+}
+
+.questionStatement {
+  overflow-y: auto;
+  height: 60vh;
 }

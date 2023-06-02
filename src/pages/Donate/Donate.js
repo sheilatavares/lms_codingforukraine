@@ -14,7 +14,7 @@ function Donate() {
         className={`row d-flex justify-content-center g-0 pb-5 pt-3 ${styles.donateBox}`}
       >
         <div className="col-lg-12 pb-4">
-          <div className="row p-lg-3">
+          <div className="row g-0 p-lg-3">
             <div className="col-lg-6 donate-text">
               <h1 className={`text-start pb-3 ms-3 pt-2 ${styles.DarkBlue}`}>
                 Partner With Us

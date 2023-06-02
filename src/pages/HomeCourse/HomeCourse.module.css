@@ -18,14 +18,18 @@
 
 a.link_account {
   text-decoration: none;
-  width: 190px;
+  width: 150px;
+  height: 40px;
+  border: 2px solid #005bbb;
+  color: #005bbb;
 }
 
 a.link_account:hover {
   color: #ffd726;
+  background-color: #005bbb;
 }
 
-a.link_account img {
+/* a.link_account img {
   content: url(https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/avatar-blue1.svg?alt=media&token=cf994884-683a-4270-8986-ea1db6ae0540);
   width: 40px;
 }
@@ -33,4 +37,106 @@ a.link_account img {
 a.link_account:hover img {
   content: url(https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/avatar-yellow.svg?alt=media&token=7ae7fede-3020-437b-8b97-2e10fb1d4a7b);
   width: 40px;
+} */
+.bgBlue {
+  background-color: #005bbb !important;
+}
+
+.bgYellow {
+  background-color: #f3eac3;
+}
+
+.textGray {
+  color: rgb(47, 55, 65) !important;
+}
+
+.card_courses {
+  border: 1px solid #0076bf;
+  -webkit-box-shadow: 10px 10px 5px -8px rgba(207, 203, 207, 1);
+  -moz-box-shadow: 10px 10px 5px -8px rgba(207, 203, 207, 1);
+  box-shadow: 10px 10px 5px -8px rgba(207, 203, 207, 1);
+  text-decoration: none;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.card_courses:hover figcaption:before,
+.card_courses.hover figcaption:before {
+  right: -5px;
+}
+
+/* .snip1571 {
+  background-color: #000;
+  display: inline-block;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  margin: 10px;
+  max-width: 315px;
+  min-width: 230px;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  width: 100%;
+} */
+.card_courses *,
+.card_courses *:before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+.card_courses img {
+  backface-visibility: hidden;
+  max-width: 75%;
+  vertical-align: top;
+}
+.card_courses figcaption {
+  top: 70px;
+  left: 0;
+  position: absolute;
+  z-index: 0;
+}
+.card_courses figcaption:before {
+  background-color: #005bbb;
+  bottom: -5px;
+  content: '';
+  left: 0;
+  position: absolute;
+  right: 100%;
+  top: -5px;
+  z-index: -1;
+}
+.card_courses h4 {
+  background-color: #fad20e;
+  color: #005bbb;
+  font-size: 1em;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: 5px 15px;
+  text-transform: uppercase;
+  z-index: 1;
+}
+.card_courses a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.card_courses.hover > h4 {
+  opacity: 1;
+}
+
+.card_courses:hover figcaption:before,
+.card_courses.hover figcaption:before {
+  right: -5px;
+}
+
+.card_courses .iconLevel {
+  width: 15px;
 }

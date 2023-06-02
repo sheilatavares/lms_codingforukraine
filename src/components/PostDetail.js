@@ -263,13 +263,16 @@ const PostDetail = ({ data }) => {
     if (column === 'one_column') {
       columnLeft = 'col-sm-12';
     } else if (column === 'two_columns_left') {
-      columnLeft = 'col-sm-7 col-12 pe-lg-5';
+      columnLeft = 'col-sm-7 col-12 pe-lg-4';
       columnRight = 'col-sm-5';
     } else if (column === 'two_columns_right') {
-      columnLeft = 'col-sm-5 col-12 pe-lg-5';
+      columnLeft = 'col-sm-5 col-12 pe-lg-4';
       columnRight = 'col-sm-7';
+    } else if (column === 'column_exercise') {
+      columnLeft = 'col-sm-3 col-12 pe-lg-4 questionStatement';
+      columnRight = 'col-sm-9 pt-3 pt-md-0';
     } else {
-      columnLeft = 'col-sm-6 col-12 pe-lg-5';
+      columnLeft = 'col-sm-6 col-12 pe-lg-4';
       columnRight = 'col-sm-6';
     }
     return (
@@ -277,7 +280,12 @@ const PostDetail = ({ data }) => {
         <div className="row mt-3 mb-2">
           <h2>{title}</h2>
         </div>
-        <div className="row pb-5 mb-4 mb-lg-2" data-color-mode="light">
+        <div
+          className={`row pb-5 mb-4 mb-lg-2 ${
+            column === 'column_exercise' ? styles.exerciseScreen : ''
+          }`}
+          data-color-mode="light"
+        >
           <div className={`${columnLeft} wmde-markdown-var`}>
             <MDEditor.Markdown source={body} />
           </div>

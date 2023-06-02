@@ -254,6 +254,7 @@ const EditPost = () => {
                   <option value="two_columns_right">
                     Two columns - Large right column
                   </option>
+                  <option value="column_exercise">Live code exercise</option>
                   <option value="two_columns_same">
                     Two columns - same width
                   </option>

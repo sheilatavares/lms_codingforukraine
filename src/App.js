@@ -33,6 +33,7 @@ import Reset from './pages/reset/Reset';
 import Account from './pages/Account/Account';
 import PasswordReset from './pages/PasswordReset/PasswordReset';
 import Donate from './pages/Donate/Donate';
+import JsLiveCode from './pages/JsLiveCode/JsLiveCode';
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -115,6 +116,11 @@ function App() {
                 exact
                 path="/lesson/:moduleSlug/:sectionSlug/:slug/:order/"
                 element={!user ? <Navigate to="/" /> : <Lesson />}
+              />
+              <Route
+                exact
+                path="/jslivecode/"
+                element={!user ? <Navigate to="/" /> : <JsLiveCode />}
               />
               <Route path="/search" element={<Search />} />
               <Route

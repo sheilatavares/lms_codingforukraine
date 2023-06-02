@@ -41,30 +41,35 @@ const Pagination = ({
 
   function goToNextPage() {
     const nextPage = currentPage + 1;
+    const path = `/lesson/${moduleSlug}/${sectionSlug}/${
+      slugData[nextPage - 1]
+    }/${nextPage}`;
 
-    setCurrentPage(nextPage);
-    navigate(
-      `/lesson/${moduleSlug}/${sectionSlug}/${
-        slugData[nextPage - 1]
-      }/${nextPage}`,
-    );
+    // Navigate to the next page
+    navigate(path);
+
+    // Refresh the page
+    window.location.reload();
   }
 
-  function gotToPreviousPage() {
+  function goToPreviousPage() {
     const previousPage = currentPage - 1;
+    const path = `/lesson/${moduleSlug}/${sectionSlug}/${
+      slugData[previousPage - 1]
+    }/${previousPage}`;
 
-    setCurrentPage(previousPage);
-    navigate(
-      `/lesson/${moduleSlug}/${sectionSlug}/${
-        slugData[previousPage - 1]
-      }/${previousPage}`,
-    );
+    // Navigate to the previous page
+    navigate(path);
+
+    // Refresh the page
+    window.location.reload();
   }
 
   function changePage(event) {
     const pageNumber = Number(event.target.textContent);
     setCurrentPage(pageNumber);
   }
+
   const getPaginatedData = () => {
     const startIndex = currentPage * contentPerPage - contentPerPage;
     const endIndex = startIndex + contentPerPage;
@@ -72,11 +77,8 @@ const Pagination = ({
   };
 
   return (
-    <div className="container bg-white pb-3 position-relative">
-      {/* <h1>{title}</h1> */}
-      {/* show the post 10 post at a time*/}
-
-      <div className="dataContainer">
+    <div className="containe-full bg-white pb-3 position-relative">
+      <div className="dataContainer ps-4 pe-3">
         {getPaginatedData().map((dataItem, index) => (
           <RenderComponent key={index} data={dataItem} />
         ))}
@@ -94,22 +96,19 @@ const Pagination = ({
             <div className="container-full">
               <div className="row">
                 <div className="pagination justify-content-end">
-                  {/* previous button */}
                   <div className="pe-3">
                     <button
                       className="btn btn-outline-light me-1 px-0"
-                      onClick={gotToPreviousPage}
-                      disabled={currentPage === 1 ? true : false}
+                      onClick={goToPreviousPage}
+                      disabled={currentPage === 1}
                     >
                       Back
                     </button>
-
-                    {/* next button */}
-                    {currentPage != totalPageCount && (
+                    {currentPage !== totalPageCount && (
                       <button
                         onClick={goToNextPage}
-                        className="btn btn-primary "
-                        disabled={currentPage === totalPageCount ? true : false}
+                        className="btn btn-primary"
+                        disabled={currentPage === totalPageCount}
                       >
                         Next
                       </button>

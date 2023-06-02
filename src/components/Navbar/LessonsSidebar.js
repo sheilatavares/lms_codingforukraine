@@ -27,32 +27,29 @@ const LessonsSidebar = ({ moduleSlug, sectionSlug }) => {
       <nav className="navbar navbar-light bg-blue-dark nav_lesson">
         <div className="container">
           <div className="row g-0 w-100 align-items-center">
-            <div className="col-4 col-lg-2 d-flex justify-content-center">
-              <NavLink to="/" className="navbar-brand">
-                <LogoCfu></LogoCfu>
-              </NavLink>
+            <div className="col-lg-6">
+              <div className="row g-0 w-100 align-items-center">
+                <div className="col-4 col-lg-2 d-flex justify-content-center">
+                  <NavLink to="/" className="navbar-brand">
+                    <LogoCfu></LogoCfu>
+                  </NavLink>
+                </div>
+                <div className="col-lg-4 d-flex justify-content-center">
+                  <a
+                    className="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop"
+                  >
+                    Course Menu
+                  </a>
+                </div>
+                <div className="col-4 col-lg-2 d-flex justify-content-center">
+                  <Link to={`/myhome`} className="lesson_list">
+                    My home
+                  </Link>
+                </div>
+              </div>
             </div>
-            {/* <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center flex-row">
-              <li className="nav-item col-4"> */}
-            <div className="col-4 col-lg-2 d-flex justify-content-center">
-              <a
-                className="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop"
-              >
-                Course Menu
-              </a>
-            </div>
-            <div className="col-4 col-lg-2 d-flex justify-content-center">
-              <Link to={`/myhome`} className="lesson_list">
-                My home
-              </Link>
-            </div>
-            {/* </li>
-              <li className="nav-item ms-4 col-4"> */}
-
-            {/* </li>
-            </ul> */}
           </div>
         </div>
       </nav>

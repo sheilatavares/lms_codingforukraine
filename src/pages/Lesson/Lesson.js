@@ -72,8 +72,10 @@ const Post = () => {
           </button>
         </div>
         {loading && (
-          <div className="spinner-border text-light" role="status">
-            <span className="visually-hidden"></span>
+          <div className="d-flex justify-content-center pt-5">
+            <div className="spinner-border text-light" role="status">
+              <span className="visually-hidden"></span>
+            </div>
           </div>
         )}
         {posts && (
