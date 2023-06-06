@@ -116,11 +116,9 @@ const Register = () => {
   }, [timeActive, time]);
 
   return (
-    <div className="container-full p-0 bg-white-yellow pb-5 mt-2">
+    <div className="container-full p-0 bg-white-yellow pb-5 mt-2 registerContent">
       <div className="row g-0 justify-content-center pb-5">
-        <h1 className="text-primary py-5">
-          Register to start your success journey!
-        </h1>
+        <h1 className="py-5">Register to start your success journey!</h1>
         <div className="col-lg-4">
           <img src={photo} className="w-100 shadow"></img>
         </div>

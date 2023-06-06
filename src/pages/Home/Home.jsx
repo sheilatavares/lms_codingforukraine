@@ -58,7 +58,9 @@ const Home = () => {
       <div className="container-full bg-home">
         <div className="row g-0 mt-5 pt-5 g-0">
           <div className="col-lg-5 bg-yellow-light login-wrap mt-lg-5 pb-3">
-            <div className={`${styles.logo} d-none d-lg-block`}>
+            <div
+              className={`${styles.logo} d-none d-lg-inline-flex justify-content-center align-items-center`}
+            >
               <LogoComplete />
             </div>
             <img src={homeMobile} className="w-100 d-lg-none d-block"></img>
@@ -149,51 +151,61 @@ const Home = () => {
         </div>
       </div>
       <div className="container-full bg-white">
-        <div className="row g-0 g-0 position-relative mb-5">
-          <div className="col-lg-4 offset-lg-1 py-2">
+        <div className="row g-0" style={{ maxHeight: '392px' }}>
+          <div className="col-lg-5 offset-lg-1 py-2">
             <div className="py-4 px-3 px-lg-0">
-              <h2>Give a try to start you programming career! </h2>{' '}
-              <p className="pt-3 fs-5">
+              <iframe
+                width="100%"
+                height="315"
+                src="https://www.youtube.com/embed/t19_w7j3OcY"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+          <div className="col-lg-5 box-highlight p-lg-3 mb-0 bg-white shadow border border-warning border-5">
+            <h2>Give a try to start you programming career! </h2>{' '}
+            {/* <p className="pt-3 fs-5">
                 {' '}
-                Try coding at the beginning at the beggining of our course, we
+                Try coding at the beginning of our course, we
                 prepared a hands-on learning content that will help you to
                 understand programming even if you never have contact with any
                 code.{' '}
-              </p>
-            </div>
-          </div>
-          <div className="col-lg-5 box-highlight p-0 mb-0 bg-body ">
-            <div className="row g-0 g-0 shadow-lg ">
-              <div className="col-lg-6 bg-yellow-light px-4 py-4">
-                <p className=" lh-base">
-                  {' '}
-                  Start your{' '}
-                  <span className="text-hgl ">programming career</span> by
-                  learning in a deep and{' '}
-                  <span className="text-hgl">meaningful way</span> the basic
-                  concepts that are the foundation for any programming language.
-                </p>
-                <div className="text-hgl pt-5">
-                  <Link to={`/register`}>Join</Link> us for free!
-                </div>
-              </div>
-              <div className="col-lg-6 bg-white px-4 py-4">
-                <h4 className="pb-2">
-                  Course: Introduction to Javascript programming
-                </h4>
-                <strong>Learn it:</strong>
-                <ul className="pt-2">
-                  <li>Computational thinking</li>
-                  <li>Variables </li>
-                  <li>Arrays</li>
-                  <li>Loops</li>
-                  <li>Conditionals</li>
-                  <li>Objects</li>
-                  <li>Functions</li>
-                </ul>
+              </p> */}
+            <p className="mt-4 lh-lg">
+              {' '}
+              Start your <span className="text-hgl">
+                career as developer
+              </span>{' '}
+              by learning in a deep and{' '}
+              <span className="text-hgl">meaningful way</span> the basic
+              concepts that are the foundation for any programming language.
+            </p>
+            <h4 className="pb-2">
+              Course: Introduction to Javascript programming
+            </h4>
+            <strong>Learn it:</strong>
+            <ul className="pt-2">
+              <li>Computational thinking</li>
+              <li>Variables </li>
+              <li>Arrays</li>
+              <li>Loops</li>
+              <li>Conditionals</li>
+              <li>Objects</li>
+              <li>Functions</li>
+            </ul>
+            <div className="mb-4">
+              <lead>
                 Cursor features mini hands-on challenges so you can try them out
-                with real problems!
-              </div>
+                with real problems!{' '}
+              </lead>
+            </div>
+            <div className="bg-yellow-light d-inline-block align-items-center p-3">
+              <span className="text-hgl pt-5">
+                <Link to={`/register`}>Join</Link> us for free!
+              </span>
             </div>
           </div>
         </div>

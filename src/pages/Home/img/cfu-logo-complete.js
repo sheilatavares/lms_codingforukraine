@@ -4,7 +4,7 @@ export const LogoComplete = () => {
       <defs>
         <style>
           {
-            '.cls-1,.cls-2{fill:#0076bf}.cls-3{fill:#ffd726}.cls-2,.cls-3{fill-rule:evenodd}'
+            '.cls-1,.cls-2{fill:#0055bb}.cls-3{fill:#ffd726}.cls-2,.cls-3{fill-rule:evenodd}'
           }
         </style>
       </defs>

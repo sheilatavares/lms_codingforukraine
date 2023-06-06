@@ -36,7 +36,7 @@ const LessonsSidebar = ({ moduleSlug, sectionSlug }) => {
                 </div>
                 <div className="col-lg-4 d-flex justify-content-center">
                   <a
-                    className="btn btn-primary"
+                    className="btn btn-primary text-white"
                     data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop"
                   >
@@ -44,7 +44,7 @@ const LessonsSidebar = ({ moduleSlug, sectionSlug }) => {
                   </a>
                 </div>
                 <div className="col-4 col-lg-2 d-flex justify-content-center">
-                  <Link to={`/myhome`} className="lesson_list">
+                  <Link to={`/myhome`} className="lesson_list text-white">
                     My home
                   </Link>
                 </div>

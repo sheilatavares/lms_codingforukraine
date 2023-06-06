@@ -27,7 +27,7 @@ const HomeCourse = () => {
   const { user } = useAuthValue();
   let userId = user.uid;
   const { documents: usersPath } = useFetchSavedPath('usersPath', userId);
-  const { documents: quizResults } = useFetchSavedPath('quizResult', userId);
+  // const { documents: quizResults } = useFetchSavedPath('quizResult', userId);
 
   // Users sections completed
   const sectionIds = usersPath
@@ -55,10 +55,8 @@ const HomeCourse = () => {
     }
   };
 
-  // console.log(loading);
-
   return (
-    <div className="container-full" id="home-course">
+    <div className="container-full homeCourse" id="home-course">
       <div className="container text-center pb-5">
         <div className="row d-flex flex-column flex-lg-row flex-column-reverse pt-lg-2">
           <div className="col-lg-6">
@@ -203,9 +201,9 @@ const HomeCourse = () => {
                     >
                       <h2 className="accordion-header">
                         <button
-                          className={`accordion-button accordion-module py-4 ps-4 fs-5 ${
+                          className={`accordion-button accordion-module py-4 ps-4 fs-5 collapsed ${
                             module.module === 'Exercise solutions'
-                              ? `${styles.bgBlue} text-white`
+                              ? `${styles.accBlue} text-white`
                               : ''
                           }`}
                           type="button"
@@ -242,7 +240,7 @@ const HomeCourse = () => {
                                             marginLeft: '-8px',
                                           }}
                                           className=""
-                                          src="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/check-mark.svg?alt=media&token=10987695-b4ba-4e2c-9330-af76d1df6237"
+                                          src="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/check-mark.svg?alt=media&token=57abee3e-e749-4390-947b-d5460dbd7b4c"
                                           width="40"
                                         />
                                       ) : null}
@@ -254,7 +252,7 @@ const HomeCourse = () => {
                                       </p>
                                     </h6>
                                     <div id={`id_${ord.id}`} className="pb-2">
-                                      <div className="d-flex flex-column pe-5">
+                                      <div className="d-flex flex-column pe-lg-5">
                                         {lessons &&
                                           lessons
                                             .filter(
@@ -283,7 +281,13 @@ const HomeCourse = () => {
                                                       styles.icon_container
                                                     }
                                                     style={{
-                                                      borderColor: '#0076BF',
+                                                      backgroundColor:
+                                                        lesson.title?.includes(
+                                                          'cise',
+                                                        )
+                                                          ? '#f2e597'
+                                                          : null,
+                                                      borderColor: '#0055bb',
                                                       borderWidth: '2px',
                                                     }}
                                                   >
@@ -297,7 +301,7 @@ const HomeCourse = () => {
                                                         right: '-12px',
                                                         top: '-2px',
                                                       }}
-                                                      src="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/check-mark.svg?alt=media&token=10987695-b4ba-4e2c-9330-af76d1df6237"
+                                                      src="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/check-mark.svg?alt=media&token=57abee3e-e749-4390-947b-d5460dbd7b4c"
                                                       width="40"
                                                     />
                                                   </div>
@@ -306,6 +310,14 @@ const HomeCourse = () => {
                                                     className={
                                                       styles.icon_container
                                                     }
+                                                    style={{
+                                                      backgroundColor:
+                                                        lesson.title?.includes(
+                                                          'cise',
+                                                        )
+                                                          ? '#f2e597'
+                                                          : null,
+                                                    }}
                                                   >
                                                     <img
                                                       src={lesson.image}

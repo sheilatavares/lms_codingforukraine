@@ -38,7 +38,6 @@ import JsLiveCode from './pages/JsLiveCode/JsLiveCode';
 function App() {
   const [user, setUser] = useState(undefined);
   const { auth } = useAuthentication();
-
   const loadingUser = user === undefined;
 
   let userId = auth?.currentUser?.uid;

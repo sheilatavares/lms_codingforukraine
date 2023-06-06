@@ -33,9 +33,14 @@ function ProgressBarCircle({ strokeWidth }) {
   const [progress, setProgress] = useState(0);
 
   // LEsson total
-  const lessonsIdsTotal = lessons?.filter(
-    (obj) => obj && !obj.quiz && obj.sectionId !== 'F0bt7WvKdHrIGOpkpNtB',
+  // const lessonsIdsTotal = lessons?.filter(
+  //   (obj) => obj && !obj.quiz && obj.sectionId !== 'F0bt7WvKdHrIGOpkpNtB',
+  // );
+  const lessonsIdsTotal = sections?.filter(
+    (obj) => obj && obj.id !== 'F0bt7WvKdHrIGOpkpNtB',
   );
+
+  console.log('total de secoes', lessonsIdsTotal);
 
   // Users sections completed
   const sectionIds = usersPath
@@ -44,10 +49,12 @@ function ProgressBarCircle({ strokeWidth }) {
     )
     ?.map((obj) => obj.sectionId);
 
+  console.log('total de secoes completadas', sectionIds);
+
   //lessons completed
-  const lessonsIdsCompleted = lessonsIdsTotal?.filter((item) =>
-    sectionIds?.includes(item.sectionId),
-  );
+  // const lessonsIdsCompleted = lessonsIdsTotal?.filter((item) =>
+  //   sectionIds?.includes(item.sectionId),
+  // );
 
   // Quiz total
   const quizIdsTotal = lessons?.filter((obj) => obj && obj.quiz);
@@ -60,8 +67,7 @@ function ProgressBarCircle({ strokeWidth }) {
     ?.map((obj) => obj.sectionId);
 
   const totalLessonsCourse = lessonsIdsTotal?.length + quizIdsTotal?.length;
-  const totalLessonsCompleted =
-    lessonsIdsCompleted?.length + quizIdsCompleted?.length;
+  const totalLessonsCompleted = sectionIds?.length + quizIdsCompleted?.length;
 
   let progressUser = Math.round(
     (totalLessonsCompleted / totalLessonsCourse) * 100,

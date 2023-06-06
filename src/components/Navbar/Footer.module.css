@@ -4,4 +4,29 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* background: rgb(67, 136, 219);
+  background: linear-gradient(
+    0deg,
+    rgba(67, 136, 219, 1) 0%,
+    rgba(0, 85, 187, 1) 100%
+  ); */
+
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 10px;
+}
+footer.homeFooter {
+  background-color: transparent;
+  bottom: -150px;
+}
+
+.iconSocialMedia {
+  width: 20px;
+  opacity: 0.4;
+  margin: 0 15px;
+}
+
+.iconSocialMedia:hover {
+  opacity: 0.9;
 }

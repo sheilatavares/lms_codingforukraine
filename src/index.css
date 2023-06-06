@@ -5,17 +5,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 
 body {
-  background: radial-gradient(
+  /* background: radial-gradient(
     circle,
     rgba(68, 138, 212, 1) 0%,
     rgba(37, 117, 208, 1) 100%
-  );
+  ); */
+  /* background-color: #0055bb !important; */
   margin: 0;
   font-family: 'Barlow', sans-serif !important;
   font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #777;
+  margin-bottom: 100px;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+  padding-bottom: 50px;
+}
+
+body:has(.lessonContent) {
+  background-color: #fff;
+}
+body:has(.loginContent),
+body:has(.registerContent),
+body:has(.aboutContent),
+body:has(.donateContent),
+body:has(.homeCourse) {
+  background-color: #0055bb;
+}
+
+body > div.container-full.bg-home + footer {
+  background-color: #000;
+}
+
+/* body:has(footer) {
+  background: rgb(67, 136, 219);
+  background: linear-gradient(
+    0deg,
+    rgba(67, 136, 219, 1) 0%,
+    rgba(0, 85, 187, 1) 100%
+  );
+} */
+
+body:has(.bg-home) {
+  background: radial-gradient(
+    circle,
+    rgba(68, 138, 212, 1) 0%,
+    rgba(0, 85, 187, 1) 100%
+  );
 }
 
 input::placeholder,
@@ -117,7 +157,7 @@ h5 {
   font-weight: bold !important;
 }
 h1 {
-  color: #0076bf;
+  color: #0055bb !important;
 }
 .btn:hover {
   background-color: #2869ff;
@@ -239,7 +279,9 @@ a.lesson_list {
 }
 
 a.lesson_list:hover {
-  background-color: #eee;
+  background-color: #0055bb;
+  padding: 10px;
+  color: #ffffff !important;
 }
 
 .accordion_lesson .accordion-button:not(.collapsed) {
@@ -298,19 +340,14 @@ div.icon-lesson::before {
 }
 
 footer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  bottom: 0px;
+  margin-top: auto;
 }
 
 .bg-home {
   top: -48px;
   position: relative;
   /* height: 100%; */
-  height: 639px;
+  height: 570px;
 }
 
 .login-wrap {
@@ -325,15 +362,17 @@ footer {
   bottom: 0px;
 }
 .box-highlight {
-  position: absolute;
-  right: 72px;
+  position: relative;
+
+  left: 50px;
   top: -101px;
-  height: 200px;
+  height: 100%;
+  z-index: 100;
 }
 
 .text-hgl {
   font-weight: 500;
-  color: #0076bf;
+  color: #0055bb;
   font-size: 23px;
   line-height: 0px;
 }
@@ -351,9 +390,9 @@ footer {
   z-index: 99999;
 }
 
-body:has(#home-course) {
+/* body:has(#home-course) {
   background: #fff;
-}
+} */
 
 body:has(.dataContainer) {
   background: #fff;
@@ -540,11 +579,11 @@ h5.question-text {
 
 .donate_button {
   background-color: #ffd726 !important;
-  color: #0076bf !important;
+  color: #0055bb !important;
 }
 
 .donate_button:hover {
-  background-color: #0076bf !important;
+  background-color: #0055bb !important;
   color: #ffd726 !important;
 }
 
@@ -608,4 +647,12 @@ h5.question-text {
 .questionStatement {
   overflow-y: auto;
   height: 60vh;
+}
+
+.bgBlue {
+  background-color: #0055bb;
+}
+
+.bgGrayBlue {
+  background-color: #b7cbe3;
 }

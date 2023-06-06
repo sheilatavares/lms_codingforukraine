@@ -59,6 +59,12 @@ const PostDetail = ({ data }) => {
     lessonId,
   );
 
+  // Users quiz completed
+  const quizConcluded = usersPath?.find(
+    (obj) => obj && obj.isQuiz && obj.sectionSlug === sectionSlug,
+  );
+  console.log('quiz concluido?', quizConcluded);
+
   const handleCoursePath = async (e) => {
     e.preventDefault();
 
@@ -129,25 +135,24 @@ const PostDetail = ({ data }) => {
       if (nextQuestion < parsedQuestions.length) {
         setCurrentQuestion(nextQuestion);
       } else {
-        console.log('entrou no final do quiz');
         setShowScore(true);
 
         console.log(isQuiz);
-        try {
-          const response = await insertDocument({
-            userId: user.uid,
-            moduleId,
-            sectionId,
-            lessonId: id,
-            sectionSlug,
-            moduleSlug,
-            slug,
-            isQuiz,
-          });
-          // console.log('entrou no try do quiz usersPath');
-        } catch (error) {
-          console.error(error);
-          // console.log('entrou no catch do quiz');
+        if (!quizConcluded) {
+          try {
+            const response = await insertDocument({
+              userId: user.uid,
+              moduleId,
+              sectionId,
+              lessonId: id,
+              sectionSlug,
+              moduleSlug,
+              slug,
+              isQuiz,
+            });
+          } catch (error) {
+            console.error(error);
+          }
         }
         try {
           const responseQuiz = await insertQuiz({
@@ -190,9 +195,14 @@ const PostDetail = ({ data }) => {
                     <a className=" text-decoration-none" href="">
                       <strong>Retake quiz</strong>
                     </a>
-                    <a className="btn btn-warning w-50 mt-3" href={bodyColumn}>
-                      <strong>Go to next section</strong>
-                    </a>
+                    {sectionSlug !== 'loops' ? (
+                      <a
+                        className="btn btn-warning w-50 mt-3"
+                        href={bodyColumn}
+                      >
+                        <strong>Go to next section</strong>
+                      </a>
+                    ) : null}
                   </div>
                 </div>
               ) : (

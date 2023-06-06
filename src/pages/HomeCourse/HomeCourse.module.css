@@ -29,17 +29,12 @@ a.link_account:hover {
   background-color: #005bbb;
 }
 
-/* a.link_account img {
-  content: url(https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/avatar-blue1.svg?alt=media&token=cf994884-683a-4270-8986-ea1db6ae0540);
-  width: 40px;
-}
-
-a.link_account:hover img {
-  content: url(https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/avatar-yellow.svg?alt=media&token=7ae7fede-3020-437b-8b97-2e10fb1d4a7b);
-  width: 40px;
-} */
-.bgBlue {
+.accBlue {
   background-color: #005bbb !important;
+  border-radius: 0% !important;
+}
+.accBlue::after {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
 }
 
 .bgYellow {

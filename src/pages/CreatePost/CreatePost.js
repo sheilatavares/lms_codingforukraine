@@ -180,13 +180,13 @@ const CreatePost = () => {
               onChange={(e) => setImage(e.target.value)}
             >
               <option selected>Choose...</option>
-              <option value="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/icon-lesson.svg?alt=media&token=34c1cd68-3300-471e-ab47-54b363767ea0">
+              <option value="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/icon-lesson.svg?alt=media&token=fc140020-c264-476f-a408-d16e9cadb7ed">
                 Lesson icon
               </option>
-              <option value="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/exercise-icon.svg?alt=media&token=57f17baa-d35e-45ac-8610-ea557562be7a">
+              <option value="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/icon-exercise-gray.svg?alt=media&token=264d792c-7c83-46a9-ae28-ef89eede289e">
                 Exercise icon
               </option>
-              <option value="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/quiz-icon.svg?alt=media&token=574720e9-888f-456f-8cec-cc94c1c1fcd1">
+              <option value="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/icon-quiz-gray.svg?alt=media&token=fb69bb8b-703e-4351-bb37-5de421d941d1">
                 Quiz icon
               </option>
             </select>

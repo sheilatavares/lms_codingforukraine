@@ -1,8 +1,8 @@
 .donateBox {
   background: #ffffff
-    url(https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/ukrain-snow.jpg?alt=media&token=bc61b10f-df10-443b-8690-0fc701d76a0b)
+    url(https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/ukrania-flag.png?alt=media&token=0a0640a0-399d-48fe-a70e-984a94adbd2a&_gl=1*y61q9y*_ga*MjAxNzU0MTM0LjE2ODUzODUyNTQ.*_ga_CW55HF8NVT*MTY4NTk4NzY5MS4xMS4xLjE2ODU5ODc3MDAuMC4wLjA.)
     no-repeat right top;
-  background-size: cover;
+  background-size: 70%;
   height: 100%;
 }
 

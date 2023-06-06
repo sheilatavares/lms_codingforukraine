@@ -5,21 +5,21 @@ import { useNavigate, Link } from 'react-router-dom';
 
 const About = () => {
   return (
-    <div className="container">
+    <div className="container aboutContent">
       <div className="row position-relative">
         <div className="col-lg-7 pb-5">
           <div className="text-center">
             <h1 className="text-white text-start py-5">
               Time to think on the next steps for Ukraine
             </h1>
-            <p className="text-white">
+            <p className="text-white fs-5">
               {' '}
               In these days, the IT market offers opportunities Ukrainians may
               take advantage in a short to middle term, specially by means of
               remote working to international companies or those which operate
               large outsourcing networks.
             </p>{' '}
-            <p className="text-white">
+            <p className="text-white fs-5">
               We are a group of tech professionals from different segments of
               the IT market, united by the common cause of providing a teaching
               platform for Ukrainians to build or complement tech skills. And
@@ -61,7 +61,7 @@ const About = () => {
                   type="text/css"
                   dangerouslySetInnerHTML={{
                     __html:
-                      '\n   \n    .fil2 {fill:#0076BF}\n    .fil0 {fill:#FFD726}\n    .fil1 {fill:#0076BF;fill-rule:nonzero}\n   \n  ',
+                      '\n   \n    .fil2 {fill:#0055bb}\n    .fil0 {fill:#FFD726}\n    .fil1 {fill:#0055bb;fill-rule:nonzero}\n   \n  ',
                   }}
                 />
               </defs>
