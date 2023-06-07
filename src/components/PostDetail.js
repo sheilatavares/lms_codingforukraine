@@ -249,7 +249,7 @@ const PostDetail = ({ data }) => {
                     <div className="pt-5">{result}</div>
                     <div className="d-flex align-items-end flex-column mb-3">
                       <button
-                        className="btn btn-primary mt-5 col-3"
+                        className="btn btn-primary mt-5 col-3 w-auto"
                         disabled={result != '' ? false : true}
                         onClick={() => handleNextQuestion()}
                       >

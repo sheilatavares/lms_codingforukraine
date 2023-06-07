@@ -174,7 +174,7 @@ const Account = () => {
 
   return (
     <>
-      <div className="container py-5  h-100">
+      <div className="container py-5 h-100 accountContent">
         <div className="row d-flex justify-content-center">
           <div className="col-lg-10 bg-white">
             <div className="row g-0 d-flex justify-content-center">

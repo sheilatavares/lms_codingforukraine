@@ -34,7 +34,7 @@ const LessonsSidebar = ({ moduleSlug, sectionSlug }) => {
                     <LogoCfu></LogoCfu>
                   </NavLink>
                 </div>
-                <div className="col-lg-4 d-flex justify-content-center">
+                <div className="col-4 d-flex justify-content-center">
                   <a
                     className="btn btn-primary text-white"
                     data-bs-toggle="modal"

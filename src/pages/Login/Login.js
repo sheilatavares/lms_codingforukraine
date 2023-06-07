@@ -55,7 +55,7 @@ const Login = () => {
   }, [authError]);
 
   return (
-    <div className="container-full py-5 loginContent">
+    <div className="container-full py-lg-5 loginContent">
       <div className="row g-0 justify-content-center">
         <div className="col-lg-5 bg-yellow-light mt-5 pb-3">
           <div className={`${styles.logo} d-none d-lg-block`}>
@@ -100,7 +100,7 @@ const Login = () => {
                         <small>Password</small>
                       </label>
                       <input
-                        className="form-control ps-lg-4 ps-5"
+                        className="form-control ps-3"
                         type={passwordType}
                         name="password"
                         required
@@ -108,7 +108,7 @@ const Login = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                       />
-                      <i className="fa fa-lock" style={{ top: 43 }}></i>
+                      {/* <i className="fa fa-lock" style={{ top: 43 }}></i> */}
                       <i
                         onClick={Eye}
                         className={`fa ${eye ? 'fa-eye-slash' : 'fa-eye'}`}
@@ -120,7 +120,7 @@ const Login = () => {
               </div>
 
               <div className="row g-0 ps-5">
-                <div className="col-lg-5 text-start mb-3">
+                <div className="col-5 text-start mb-3">
                   {!loading && (
                     <button className="btn btn-primary">Login</button>
                   )}
@@ -134,7 +134,7 @@ const Login = () => {
                   )}
                 </div>
 
-                <Link to={`/reset`} className="col-lg-6 text-center pt-2">
+                <Link to={`/reset`} className="col-6 text-center pt-2">
                   <strong>
                     <small>I forgot my password</small>
                   </strong>

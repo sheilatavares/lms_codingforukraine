@@ -68,8 +68,8 @@ const Home = () => {
               <div className="row g-0">
                 <div className="col-lg-8 offset-lg-4">
                   <h3 className="px-3 mt-n3 pt-3 ps-5">
-                    Relying on technology and skilling for the human development
-                    of Ukraine
+                    Relying on technology and education for the human
+                    development of Ukraine
                   </h3>
                 </div>
               </div>
@@ -105,7 +105,7 @@ const Home = () => {
                           <small>Password</small>
                         </label>
                         <input
-                          className="form-control ps-4"
+                          className="form-control ps-3"
                           type={passwordType}
                           name="password"
                           required
@@ -113,10 +113,7 @@ const Home = () => {
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                         />
-                        <i
-                          className="fa fa-lock"
-                          style={{ top: 43, left: 10 }}
-                        ></i>
+
                         <i
                           onClick={Eye}
                           className={`fa ${eye ? 'fa-eye-slash' : 'fa-eye'}`}
@@ -165,7 +162,7 @@ const Home = () => {
               ></iframe>
             </div>
           </div>
-          <div className="col-lg-5 box-highlight p-lg-3 mb-0 bg-white shadow border border-warning border-5">
+          <div className="col-lg-5 box-highlight p-3 mb-0 bg-white shadow border border-warning border-5">
             <h2>Give a try to start you programming career! </h2>{' '}
             {/* <p className="pt-3 fs-5">
                 {' '}
@@ -183,11 +180,11 @@ const Home = () => {
               <span className="text-hgl">meaningful way</span> the basic
               concepts that are the foundation for any programming language.
             </p>
-            <h4 className="pb-2">
+            <h4 className="pb-2 pt-4 text-blue fs-3">
               Course: Introduction to Javascript programming
             </h4>
             <strong>Learn it:</strong>
-            <ul className="pt-2">
+            <ul className={`${styles.boxCourse} pt-2 ps-1`}>
               <li>Computational thinking</li>
               <li>Variables </li>
               <li>Arrays</li>
@@ -198,13 +195,16 @@ const Home = () => {
             </ul>
             <div className="mb-4">
               <lead>
-                Cursor features mini hands-on challenges so you can try them out
-                with real problems!{' '}
+                During the course you will practice mini practical challenges so
+                that you can try them with real problems!
               </lead>
             </div>
             <div className="bg-yellow-light d-inline-block align-items-center p-3">
               <span className="text-hgl pt-5">
-                <Link to={`/register`}>Join</Link> us for free!
+                <Link to={`/register`} className={styles.linkRegister}>
+                  Join
+                </Link>{' '}
+                us for free!
               </span>
             </div>
           </div>

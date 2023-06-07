@@ -37,7 +37,7 @@ function Donate() {
                 </h6>
               </div>
             </div>
-            <div className="col-lg-6 mt-5 ms-lg-4 d-flex align-items-center flex-column justify-content-end">
+            <div className="col-lg-6 mt-lg-5 ms-lg-4 d-flex align-items-center flex-column justify-content-end">
               <div className={`p-lg-4 shadow ${styles.bgYellowDonate}`}>
                 <span className="lh-base fs-5">
                   Support us and become strategic partners of our project. Your

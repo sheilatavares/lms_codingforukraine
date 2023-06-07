@@ -11,7 +11,7 @@ const Footer = () => {
           location.pathname === '/' ? styles.homeFooter : null
         }`}
       >
-        <div className="py-lg-4 container">
+        <div className="py-4 mt-lg-4 container">
           <div className="row">
             <div className="col-6 d-flex justify-content-start">
               <small className="text-white">

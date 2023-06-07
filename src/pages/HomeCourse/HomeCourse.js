@@ -65,7 +65,7 @@ const HomeCourse = () => {
             </h2>
           </div>
           <div className="col-lg-6 pt-4 pt-sm-2 d-flex flex-column align-items-md-end align-items-center justify-content-center">
-            <div className="row g-0 justify-content-end">
+            <div className="row g-0 justify-content-lg-end justify-content-center">
               <div className="col-lg-5 col-5 pe-lg-4 d-flex justify-content-center align-items-center flex-column me-3 me-lg-0">
                 <ProgressBarCircle strokeWidth="6"></ProgressBarCircle>
                 <div className="d-flex flex-column">
@@ -175,7 +175,7 @@ const HomeCourse = () => {
                     <h4 className="text-uppercase">Coming soon</h4>
                   </figcaption>
                   <p
-                    className={`${styles.textGray} lh-sm mt-4 pt-3 pb-2 ps-2 mb-0`}
+                    className={`${styles.textGray} lh-sm mt-4 pt-lg-3 pt-5 pb-2 ps-2 mb-0`}
                   >
                     Join this course and embark on a journey where you will
                     learn to develop blending HTML, CSS, and JavaScript to craft

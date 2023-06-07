@@ -5,55 +5,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 
 body {
-  /* background: radial-gradient(
-    circle,
-    rgba(68, 138, 212, 1) 0%,
-    rgba(37, 117, 208, 1) 100%
-  ); */
-  /* background-color: #0055bb !important; */
+  background-color: #0055bb !important;
   margin: 0;
   font-family: 'Barlow', sans-serif !important;
   font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #777;
-  margin-bottom: 100px;
+  margin-bottom: 150px;
 }
 
 html {
   position: relative;
   min-height: 100%;
-  padding-bottom: 50px;
+  padding-bottom: 100px;
 }
 
+html:has(.lessonContent) {
+  position: relative;
+  min-height: 100%;
+  padding-bottom: 0px;
+}
 body:has(.lessonContent) {
   background-color: #fff;
 }
-body:has(.loginContent),
+/* body:has(.loginContent),
 body:has(.registerContent),
 body:has(.aboutContent),
 body:has(.donateContent),
-body:has(.homeCourse) {
+body:has(.homeCourse),
+body:has(.accountContent) {
   background-color: #0055bb;
-}
-
-body > div.container-full.bg-home + footer {
-  background-color: #000;
-}
-
-/* body:has(footer) {
-  background: rgb(67, 136, 219);
-  background: linear-gradient(
-    0deg,
-    rgba(67, 136, 219, 1) 0%,
-    rgba(0, 85, 187, 1) 100%
-  );
 } */
 
 body:has(.bg-home) {
   background: radial-gradient(
     circle,
-    rgba(68, 138, 212, 1) 0%,
+    rgb(4, 107, 234) 0%,
     rgba(0, 85, 187, 1) 100%
   );
 }
@@ -319,9 +307,9 @@ div.icon-lesson::before {
 .bg-blue-1 {
   background-color: #3d88db;
 }
-.dataContainer {
+/* .dataContainer {
   height: 600px;
-}
+} */
 
 .container-pagination {
   top: 20px;
@@ -611,6 +599,12 @@ h5.question-text {
 }
 
 @media only screen and (max-width: 600px) {
+  html {
+    position: static;
+    min-height: 100%;
+    padding-bottom: 100px;
+  }
+
   .login-wrap {
     position: static;
     left: 0%;
@@ -620,10 +614,9 @@ h5.question-text {
     background: none;
   }
   .box-highlight {
-    position: static;
-    right: 72px;
-    top: -101px;
-    height: 200px;
+    position: relative;
+    left: 0px;
+    top: 0px;
   }
   .modal.lesson-sidebar .modal-content {
     width: 80%;
