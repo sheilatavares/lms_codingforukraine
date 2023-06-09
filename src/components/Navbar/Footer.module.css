@@ -34,7 +34,7 @@ footer.homeFooter {
 @media only screen and (max-width: 600px) {
   footer.homeFooter {
     background-color: #0055bb;
-    bottom: -710px;
+    bottom: -790px;
     position: relative;
     z-index: 100;
   }
