@@ -13,7 +13,7 @@ import { useState, useRef, useCallback } from 'react';
 
 const Dashboard = () => {
   const { user } = useAuthValue();
-  const uid = user.uid;
+  const uid = user?.uid;
   const { moduleSlug, sectionSlug, slug } = useParams();
 
   //modules and sections

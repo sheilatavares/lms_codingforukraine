@@ -39,7 +39,11 @@ const Footer = () => {
                   src="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/youtube.svg?alt=media&token=14d2c330-37da-498b-a740-77f216befb6e&_gl=1*u8gung*_ga*MjAxNzU0MTM0LjE2ODUzODUyNTQ.*_ga_CW55HF8NVT*MTY4NTk3OTkyNS45LjEuMTY4NTk3OTk2Mi4wLjAuMA.."
                 ></img>
               </a>
-              <a href="#" target="_blank">
+              <a
+                href="https://www.linkedin.com/company/codingforukraine/?viewAsMember=true"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <img
                   className={styles.iconSocialMedia}
                   src="https://firebasestorage.googleapis.com/v0/b/coding-for-ukraine.appspot.com/o/linkedin.svg?alt=media&token=b73a5cb9-bd37-412d-a931-bdc84238b3ce&_gl=1*1u5sjp9*_ga*MjAxNzU0MTM0LjE2ODUzODUyNTQ.*_ga_CW55HF8NVT*MTY4NTk3OTkyNS45LjEuMTY4NTk4MDE0Ni4wLjAuMA.."

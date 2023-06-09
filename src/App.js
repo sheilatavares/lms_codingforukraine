@@ -121,7 +121,7 @@ function App() {
                 path="/jslivecode/"
                 element={!user ? <Navigate to="/" /> : <JsLiveCode />}
               />
-              <Route path="/search" element={<Search />} />
+
               <Route
                 path="/login"
                 element={!user ? <Login /> : <Navigate to="/myhome" />}
@@ -149,7 +149,7 @@ function App() {
               <Route
                 path="/dashboard"
                 element={
-                  userId === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' ? (
+                  !userId === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' ? (
                     <Dashboard />
                   ) : (
                     <Navigate to="/login" />

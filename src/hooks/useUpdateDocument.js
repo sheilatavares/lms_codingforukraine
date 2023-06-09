@@ -42,7 +42,7 @@ export const useUpdateDocument = (docCollection) => {
 
       const updatedDocument = await updateDoc(docRef, data);
 
-      console.log(updateDocument);
+      // console.log(updateDocument);
 
       checkCancelBeforeDispatch({
         type: 'UPDATED_DOC',
