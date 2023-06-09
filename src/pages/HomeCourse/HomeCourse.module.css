@@ -20,6 +20,8 @@ a.link_account {
   text-decoration: none;
   width: 150px;
   height: 40px;
+  background-color: #005bbb;
+  color: #fff;
 }
 
 a.link_account:hover {
