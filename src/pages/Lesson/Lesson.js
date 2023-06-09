@@ -60,7 +60,7 @@ const Post = () => {
 
   return (
     <>
-      <div className="d-flex flex-column justify-content-center py-4 bg-white lessonContent">
+      <div className="d-flex flex-column justify-content-start py-4 bg-white lessonContent">
         <div className="justify-content-end d-flex pe-lg-5 pe-2">
           <button
             type="button"

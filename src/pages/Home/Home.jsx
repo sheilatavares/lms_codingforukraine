@@ -52,9 +52,9 @@ const Home = () => {
   }, [authError]);
 
   return (
-    <div>
+    <>
       <div className="container-full bg-home">
-        <div className="row g-0 mt-5 pt-5 g-0">
+        <div className="row g-0 g-0 pb-lg-3">
           <div className="col-lg-5 bg-yellow-light login-wrap mt-lg-5 pb-3">
             <div
               className={`${styles.logo} d-none d-lg-inline-flex justify-content-center align-items-center`}
@@ -206,7 +206,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

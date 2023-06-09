@@ -7,7 +7,7 @@ const Footer = () => {
   if (!location.pathname.includes('lesson')) {
     return (
       <footer
-        className={`container-full px-lg-5 ${
+        className={`container-full px-lg-5 bgBlue ${
           location.pathname === '/' ? styles.homeFooter : null
         }`}
       >

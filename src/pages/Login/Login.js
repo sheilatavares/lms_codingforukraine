@@ -53,7 +53,7 @@ const Login = () => {
   }, [authError]);
 
   return (
-    <div className="container-full py-lg-5 loginContent">
+    <div className="container-full py-lg-5 loginContent bgBlue">
       <div className="row g-0 justify-content-center mt-lg-5">
         <div className="col-lg-5 bg-yellow-light mt-5 pb-3">
           <div className={`${styles.logo} d-none d-lg-block`}>

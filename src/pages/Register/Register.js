@@ -3,6 +3,7 @@ import { useAuthValue } from '../../context/AuthContext';
 import { useState, useEffect } from 'react';
 import { useAuthentication } from '../../hooks/useAuthentication';
 import photo from './img/coding-friends-register.jpg';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [displayName, setDisplayName] = useState('');
@@ -52,6 +53,8 @@ const Register = () => {
     systemMessageError,
   } = useAuthentication();
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -72,6 +75,11 @@ const Register = () => {
       const res = await createUser(user);
 
       setSuccess(true);
+
+      if (res) {
+        // Redirect to /my-home if res is successful
+        navigate('/myhome');
+      }
 
       setTimeActive(true);
     } catch (error) {
@@ -122,7 +130,7 @@ const Register = () => {
         <div className="col-lg-4">
           <img src={photo} className="w-100 shadow"></img>
         </div>
-        <div className="col-lg-7 d-flex justify-content-lg-end">
+        <div className="col-lg-7 d-flex justify-content-lg-center">
           {!success ? (
             <form
               onSubmit={handleSubmit}
@@ -215,16 +223,18 @@ const Register = () => {
               </div>
             </form>
           ) : (
-            <div className="row g-0 d-flex justify-content-center align-items-center">
-              <div className="border col-lg-7 rounded bg-white p-4">
-                <h3 className="text-center mb-4">Verify your Email Address</h3>
-                {/* <p>A verification has been sent to:</p>
+            <div className="">
+              {/* <div className="border col-lg-7 rounded bg-white p-4"> */}
+              <h4 className="text-start text-blue mb-4">
+                Redirecting to course menu...
+              </h4>
+              {/* <p>A verification has been sent to:</p>
                 <p className="text-primary">{email}</p>
                 <p>
                   Follow the instructions sent to your email to verify your
                   account.
                 </p> */}
-                {systemMessageReturn}
+              {/* {systemMessageReturn}
                 {systemMessageError}
                 {systemMessageReturn && (
                   <button
@@ -234,8 +244,8 @@ const Register = () => {
                   >
                     Resend Email {timeActive && time}
                   </button>
-                )}
-              </div>
+                )} */}
+              {/* </div> */}
             </div>
           )}
         </div>

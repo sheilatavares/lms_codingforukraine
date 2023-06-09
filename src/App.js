@@ -63,117 +63,115 @@ function App() {
       <AuthProvider value={{ user }}>
         <BrowserRouter>
           <Navbar />
-          <div className="container-full">
-            <Routes>
-              <Route
-                path="/"
-                element={user ? <Navigate to="/myhome" /> : <Home />}
-              />
-              <Route path="/about" element={<About />} />
-              <Route
-                path="/posts/create-module"
-                element={
-                  userId === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' ? (
-                    <CreateModule />
-                  ) : (
-                    <Navigate to="/login" />
-                  )
-                }
-              />
-              <Route
-                path="/posts/create-section"
-                element={
-                  userId === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' ? (
-                    <CreateSection />
-                  ) : (
-                    <Navigate to="/login" />
-                  )
-                }
-              />
-              <Route
-                path="/posts/create"
-                element={
-                  userId === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' ? (
-                    <CreatePost />
-                  ) : (
-                    <Navigate to="/login" />
-                  )
-                }
-              />
-              <Route
-                path="/posts/edit/:id"
-                element={
-                  userId === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' ? (
-                    <EditPost />
-                  ) : (
-                    <Navigate to="/login" />
-                  )
-                }
-              />
 
-              <Route
-                exact
-                path="/lesson/:moduleSlug/:sectionSlug/:slug/:order/"
-                element={!user ? <Navigate to="/" /> : <Lesson />}
-              />
-              <Route
-                exact
-                path="/jslivecode/"
-                element={!user ? <Navigate to="/" /> : <JsLiveCode />}
-              />
+          <Routes>
+            <Route
+              path="/"
+              element={user ? <Navigate to="/myhome" /> : <Home />}
+            />
+            <Route path="/about" element={<About />} />
+            <Route
+              path="/posts/create-module"
+              element={
+                userId === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' ? (
+                  <CreateModule />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+            <Route
+              path="/posts/create-section"
+              element={
+                userId === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' ? (
+                  <CreateSection />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+            <Route
+              path="/posts/create"
+              element={
+                userId === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' ? (
+                  <CreatePost />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+            <Route
+              path="/posts/edit/:id"
+              element={
+                userId === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' ? (
+                  <EditPost />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
 
-              <Route
-                path="/login"
-                element={!user ? <Login /> : <Navigate to="/myhome" />}
-              />
-              <Route
-                path="/register"
-                element={!user?.emailVerified ? <Register /> : null}
-              />
+            <Route
+              exact
+              path="/lesson/:moduleSlug/:sectionSlug/:slug/:order/"
+              element={!user ? <Navigate to="/" /> : <Lesson />}
+            />
+            <Route
+              exact
+              path="/jslivecode/"
+              element={!user ? <Navigate to="/" /> : <JsLiveCode />}
+            />
 
-              <Route
-                path="/reset"
-                element={!user ? <Reset /> : <Navigate to="/myhome" />}
-              />
-              <Route
-                path="/verify"
-                element={!user?.emailVerified && <PasswordReset />}
-              />
+            <Route
+              path="/login"
+              element={!user ? <Login /> : <Navigate to="/myhome" />}
+            />
+            <Route
+              path="/register"
+              element={!user ? <Register /> : <Navigate to="/" />}
+            />
 
-              <Route
-                path="/account"
-                element={
-                  user ? <Account user={{ user }} /> : <Navigate to="/" />
-                }
-              />
-              <Route
-                path="/dashboard"
-                element={
-                  !userId === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' ? (
-                    <Dashboard />
-                  ) : (
-                    <Navigate to="/login" />
-                  )
-                }
-              />
-              <Route
-                exact
-                path="/dashboard/:moduleSlug/:sectionSlug/:slug"
-                element={
-                  !userId === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' ? (
-                    <Navigate to="/" />
-                  ) : (
-                    <Dashboard />
-                  )
-                }
-              />
-              <Route
-                path="/myhome"
-                element={user ? <HomeCourse /> : <Navigate to="/login" />}
-              />
-              <Route path="/donate" element={<Donate />} />
-            </Routes>
-          </div>
+            <Route
+              path="/reset"
+              element={!user ? <Reset /> : <Navigate to="/myhome" />}
+            />
+            <Route
+              path="/verify"
+              element={!user?.emailVerified && <PasswordReset />}
+            />
+
+            <Route
+              path="/account"
+              element={user ? <Account user={{ user }} /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/dashboard"
+              element={
+                !userId === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' ? (
+                  <Dashboard />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+            <Route
+              exact
+              path="/dashboard/:moduleSlug/:sectionSlug/:slug"
+              element={
+                !userId === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Dashboard />
+                )
+              }
+            />
+            <Route
+              path="/myhome"
+              element={user ? <HomeCourse /> : <Navigate to="/login" />}
+            />
+            <Route path="/donate" element={<Donate />} />
+          </Routes>
+
           <Footer />
         </BrowserRouter>
       </AuthProvider>
