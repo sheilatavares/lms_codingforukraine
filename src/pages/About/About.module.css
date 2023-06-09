@@ -16,3 +16,12 @@ div.content {
   margin-top: 15px;
   padding: 15px 10px;
 }
+.contactButton {
+  background-color: #ffd726 !important;
+  color: #0055bb !important;
+}
+
+.contactButton:hover {
+  background-color: #c47987;
+  color: #d1536a;
+}

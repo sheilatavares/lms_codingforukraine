@@ -143,7 +143,9 @@ const HomeCourse = () => {
                   <figcaption>
                     <h4 className="text-uppercase">Coming soon</h4>
                   </figcaption>
-                  <p className={`${styles.textGray} lh-sm mt-5 pb-2 ps-1`}>
+                  <p
+                    className={`${styles.textGray} lh-sm mt-lg-5 mt-4 pb-2 ps-1`}
+                  >
                     Take your JavaScript to the next level by learning more
                     complex web apps using concepts such as classes, promises,
                     async/await, and requests.
@@ -171,11 +173,11 @@ const HomeCourse = () => {
                     </div>
                   </div>
 
-                  <figcaption style={{ top: '110px' }}>
+                  <figcaption className={styles.interactiveCard}>
                     <h4 className="text-uppercase">Coming soon</h4>
                   </figcaption>
                   <p
-                    className={`${styles.textGray} lh-sm mt-4 pt-lg-3 pt-5 pb-2 ps-2 mb-0`}
+                    className={`${styles.textGray} lh-sm mt-4 pt-lg-3 pt-4 pb-2 ps-2 mb-0`}
                   >
                     Join this course and embark on a journey where you will
                     learn to develop blending HTML, CSS, and JavaScript to craft

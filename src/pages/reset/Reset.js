@@ -29,7 +29,7 @@ const Reset = () => {
         if (res instanceof Error) {
           setError(res.message);
         } else {
-          console.log(successful);
+          // console.log(successful);
         }
         setSuccess(true);
       })
@@ -46,8 +46,6 @@ const Reset = () => {
       setSuccess(true);
     }
   }, [authError, success]);
-
-  console.log(success);
 
   return (
     <>

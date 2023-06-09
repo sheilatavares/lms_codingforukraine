@@ -101,8 +101,6 @@ const Account = () => {
       setError(res.message);
     }
     setFormEmail(false);
-
-    // console.log(res);
   };
 
   const handleSubmitPassword = async (e) => {

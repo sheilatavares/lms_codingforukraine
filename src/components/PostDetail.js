@@ -63,7 +63,6 @@ const PostDetail = ({ data }) => {
   const quizConcluded = usersPath?.find(
     (obj) => obj && obj.isQuiz && obj.sectionSlug === sectionSlug,
   );
-  console.log('quiz concluido?', quizConcluded);
 
   const handleCoursePath = async (e) => {
     e.preventDefault();
@@ -137,7 +136,6 @@ const PostDetail = ({ data }) => {
       } else {
         setShowScore(true);
 
-        console.log(isQuiz);
         if (!quizConcluded) {
           try {
             const response = await insertDocument({
@@ -340,7 +338,7 @@ const PostDetail = ({ data }) => {
 PostDetail.propTypes = {
   data: P.shape({
     title: P.string,
-    quiz: P.boolean,
+    quiz: P.bool,
     id: P.string,
     sectionSlug: P.string,
     moduleSlug: P.string,
@@ -348,7 +346,7 @@ PostDetail.propTypes = {
     moduleId: P.string,
     body: P.string,
     bodyColumn: P.string,
-    ordination: P.string,
+    ordination: P.oneOfType([P.string, P.number]), // Accepts both string and number
     column: P.string,
     slug: P.string,
   }),

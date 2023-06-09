@@ -60,20 +60,8 @@ const CreatePost = () => {
     });
     const sectionsValues = Object.values(sectionsMerged);
 
-    // console.log(sectionsMerged);
-
     let result;
-    // if (select === 'module') {
-    //   return sectionsValues.map((module, index) => (
-    //     <option
-    //       key={module.id}
-    //       data-value={module.slug}
-    //       value={module.moduleId}
-    //     >
-    //       {module.module}
-    //     </option>
-    //   ));
-    // } else {
+
     return sections
       .filter((emp) => emp.moduleId === value)
 
@@ -82,7 +70,6 @@ const CreatePost = () => {
           Section {ord.ordination} - {ord.section}
         </option>
       ));
-    // }
   };
 
   function onChangeModule(event) {
@@ -107,23 +94,23 @@ const CreatePost = () => {
 
     setFormError('');
 
-    console.log({
-      course,
+    // console.log({
+    //   course,
 
-      moduleSlug,
-      moduleId,
-      quiz,
-      sectionSlug,
-      sectionId,
-      title,
-      ordination,
-      body,
-      column,
-      bodyColumn,
-      slug,
-      uid: user.uid,
-      createdBy: user.displayName,
-    });
+    //   moduleSlug,
+    //   moduleId,
+    //   quiz,
+    //   sectionSlug,
+    //   sectionId,
+    //   title,
+    //   ordination,
+    //   body,
+    //   column,
+    //   bodyColumn,
+    //   slug,
+    //   uid: user.uid,
+    //   createdBy: user.displayName,
+    // });
 
     if (formError) {
       return;

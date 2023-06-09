@@ -1,46 +1,68 @@
 import React from 'react';
 import styles from './About.module.css';
 import logo from './img/cfu_bird.jpg';
+import sheila from './img/sheila-about.jpg';
 import { useNavigate, Link } from 'react-router-dom';
 
 const About = () => {
   return (
     <div className="container aboutContent">
-      <div className="row position-relative">
+      <div className="row position-relative justify-content-center d-flex flex-column flex-lg-row flex-column-reverse">
         <div className="col-lg-7 pb-5">
-          <div className="text-center">
+          <div className="">
             <h1 className="text-white text-start py-5">
               Time to think on the next steps for Ukraine
             </h1>
+            <h2 className="text-warning">Hi! Im Sheila</h2>
             <p className="text-white fs-5">
-              {' '}
-              In these days, the IT market offers opportunities Ukrainians may
-              take advantage in a short to middle term, specially by means of
-              remote working to international companies or those which operate
-              large outsourcing networks.
-            </p>{' '}
+              Sheila Tavares has over 15 years of experience in the education
+              and technology industries, and she seeks to combine the best of
+              both sectors to create a future of learning that is engaging and
+              impactful. Her expertise throughout these diverse range of
+              experiences, incorporating front-end development skills,
+              user-centric approach, cultural adaptability, and commitment to
+              continuous learning, creates a valuable asset to engage impactful
+              learning experiences for organizations and students.{' '}
+            </p>
             <p className="text-white fs-5">
-              We are a group of tech professionals from different segments of
-              the IT market, united by the common cause of providing a teaching
-              platform for Ukrainians to build or complement tech skills. And
-              with that intention we developed a quality and convenient platform
-              for human skill expansion directed specially to Ukrainians, a
-              highly-educated population naturally enthusiastic to master
-              technology skills.{' '}
-            </p>{' '}
-            <div className="text-start w-50 pt-4">
+              In these days, the IT market offers opportunities that Ukrainians
+              may take advantage in a short to middle term, in particular by
+              means of working remotelly, offering services to international
+              companies or those operating large outsourcing networks.
+            </p>
+            <p className="text-white fs-5">
+              This project is the result of a partnership with tech
+              professionals from different segments of the IT market, united by
+              the common cause of providing a teaching platform for Ukrainians
+              to build or complement their tech skills. With that intention, we
+              developed a quality and convenient platform for expanding these
+              abilities while directed especially to Ukrainians, a
+              highly-educated population and naturally enthusiastic to master
+              technology qualifications.
+            </p>
+            <div className="text-start pt-4">
               <Link
                 to="/register"
-                className="btn btn-lg btn-warning text-primary w-100 shadow"
+                className="btn btn-lg donate_button text-blue shadow text-nowrap d-inline"
               >
                 <strong>Start learning code for free!</strong>
               </Link>
             </div>
           </div>
         </div>
-        <div className="col-lg-4 ms-lg-5 p-5 bg-white box-about position-lg-absolute">
-          {' '}
-          <div className="text-center">
+        <div className="col-lg-4 d-flex flex-column align-items-center mt-3 mt-lg-0">
+          <img src={sheila} className="w-100" />
+          <a
+            href="https://www.linkedin.com/in/sheila-tavares/"
+            className={`btn btn-sm mt-3 donate_button`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <small>
+              <strong>Contact me</strong>
+            </small>
+          </a>
+          {/* <div className="text-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               xmlSpace="preserve"
@@ -85,13 +107,13 @@ const About = () => {
                 />
               </g>
             </svg>
-          </div>
-          <p className="fs-5">
+          </div> */}
+          {/* <p className="fs-5">
             By inserting into the international field of the tech-related
             careers, Ukrainian professionals will be able to access reliable
             prospects of income building and so decisively improve family
             welfare.
-          </p>
+          </p> */}
         </div>
       </div>
       {/* <div className="row">

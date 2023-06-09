@@ -13,8 +13,6 @@ export const useFetchLessons = (docCollection, moduleSlug, sectionSlug) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // console.log('modulo:', moduleSlug, 'secao', sectionSlug);
-
   // deal with memory leak
   const [cancelled, setCancelled] = useState(false);
 

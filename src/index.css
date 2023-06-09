@@ -5,7 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 
 body {
-  background-color: #0055bb !important;
+  /* background-color: #0055bb !important; */
   margin: 0;
   font-family: 'Barlow', sans-serif !important;
   font-family: 'Open Sans', sans-serif;
@@ -29,14 +29,14 @@ html:has(.lessonContent) {
 body:has(.lessonContent) {
   background-color: #fff;
 }
-/* body:has(.loginContent),
+body:has(.loginContent),
 body:has(.registerContent),
 body:has(.aboutContent),
 body:has(.donateContent),
 body:has(.homeCourse),
 body:has(.accountContent) {
   background-color: #0055bb;
-} */
+}
 
 body:has(.bg-home) {
   background: radial-gradient(
@@ -571,7 +571,7 @@ h5.question-text {
 }
 
 .donate_button:hover {
-  background-color: #0055bb !important;
+  background-color: #096de7 !important;
   color: #ffd726 !important;
 }
 
@@ -602,7 +602,7 @@ h5.question-text {
   html {
     position: static;
     min-height: 100%;
-    padding-bottom: 100px;
+    padding-bottom: 0px;
   }
 
   .login-wrap {

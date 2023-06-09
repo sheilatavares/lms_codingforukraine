@@ -40,16 +40,12 @@ function ProgressBarCircle({ strokeWidth }) {
     (obj) => obj && obj.id !== 'F0bt7WvKdHrIGOpkpNtB',
   );
 
-  console.log('total de secoes', lessonsIdsTotal);
-
   // Users sections completed
   const sectionIds = usersPath
     ?.filter(
       (obj) => obj && !obj.isQuiz && obj.sectionId !== 'F0bt7WvKdHrIGOpkpNtB',
     )
     ?.map((obj) => obj.sectionId);
-
-  console.log('total de secoes completadas', sectionIds);
 
   //lessons completed
   // const lessonsIdsCompleted = lessonsIdsTotal?.filter((item) =>

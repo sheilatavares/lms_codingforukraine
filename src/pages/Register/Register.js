@@ -122,7 +122,7 @@ const Register = () => {
         <div className="col-lg-4">
           <img src={photo} className="w-100 shadow"></img>
         </div>
-        <div className="col-lg-7 ">
+        <div className="col-lg-7 d-flex justify-content-lg-end">
           {!success ? (
             <form
               onSubmit={handleSubmit}
@@ -137,7 +137,7 @@ const Register = () => {
                       className="form-control"
                       name="displayName"
                       required
-                      placeholder="Your user name"
+                      placeholder="Your name"
                       value={displayName}
                       onChange={(e) => setDisplayName(e.target.value)}
                     />

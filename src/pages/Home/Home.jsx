@@ -44,8 +44,6 @@ const Home = () => {
     };
 
     const res = await login(user);
-
-    console.log(res);
   };
   useEffect(() => {
     if (authError) {
@@ -80,7 +78,7 @@ const Home = () => {
                     <strong>Log in for access our content:</strong>
                   </p> */}
                   <div className="row g-0">
-                    <div className="col-7">
+                    <div className="col-lg-7">
                       <div className="mb-3 pt-1">
                         <label className="form-label text-black">
                           <small>Email address</small>
@@ -158,12 +156,12 @@ const Home = () => {
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
+                allowFullScreen
               ></iframe>
             </div>
           </div>
           <div className="col-lg-5 box-highlight p-3 mb-0 bg-white shadow border border-warning border-5">
-            <h2>Give a try to start you programming career! </h2>{' '}
+            <h2>Give a try to start your programming career! </h2>{' '}
             {/* <p className="pt-3 fs-5">
                 {' '}
                 Try coding at the beginning of our course, we
@@ -174,7 +172,7 @@ const Home = () => {
             <p className="mt-4 lh-lg">
               {' '}
               Start your <span className="text-hgl">
-                career as developer
+                career as a developer
               </span>{' '}
               by learning in a deep and{' '}
               <span className="text-hgl">meaningful way</span> the basic
@@ -183,9 +181,9 @@ const Home = () => {
             <h4 className="pb-2 pt-4 text-blue fs-3">
               Course: Introduction to Javascript programming
             </h4>
-            <strong>Learn it:</strong>
+            <strong>You will learn:</strong>
             <ul className={`${styles.boxCourse} pt-2 ps-1`}>
-              <li>Computational thinking</li>
+              <li>Problem solving</li>
               <li>Variables </li>
               <li>Arrays</li>
               <li>Loops</li>
@@ -194,10 +192,8 @@ const Home = () => {
               <li>Functions</li>
             </ul>
             <div className="mb-4">
-              <lead>
-                During the course you will practice mini practical challenges so
-                that you can try them with real problems!
-              </lead>
+              During the course, you will complete practical exercises so that
+              you can have a realistic view of the language!
             </div>
             <div className="bg-yellow-light d-inline-block align-items-center p-3">
               <span className="text-hgl pt-5">

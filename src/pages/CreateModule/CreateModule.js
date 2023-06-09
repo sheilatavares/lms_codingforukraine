@@ -20,8 +20,6 @@ const CreateModule = () => {
 
   const { insertDocument, response } = useInsertDocument('modules');
 
-  // if (sections) console.log(sections);
-
   const deleteModule = (lessonTitle, lessonId) => {
     let msg = confirm(`Are you sure that you want to delete ${lessonTitle}?`);
     if (msg) deleteDocument(lessonId);
@@ -56,8 +54,6 @@ const CreateModule = () => {
       </div>
     ));
   };
-
-  // console.log(sectionsUp);
 
   const navigate = useNavigate();
 

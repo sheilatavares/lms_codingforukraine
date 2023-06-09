@@ -75,8 +75,6 @@ export const useFetchSavedPath = (
     loadData();
   }, [docCollection, userId, lessonId, cancelled]);
 
-  // console.log('que vem do fetch usersPath', userId, docCollection, documents);
-
   useEffect(() => {
     return () => setCancelled(true);
   }, []);

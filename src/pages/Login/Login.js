@@ -45,8 +45,6 @@ const Login = () => {
     };
 
     const res = await login(user);
-
-    console.log(res);
   };
   useEffect(() => {
     if (authError) {
@@ -56,14 +54,14 @@ const Login = () => {
 
   return (
     <div className="container-full py-lg-5 loginContent">
-      <div className="row g-0 justify-content-center">
+      <div className="row g-0 justify-content-center mt-lg-5">
         <div className="col-lg-5 bg-yellow-light mt-5 pb-3">
           <div className={`${styles.logo} d-none d-lg-block`}>
             <LogoComplete />
           </div>
           <div className={styles.login}>
             <div className="row g-0">
-              <div className="col-lg-6 ps-5 offset-lg-4 text-start">
+              <div className="col-lg-6 ps-4 offset-lg-4 text-start">
                 <h5 className="px-3 mt-n3 pt-5 ps-4">
                   Log in to access our content
                 </h5>
