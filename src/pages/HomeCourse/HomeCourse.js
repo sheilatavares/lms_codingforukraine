@@ -87,7 +87,7 @@ const HomeCourse = () => {
                 <span className="mt-2">Have a good study day!</span>
 
                 <Link
-                  className={`btn rounded-pill d-flex align-items-center justify-content-center mt-2 py-1 ${styles.link_account}`}
+                  className={`btn rounded-pill d-flex align-items-center text-nowrap d-inline justify-content-center mt-2 p-3 ${styles.link_account}`}
                   to={`/account`}
                 >
                   <img></img>
