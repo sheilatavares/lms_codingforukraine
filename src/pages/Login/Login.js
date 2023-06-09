@@ -133,9 +133,7 @@ const Login = () => {
                 </div>
 
                 <Link to={`/reset`} className="col-6 text-center pt-2">
-                  <strong>
-                    <small>I forgot my password</small>
-                  </strong>
+                  <small>I forgot my password</small>
                 </Link>
               </div>
               <div className="row g-0 ps-5">

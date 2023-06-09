@@ -64,11 +64,11 @@ const Home = () => {
             <img src={homeMobile} className="w-100 d-lg-none d-block"></img>
             <div className={styles.login}>
               <div className="row g-0">
-                <div className="col-lg-8 offset-lg-4">
-                  <h3 className="px-3 mt-n3 pt-3 ps-5">
+                <div className="col-lg-8 offset-lg-4 d-flex justify-content-center">
+                  <h4 className="px-3 mt-n3 pt-3 ps-lg-5 ms-lg-2 text-center text-lg-start">
                     Relying on technology and education for the human
                     development of Ukraine
-                  </h3>
+                  </h4>
                 </div>
               </div>
 
@@ -169,14 +169,10 @@ const Home = () => {
                 understand programming even if you never have contact with any
                 code.{' '}
               </p> */}
-            <p className="mt-4 lh-lg">
-              {' '}
-              Start your <span className="text-hgl">
-                career as a developer
-              </span>{' '}
-              by learning in a deep and{' '}
-              <span className="text-hgl">meaningful way</span> the basic
-              concepts that are the foundation for any programming language.
+            <p className="mt-4 lh-base">
+              Start your <strong>career as a developer</strong> by learning in a
+              deep and meaningful way the basic concepts that are the foundation
+              for any programming language.
             </p>
             <h4 className="pb-2 pt-4 text-blue fs-3">
               Course: Introduction to Javascript programming
@@ -195,12 +191,14 @@ const Home = () => {
               During the course, you will complete practical exercises so that
               you can have a realistic view of the language!
             </div>
-            <div className="bg-yellow-light d-inline-block align-items-center p-3">
-              <span className="text-hgl pt-5">
-                <Link to={`/register`} className={styles.linkRegister}>
-                  Join
+            <div className="mb-5">
+              <span className="">
+                <Link
+                  to={`/register`}
+                  className={`btn donate_button text-nowrap d-inline `}
+                >
+                  Join us for free!
                 </Link>{' '}
-                us for free!
               </span>
             </div>
           </div>

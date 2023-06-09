@@ -13,21 +13,22 @@ const About = () => {
             <h1 className="text-white text-start py-5">
               Time to think on the next steps for Ukraine
             </h1>
-            <h2 className="text-warning">Hi! Im Sheila</h2>
+            <h2 className="text-warning">Hi! I&apos;m Sheila</h2>
             <p className="text-white fs-5">
               Sheila Tavares has over 15 years of experience in the education
               and technology industries, and she seeks to combine the best of
               both sectors to create a future of learning that is engaging and
-              impactful. Her expertise throughout these diverse range of
+              impactful. Her expertise throughout this diverse range of
               experiences, incorporating front-end development skills,
-              user-centric approach, cultural adaptability, and commitment to
-              continuous learning, creates a valuable asset to engage impactful
-              learning experiences for organizations and students.{' '}
+              user-centric approach, cultural adaptability as well as the
+              commitment to continuous learning, creates a valuable asset to
+              engage impactful learning experiences for organizations and
+              students.{' '}
             </p>
             <p className="text-white fs-5">
               In these days, the IT market offers opportunities that Ukrainians
               may take advantage in a short to middle term, in particular by
-              means of working remotelly, offering services to international
+              means of working remotely, offering services to international
               companies or those operating large outsourcing networks.
             </p>
             <p className="text-white fs-5">
@@ -35,10 +36,10 @@ const About = () => {
               professionals from different segments of the IT market, united by
               the common cause of providing a teaching platform for Ukrainians
               to build or complement their tech skills. With that intention, we
-              developed a quality and convenient platform for expanding these
-              abilities while directed especially to Ukrainians, a
-              highly-educated population and naturally enthusiastic to master
-              technology qualifications.
+              developed a quality and convenient platform to foster the
+              expansion of these abilities, aiming especially to the Ukrainian
+              public, a highly-educated population and naturally enthusiastic to
+              master technology qualifications.
             </p>
             <div className="text-start pt-4">
               <Link
