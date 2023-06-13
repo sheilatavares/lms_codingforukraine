@@ -65,7 +65,7 @@ const Home = () => {
             <div className={styles.login}>
               <div className="row g-0">
                 <div className="col-lg-8 offset-lg-4 d-flex justify-content-center">
-                  <h4 className="px-3 mt-n3 pt-3 ps-lg-5 ms-lg-2 text-center text-lg-start">
+                  <h4 className="px-3 mt-n3 pt-3 ps-lg-4 ms-lg-2 text-center text-lg-start">
                     Relying on technology and education for the human
                     development of Ukraine
                   </h4>
@@ -79,7 +79,7 @@ const Home = () => {
                   </p> */}
                   <div className="row g-0">
                     <div className="col-lg-7">
-                      <div className="mb-3 pt-1">
+                      <div className="mb-3 pt-3">
                         <label className="form-label text-black">
                           <small>Email address</small>
                         </label>
