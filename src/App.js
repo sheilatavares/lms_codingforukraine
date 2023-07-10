@@ -147,7 +147,7 @@ function App() {
             <Route
               path="/dashboard"
               element={
-                !userId === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' ? (
+                userId === 'B6BPdCJgzicvHTKvg7sRz1wJOZx1' ? (
                   <Dashboard />
                 ) : (
                   <Navigate to="/login" />
