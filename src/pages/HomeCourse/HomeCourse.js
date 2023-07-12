@@ -61,7 +61,7 @@ const HomeCourse = () => {
         <div className="row d-flex flex-column flex-lg-row flex-column-reverse pt-lg-2">
           <div className="col-lg-6">
             <h2 className="mb-lg-5 mb-2 text-start py-4">
-              Course: Introducting Programming with JavaScript
+              Course: Introducing Programming with JavaScript
             </h2>
           </div>
           <div className="col-lg-6 pt-4 pt-sm-2 d-flex flex-column align-items-md-end align-items-center justify-content-center">
