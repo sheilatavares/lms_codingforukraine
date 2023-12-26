@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# Coding for Ukraine - Learning Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains the source code for the Learning Management System (LMS) developed for Coding for Ukraine, an initiative aimed at providing coding education and support for Ukraine amidst the ongoing crisis.
 
-## Available Scripts
+## About
+Coding for Ukraine is a charitable project that offers coding courses, resources, and support to individuals affected by the crisis in Ukraine. This Learning Management System serves as a platform to deliver educational content, facilitate communication between instructors and students, and manage course materials.
 
-In the project directory, you can run:
+## Features
+- **Course Management:** Create, manage, and organize coding courses efficiently.
+- **User Profiles:** Students and instructors can create profiles, track progress, and access course materials.
+- **Admin Dashboard:** Administrative tools for managing courses, users, and content.
 
-### `npm start`
+![Home page](src/img/c4u_v1.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![Inside the platform](src/img/c4u_v2.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation and Setup
+To set up the LMS locally, follow these steps:
 
-### `npm test`
+1. **Clone the Repository:**
+    ```bash
+    git clone https://github.com/sheilatavares/lms_codingforukraine.git
+    ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Install Dependencies:**
+    ```bash
+    cd lms_codingforukraine
+    # Run appropriate package manager command (e.g., npm install or yarn)
+    npm install
+    ```
 
-### `npm run build`
+4. **Run the Application:**
+    ```bash
+    # Start the development server
+    npm start
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+5. **Access the Application:**
+    Open a web browser and go to [http://localhost:3000](http://localhost:3000) to view the LMS.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Contributing
+Contributions to this project are welcome! If you'd like to contribute, please follow these steps:
+1. Fork the repository.
+2. Create your feature branch (`git checkout -b feature/YourFeature`).
+3. Commit your changes (`git commit -am 'Add some feature'`).
+4. Push to the branch (`git push origin feature/YourFeature`).
+5. Create a new Pull Request.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Deployment
+This LMS is deployed and accessible at [Coding for Ukraine - LMS](https://codingforukraine.org/). 
 
-### `npm run eject`
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Acknowledgements
+Special thanks to all contributors and supporters of Coding for Ukraine for their dedication and commitment to providing education and support during this critical time.
